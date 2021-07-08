@@ -1,8 +1,14 @@
 [tool.poetry]
 name = "pullapprove"
 version = "3.12.0"
-description = ""
-authors = ["Dave Gaeddert <dave.gaeddert@dropseed.io>"]
+description = "PullApprove is a framework for code review assignment, processes, and policies that integrates natively with your git host."
+authors = ["Dropseed <python@dropseed.io>"]
+license = "Business Source License"
+readme = "README.md"
+homepage = "https://www.pullapprove.com/"
+documentation = "https://docs.pullapprove.com/"
+repository = "https://github.com/dropseed/pullapprove"
+keywords = ["pull request", "code review", "reviewer"]
 
 [tool.poetry.scripts]
 pullapprove = "pullapprove.cli:cli"
