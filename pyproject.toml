@@ -10,16 +10,16 @@ pullapprove = "pullapprove.cli:cli"
 [tool.poetry.dependencies]
 python = "^3.8"
 wcmatch = "8.2"
-cached-property = "1.5.2"
-requests = "2.25.1"
-Jinja2 = "3.0.1"
-dateparser = "1.0.0"
-PyJWT = "2.1.0"
-cryptography = "3.4.7"
-python-box = "5.3.0"
-marshmallow = "3.12.1"
-PyYAML = "5.4.1"
-CacheControl = {version = "0.12.6", extras = ["filecache"]}
+cached-property = "^1.5.2"
+requests = "^2.25.1"
+Jinja2 = "^3.0.1"
+dateparser = "^1.0.0"
+PyJWT = "^2.1.0"
+cryptography = "^3.4.7"
+python-box = "^5.3.0"
+marshmallow = "^3.12.1"
+PyYAML = "^5.4.1"
+CacheControl = {version = "^0.12.6", extras = ["filecache"]}
 click = "^8.0.1"
 
 [tool.poetry.dev-dependencies]
