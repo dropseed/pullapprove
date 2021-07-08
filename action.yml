@@ -13,6 +13,6 @@ runs:
   using: docker
   image: Dockerfile
   args:
-  - ${{ inputs.command }}
+  - ${{ inputs.cmd }}
   env:
     GITHUB_TOKEN: ${{ inputs.github_token }}
