@@ -1,0 +1,26 @@
+#!/bin/sh -e
+VERSION="$1"
+
+if [ -z "$VERSION" ]
+then
+    echo "You need to specify a version (ex. '1.0.0')"
+    exit 1
+fi
+
+echo "Updating pyproject.toml versions"
+sed -E -i "" "s/version = \"[0-9]+\.[0-9]+\.[0-9]+\"/version = \"$VERSION\"/g" pyproject.toml
+git add pyproject.toml
+
+echo "Updating license change date"
+CHANGEDATE=$(date -v +3y "+%Y-%m-%d")
+sed -E -i "" "s/Change Date:          .*/Change Date:          $CHANGEDATE/g" LICENSE
+git add LICENSE
+
+git commit -m "Version $VERSION"
+git tag -a "v$VERSION" -m "v$VERSION"
+
+echo "Publishing to pypi"
+poetry build
+poetry publish
+
+git push && git push --tags
