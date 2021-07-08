@@ -5,8 +5,8 @@ from typing import Any, Dict, List, Optional
 from urllib.parse import parse_qs, quote, urlparse
 
 from cached_property import cached_property
-from context.bitbucket import PullRequest as PullRequestContext
-from storage import Storage
+from pullapprove.context.bitbucket import PullRequest as PullRequestContext
+from pullapprove.storage import Storage
 
 import pullapprove.context.functions
 from pullapprove.exceptions import UserError
