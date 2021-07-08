@@ -1,0 +1,3 @@
+#!/bin/sh -ex
+.venv/bin/black pullapprove $@
+.venv/bin/black tests $@

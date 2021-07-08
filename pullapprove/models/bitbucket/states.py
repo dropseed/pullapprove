@@ -1,0 +1,22 @@
+from ..status import ReviewState, State
+
+BITBUCKET_STATUS_STATE_TO_PULLAPPROVE_STATUS_STATE = {
+    "SUCCESSFUL": State.SUCCESS,
+    "INPROGRESS": State.PENDING,
+    "FAILED": State.FAILURE,
+    "STOPPED": State.ERROR,
+}
+
+PULLAPPROVE_STATUS_STATE_TO_BITBUCKET_STATUS_STATE = {
+    State.SUCCESS: "SUCCESSFUL",
+    State.PENDING: "INPROGRESS",
+    State.FAILURE: "FAILED",
+    State.ERROR: "STOPPED",
+}
+
+BITBUCKET_REVIEW_STATE_TO_PULLAPPROVE_REVIEW_STATE = {
+    "approved": ReviewState.APPROVED,
+    "changes_requested": ReviewState.REJECTED,
+    # "PENDING": ReviewState.PENDING,
+    # "DISMISSED": ReviewState.PENDING,
+}

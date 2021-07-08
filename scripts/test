@@ -1,0 +1,2 @@
+#!/bin/sh -e
+poetry run pytest --cov=pullapprove --cov-report=html:.reports/pytest tests $@

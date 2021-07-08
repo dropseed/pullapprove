@@ -1,0 +1,442 @@
+[
+  {
+    "id": 140931,
+    "node_id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3MTQwOTMx",
+    "user": {
+      "login": "d_redacted",
+      "id": 167,
+      "node_id": "MDQ6VXNlcjE2Nw==",
+      "avatar_url": "https://github.example.com/avatars/u/167?",
+      "gravatar_id": "",
+      "url": "https://github.example.com/api/v3/users/d_redacted",
+      "html_url": "https://github.example.com/d_redacted",
+      "followers_url": "https://github.example.com/api/v3/users/d_redacted/followers",
+      "following_url": "https://github.example.com/api/v3/users/d_redacted/following{/other_user}",
+      "gists_url": "https://github.example.com/api/v3/users/d_redacted/gists{/gist_id}",
+      "starred_url": "https://github.example.com/api/v3/users/d_redacted/starred{/owner}{/repo}",
+      "subscriptions_url": "https://github.example.com/api/v3/users/d_redacted/subscriptions",
+      "organizations_url": "https://github.example.com/api/v3/users/d_redacted/orgs",
+      "repos_url": "https://github.example.com/api/v3/users/d_redacted/repos",
+      "events_url": "https://github.example.com/api/v3/users/d_redacted/events{/privacy}",
+      "received_events_url": "https://github.example.com/api/v3/users/d_redacted/received_events",
+      "type": "User",
+      "site_admin": false,
+      "ldap_dn": "_redacted"
+    },
+    "body": "",
+    "state": "COMMENTED",
+    "html_url": "https://github.example.com/example/abc/pull/12182#pullrequestreview-140931",
+    "pull_request_url": "https://github.example.com/api/v3/repos/example/abc/pulls/12182",
+    "author_association": "CONTRIBUTOR",
+    "_links": {
+      "html": {
+        "href": "https://github.example.com/example/abc/pull/12182#pullrequestreview-140931"
+      },
+      "pull_request": {
+        "href": "https://github.example.com/api/v3/repos/example/abc/pulls/12182"
+      }
+    },
+    "submitted_at": "2018-11-06T04:36:13Z",
+    "commit_id": "16ebdfb66f7acc9458ad30fb6747830be3093cca"
+  },
+  {
+    "id": 140933,
+    "node_id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3MTQwOTMz",
+    "user": {
+      "login": "d_redacted",
+      "id": 167,
+      "node_id": "MDQ6VXNlcjE2Nw==",
+      "avatar_url": "https://github.example.com/avatars/u/167?",
+      "gravatar_id": "",
+      "url": "https://github.example.com/api/v3/users/d_redacted",
+      "html_url": "https://github.example.com/d_redacted",
+      "followers_url": "https://github.example.com/api/v3/users/d_redacted/followers",
+      "following_url": "https://github.example.com/api/v3/users/d_redacted/following{/other_user}",
+      "gists_url": "https://github.example.com/api/v3/users/d_redacted/gists{/gist_id}",
+      "starred_url": "https://github.example.com/api/v3/users/d_redacted/starred{/owner}{/repo}",
+      "subscriptions_url": "https://github.example.com/api/v3/users/d_redacted/subscriptions",
+      "organizations_url": "https://github.example.com/api/v3/users/d_redacted/orgs",
+      "repos_url": "https://github.example.com/api/v3/users/d_redacted/repos",
+      "events_url": "https://github.example.com/api/v3/users/d_redacted/events{/privacy}",
+      "received_events_url": "https://github.example.com/api/v3/users/d_redacted/received_events",
+      "type": "User",
+      "site_admin": false,
+      "ldap_dn": "_redacted"
+    },
+    "body": "",
+    "state": "COMMENTED",
+    "html_url": "https://github.example.com/example/abc/pull/12182#pullrequestreview-140933",
+    "pull_request_url": "https://github.example.com/api/v3/repos/example/abc/pulls/12182",
+    "author_association": "CONTRIBUTOR",
+    "_links": {
+      "html": {
+        "href": "https://github.example.com/example/abc/pull/12182#pullrequestreview-140933"
+      },
+      "pull_request": {
+        "href": "https://github.example.com/api/v3/repos/example/abc/pulls/12182"
+      }
+    },
+    "submitted_at": "2018-11-06T04:42:00Z",
+    "commit_id": "16ebdfb66f7acc9458ad30fb6747830be3093cca"
+  },
+  {
+    "id": 141082,
+    "node_id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3MTQxMDgy",
+    "user": {
+      "login": "p_redacted",
+      "id": 123,
+      "node_id": "MDQ6VXNlcjEyMw==",
+      "avatar_url": "https://github.example.com/avatars/u/123?",
+      "gravatar_id": "",
+      "url": "https://github.example.com/api/v3/users/p_redacted",
+      "html_url": "https://github.example.com/p_redacted",
+      "followers_url": "https://github.example.com/api/v3/users/p_redacted/followers",
+      "following_url": "https://github.example.com/api/v3/users/p_redacted/following{/other_user}",
+      "gists_url": "https://github.example.com/api/v3/users/p_redacted/gists{/gist_id}",
+      "starred_url": "https://github.example.com/api/v3/users/p_redacted/starred{/owner}{/repo}",
+      "subscriptions_url": "https://github.example.com/api/v3/users/p_redacted/subscriptions",
+      "organizations_url": "https://github.example.com/api/v3/users/p_redacted/orgs",
+      "repos_url": "https://github.example.com/api/v3/users/p_redacted/repos",
+      "events_url": "https://github.example.com/api/v3/users/p_redacted/events{/privacy}",
+      "received_events_url": "https://github.example.com/api/v3/users/p_redacted/received_events",
+      "type": "User",
+      "site_admin": false,
+      "ldap_dn": "_redacted"
+    },
+    "body": "Sim code changes look good. Didn't review adaf or helper script.",
+    "state": "APPROVED",
+    "html_url": "https://github.example.com/example/abc/pull/12182#pullrequestreview-141082",
+    "pull_request_url": "https://github.example.com/api/v3/repos/example/abc/pulls/12182",
+    "author_association": "CONTRIBUTOR",
+    "_links": {
+      "html": {
+        "href": "https://github.example.com/example/abc/pull/12182#pullrequestreview-141082"
+      },
+      "pull_request": {
+        "href": "https://github.example.com/api/v3/repos/example/abc/pulls/12182"
+      }
+    },
+    "submitted_at": "2018-11-06T17:01:42Z",
+    "commit_id": "16ebdfb66f7acc9458ad30fb6747830be3093cca"
+  },
+  {
+    "id": 141086,
+    "node_id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3MTQxMDg2",
+    "user": {
+      "login": "p_redacted",
+      "id": 123,
+      "node_id": "MDQ6VXNlcjEyMw==",
+      "avatar_url": "https://github.example.com/avatars/u/123?",
+      "gravatar_id": "",
+      "url": "https://github.example.com/api/v3/users/p_redacted",
+      "html_url": "https://github.example.com/p_redacted",
+      "followers_url": "https://github.example.com/api/v3/users/p_redacted/followers",
+      "following_url": "https://github.example.com/api/v3/users/p_redacted/following{/other_user}",
+      "gists_url": "https://github.example.com/api/v3/users/p_redacted/gists{/gist_id}",
+      "starred_url": "https://github.example.com/api/v3/users/p_redacted/starred{/owner}{/repo}",
+      "subscriptions_url": "https://github.example.com/api/v3/users/p_redacted/subscriptions",
+      "organizations_url": "https://github.example.com/api/v3/users/p_redacted/orgs",
+      "repos_url": "https://github.example.com/api/v3/users/p_redacted/repos",
+      "events_url": "https://github.example.com/api/v3/users/p_redacted/events{/privacy}",
+      "received_events_url": "https://github.example.com/api/v3/users/p_redacted/received_events",
+      "type": "User",
+      "site_admin": false,
+      "ldap_dn": "_redacted"
+    },
+    "body": "",
+    "state": "COMMENTED",
+    "html_url": "https://github.example.com/example/abc/pull/12182#pullrequestreview-141086",
+    "pull_request_url": "https://github.example.com/api/v3/repos/example/abc/pulls/12182",
+    "author_association": "CONTRIBUTOR",
+    "_links": {
+      "html": {
+        "href": "https://github.example.com/example/abc/pull/12182#pullrequestreview-141086"
+      },
+      "pull_request": {
+        "href": "https://github.example.com/api/v3/repos/example/abc/pulls/12182"
+      }
+    },
+    "submitted_at": "2018-11-06T17:07:06Z",
+    "commit_id": "16ebdfb66f7acc9458ad30fb6747830be3093cca"
+  },
+  {
+    "id": 141088,
+    "node_id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3MTQxMDg4",
+    "user": {
+      "login": "c_redacted",
+      "id": 174,
+      "node_id": "MDQ6VXNlcjE3NA==",
+      "avatar_url": "https://github.example.com/avatars/u/174?",
+      "gravatar_id": "",
+      "url": "https://github.example.com/api/v3/users/c_redacted",
+      "html_url": "https://github.example.com/c_redacted",
+      "followers_url": "https://github.example.com/api/v3/users/c_redacted/followers",
+      "following_url": "https://github.example.com/api/v3/users/c_redacted/following{/other_user}",
+      "gists_url": "https://github.example.com/api/v3/users/c_redacted/gists{/gist_id}",
+      "starred_url": "https://github.example.com/api/v3/users/c_redacted/starred{/owner}{/repo}",
+      "subscriptions_url": "https://github.example.com/api/v3/users/c_redacted/subscriptions",
+      "organizations_url": "https://github.example.com/api/v3/users/c_redacted/orgs",
+      "repos_url": "https://github.example.com/api/v3/users/c_redacted/repos",
+      "events_url": "https://github.example.com/api/v3/users/c_redacted/events{/privacy}",
+      "received_events_url": "https://github.example.com/api/v3/users/c_redacted/received_events",
+      "type": "User",
+      "site_admin": false,
+      "ldap_dn": "_redacted"
+    },
+    "body": "",
+    "state": "COMMENTED",
+    "html_url": "https://github.example.com/example/abc/pull/12182#pullrequestreview-141088",
+    "pull_request_url": "https://github.example.com/api/v3/repos/example/abc/pulls/12182",
+    "author_association": "CONTRIBUTOR",
+    "_links": {
+      "html": {
+        "href": "https://github.example.com/example/abc/pull/12182#pullrequestreview-141088"
+      },
+      "pull_request": {
+        "href": "https://github.example.com/api/v3/repos/example/abc/pulls/12182"
+      }
+    },
+    "submitted_at": "2018-11-06T17:08:27Z",
+    "commit_id": "16ebdfb66f7acc9458ad30fb6747830be3093cca"
+  },
+  {
+    "id": 141089,
+    "node_id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3MTQxMDg5",
+    "user": {
+      "login": "c_redacted",
+      "id": 174,
+      "node_id": "MDQ6VXNlcjE3NA==",
+      "avatar_url": "https://github.example.com/avatars/u/174?",
+      "gravatar_id": "",
+      "url": "https://github.example.com/api/v3/users/c_redacted",
+      "html_url": "https://github.example.com/c_redacted",
+      "followers_url": "https://github.example.com/api/v3/users/c_redacted/followers",
+      "following_url": "https://github.example.com/api/v3/users/c_redacted/following{/other_user}",
+      "gists_url": "https://github.example.com/api/v3/users/c_redacted/gists{/gist_id}",
+      "starred_url": "https://github.example.com/api/v3/users/c_redacted/starred{/owner}{/repo}",
+      "subscriptions_url": "https://github.example.com/api/v3/users/c_redacted/subscriptions",
+      "organizations_url": "https://github.example.com/api/v3/users/c_redacted/orgs",
+      "repos_url": "https://github.example.com/api/v3/users/c_redacted/repos",
+      "events_url": "https://github.example.com/api/v3/users/c_redacted/events{/privacy}",
+      "received_events_url": "https://github.example.com/api/v3/users/c_redacted/received_events",
+      "type": "User",
+      "site_admin": false,
+      "ldap_dn": "_redacted"
+    },
+    "body": "",
+    "state": "COMMENTED",
+    "html_url": "https://github.example.com/example/abc/pull/12182#pullrequestreview-141089",
+    "pull_request_url": "https://github.example.com/api/v3/repos/example/abc/pulls/12182",
+    "author_association": "CONTRIBUTOR",
+    "_links": {
+      "html": {
+        "href": "https://github.example.com/example/abc/pull/12182#pullrequestreview-141089"
+      },
+      "pull_request": {
+        "href": "https://github.example.com/api/v3/repos/example/abc/pulls/12182"
+      }
+    },
+    "submitted_at": "2018-11-06T17:09:02Z",
+    "commit_id": "16ebdfb66f7acc9458ad30fb6747830be3093cca"
+  },
+  {
+    "id": 141197,
+    "node_id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3MTQxMTk3",
+    "user": {
+      "login": "c_redacted",
+      "id": 174,
+      "node_id": "MDQ6VXNlcjE3NA==",
+      "avatar_url": "https://github.example.com/avatars/u/174?",
+      "gravatar_id": "",
+      "url": "https://github.example.com/api/v3/users/c_redacted",
+      "html_url": "https://github.example.com/c_redacted",
+      "followers_url": "https://github.example.com/api/v3/users/c_redacted/followers",
+      "following_url": "https://github.example.com/api/v3/users/c_redacted/following{/other_user}",
+      "gists_url": "https://github.example.com/api/v3/users/c_redacted/gists{/gist_id}",
+      "starred_url": "https://github.example.com/api/v3/users/c_redacted/starred{/owner}{/repo}",
+      "subscriptions_url": "https://github.example.com/api/v3/users/c_redacted/subscriptions",
+      "organizations_url": "https://github.example.com/api/v3/users/c_redacted/orgs",
+      "repos_url": "https://github.example.com/api/v3/users/c_redacted/repos",
+      "events_url": "https://github.example.com/api/v3/users/c_redacted/events{/privacy}",
+      "received_events_url": "https://github.example.com/api/v3/users/c_redacted/received_events",
+      "type": "User",
+      "site_admin": false,
+      "ldap_dn": "_redacted"
+    },
+    "body": "/pullapprove-status",
+    "state": "COMMENTED",
+    "html_url": "https://github.example.com/example/abc/pull/12182#pullrequestreview-141197",
+    "pull_request_url": "https://github.example.com/api/v3/repos/example/abc/pulls/12182",
+    "author_association": "CONTRIBUTOR",
+    "_links": {
+      "html": {
+        "href": "https://github.example.com/example/abc/pull/12182#pullrequestreview-141197"
+      },
+      "pull_request": {
+        "href": "https://github.example.com/api/v3/repos/example/abc/pulls/12182"
+      }
+    },
+    "submitted_at": "2018-11-06T19:06:35Z",
+    "commit_id": "28e72a8f3bfe3da8d820b0f89bcbfc7d52bd79d5"
+  },
+  {
+    "id": 141198,
+    "node_id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3MTQxMTk4",
+    "user": {
+      "login": "d_redacted",
+      "id": 167,
+      "node_id": "MDQ6VXNlcjE2Nw==",
+      "avatar_url": "https://github.example.com/avatars/u/167?",
+      "gravatar_id": "",
+      "url": "https://github.example.com/api/v3/users/d_redacted",
+      "html_url": "https://github.example.com/d_redacted",
+      "followers_url": "https://github.example.com/api/v3/users/d_redacted/followers",
+      "following_url": "https://github.example.com/api/v3/users/d_redacted/following{/other_user}",
+      "gists_url": "https://github.example.com/api/v3/users/d_redacted/gists{/gist_id}",
+      "starred_url": "https://github.example.com/api/v3/users/d_redacted/starred{/owner}{/repo}",
+      "subscriptions_url": "https://github.example.com/api/v3/users/d_redacted/subscriptions",
+      "organizations_url": "https://github.example.com/api/v3/users/d_redacted/orgs",
+      "repos_url": "https://github.example.com/api/v3/users/d_redacted/repos",
+      "events_url": "https://github.example.com/api/v3/users/d_redacted/events{/privacy}",
+      "received_events_url": "https://github.example.com/api/v3/users/d_redacted/received_events",
+      "type": "User",
+      "site_admin": false,
+      "ldap_dn": "_redacted"
+    },
+    "body": "This looks good to me now.  I still like the idea of adding to the default manifest - it would be like saving the checksum of a file so you can tell if it has been corrupted.\r\n\r\nBut I guess it's not a big deal either way, approving -  think this a great script as is.  Thanks.",
+    "state": "APPROVED",
+    "html_url": "https://github.example.com/example/abc/pull/12182#pullrequestreview-141198",
+    "pull_request_url": "https://github.example.com/api/v3/repos/example/abc/pulls/12182",
+    "author_association": "CONTRIBUTOR",
+    "_links": {
+      "html": {
+        "href": "https://github.example.com/example/abc/pull/12182#pullrequestreview-141198"
+      },
+      "pull_request": {
+        "href": "https://github.example.com/api/v3/repos/example/abc/pulls/12182"
+      }
+    },
+    "submitted_at": "2018-11-06T19:07:47Z",
+    "commit_id": "28e72a8f3bfe3da8d820b0f89bcbfc7d52bd79d5"
+  },
+  {
+    "id": 141204,
+    "node_id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3MTQxMjA0",
+    "user": {
+      "login": "d_redacted",
+      "id": 167,
+      "node_id": "MDQ6VXNlcjE2Nw==",
+      "avatar_url": "https://github.example.com/avatars/u/167?",
+      "gravatar_id": "",
+      "url": "https://github.example.com/api/v3/users/d_redacted",
+      "html_url": "https://github.example.com/d_redacted",
+      "followers_url": "https://github.example.com/api/v3/users/d_redacted/followers",
+      "following_url": "https://github.example.com/api/v3/users/d_redacted/following{/other_user}",
+      "gists_url": "https://github.example.com/api/v3/users/d_redacted/gists{/gist_id}",
+      "starred_url": "https://github.example.com/api/v3/users/d_redacted/starred{/owner}{/repo}",
+      "subscriptions_url": "https://github.example.com/api/v3/users/d_redacted/subscriptions",
+      "organizations_url": "https://github.example.com/api/v3/users/d_redacted/orgs",
+      "repos_url": "https://github.example.com/api/v3/users/d_redacted/repos",
+      "events_url": "https://github.example.com/api/v3/users/d_redacted/events{/privacy}",
+      "received_events_url": "https://github.example.com/api/v3/users/d_redacted/received_events",
+      "type": "User",
+      "site_admin": false,
+      "ldap_dn": "_redacted"
+    },
+    "body": "",
+    "state": "COMMENTED",
+    "html_url": "https://github.example.com/example/abc/pull/12182#pullrequestreview-141204",
+    "pull_request_url": "https://github.example.com/api/v3/repos/example/abc/pulls/12182",
+    "author_association": "CONTRIBUTOR",
+    "_links": {
+      "html": {
+        "href": "https://github.example.com/example/abc/pull/12182#pullrequestreview-141204"
+      },
+      "pull_request": {
+        "href": "https://github.example.com/api/v3/repos/example/abc/pulls/12182"
+      }
+    },
+    "submitted_at": "2018-11-06T19:13:07Z",
+    "commit_id": "28e72a8f3bfe3da8d820b0f89bcbfc7d52bd79d5"
+  },
+  {
+    "id": 141210,
+    "node_id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3MTQxMjEw",
+    "user": {
+      "login": "j_redacted",
+      "id": 6,
+      "node_id": "MDQ6VXNlcjY=",
+      "avatar_url": "https://github.example.com/avatars/u/6?",
+      "gravatar_id": "",
+      "url": "https://github.example.com/api/v3/users/j_redacted",
+      "html_url": "https://github.example.com/j_redacted",
+      "followers_url": "https://github.example.com/api/v3/users/j_redacted/followers",
+      "following_url": "https://github.example.com/api/v3/users/j_redacted/following{/other_user}",
+      "gists_url": "https://github.example.com/api/v3/users/j_redacted/gists{/gist_id}",
+      "starred_url": "https://github.example.com/api/v3/users/j_redacted/starred{/owner}{/repo}",
+      "subscriptions_url": "https://github.example.com/api/v3/users/j_redacted/subscriptions",
+      "organizations_url": "https://github.example.com/api/v3/users/j_redacted/orgs",
+      "repos_url": "https://github.example.com/api/v3/users/j_redacted/repos",
+      "events_url": "https://github.example.com/api/v3/users/j_redacted/events{/privacy}",
+      "received_events_url": "https://github.example.com/api/v3/users/j_redacted/received_events",
+      "type": "User",
+      "site_admin": true,
+      "ldap_dn": "_redacted"
+    },
+    "body": "/pullapprove-status",
+    "state": "COMMENTED",
+    "html_url": "https://github.example.com/example/abc/pull/12182#pullrequestreview-141210",
+    "pull_request_url": "https://github.example.com/api/v3/repos/example/abc/pulls/12182",
+    "author_association": "CONTRIBUTOR",
+    "_links": {
+      "html": {
+        "href": "https://github.example.com/example/abc/pull/12182#pullrequestreview-141210"
+      },
+      "pull_request": {
+        "href": "https://github.example.com/api/v3/repos/example/abc/pulls/12182"
+      }
+    },
+    "submitted_at": "2018-11-06T19:17:58Z",
+    "commit_id": "28e72a8f3bfe3da8d820b0f89bcbfc7d52bd79d5"
+  },
+  {
+    "id": 141235,
+    "node_id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3MTQxMjM1",
+    "user": {
+      "login": "j_redacted",
+      "id": 6,
+      "node_id": "MDQ6VXNlcjY=",
+      "avatar_url": "https://github.example.com/avatars/u/6?",
+      "gravatar_id": "",
+      "url": "https://github.example.com/api/v3/users/j_redacted",
+      "html_url": "https://github.example.com/j_redacted",
+      "followers_url": "https://github.example.com/api/v3/users/j_redacted/followers",
+      "following_url": "https://github.example.com/api/v3/users/j_redacted/following{/other_user}",
+      "gists_url": "https://github.example.com/api/v3/users/j_redacted/gists{/gist_id}",
+      "starred_url": "https://github.example.com/api/v3/users/j_redacted/starred{/owner}{/repo}",
+      "subscriptions_url": "https://github.example.com/api/v3/users/j_redacted/subscriptions",
+      "organizations_url": "https://github.example.com/api/v3/users/j_redacted/orgs",
+      "repos_url": "https://github.example.com/api/v3/users/j_redacted/repos",
+      "events_url": "https://github.example.com/api/v3/users/j_redacted/events{/privacy}",
+      "received_events_url": "https://github.example.com/api/v3/users/j_redacted/received_events",
+      "type": "User",
+      "site_admin": true,
+      "ldap_dn": "_redacted"
+    },
+    "body": "",
+    "state": "APPROVED",
+    "html_url": "https://github.example.com/example/abc/pull/12182#pullrequestreview-141235",
+    "pull_request_url": "https://github.example.com/api/v3/repos/example/abc/pulls/12182",
+    "author_association": "CONTRIBUTOR",
+    "_links": {
+      "html": {
+        "href": "https://github.example.com/example/abc/pull/12182#pullrequestreview-141235"
+      },
+      "pull_request": {
+        "href": "https://github.example.com/api/v3/repos/example/abc/pulls/12182"
+      }
+    },
+    "submitted_at": "2018-11-06T20:13:59Z",
+    "commit_id": "28e72a8f3bfe3da8d820b0f89bcbfc7d52bd79d5"
+  }
+]

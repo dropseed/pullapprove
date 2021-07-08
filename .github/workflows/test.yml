@@ -1,0 +1,31 @@
+name: test
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Install dependencies
+      run: |
+        pip install -U pip poetry
+        ./scripts/install
+    - name: mypy
+      run: |
+        ./scripts/mypy
+    - name: Test
+      run: |
+        ./scripts/test -v
+    - name: Install commitstat
+      run: curl https://raw.githubusercontent.com/dropseed/commitstat/master/install.sh | bash -s -- -b $HOME/bin
+    - name: Run commitstat
+      run: |
+        $HOME/bin/commitstat .reports/mypy/index.txt --regex "\| Total\s*\|\s*([\d\.]+%)" --goal decrease --name mypy
+        $HOME/bin/commitstat .reports/pytest/index.html --regex "<span class=\"pc_cov\">(\d+%)<\/span>" --goal increase --name pytest
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
