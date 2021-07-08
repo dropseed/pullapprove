@@ -5,3 +5,4 @@ __pycache__
 /.reports
 .coverage
 .mypy_cache
+/dist
