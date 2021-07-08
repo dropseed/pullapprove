@@ -55,6 +55,5 @@ class Repo(BaseRepo):
     def workspace_members(self) -> List[Dict]:
         return self.api.get(
             f"{BITBUCKET_API_BASE_URL}/workspaces/{self.workspace_id}/members",
-            prepend_base_url=False,
             page_items_key="values",
         )

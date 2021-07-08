@@ -87,10 +87,11 @@ class BaseAPI:
 
         data: Any = []  # assume we're getting a list of objects by default
 
-        if kwargs.pop("prepend_base_url", True):
-            next_page_url = self.base_url + url
-        else:
+        if url.startswith("http://") or url.startswith("https://"):
             next_page_url = url
+        else:
+            # Automatically prepend the base url
+            next_page_url = self.base_url + url
 
         page_items_key = kwargs.pop("page_items_key", None)
         user_error_status_codes = kwargs.pop("user_error_status_codes", {})

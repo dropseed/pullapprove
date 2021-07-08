@@ -95,7 +95,6 @@ class Repo(BaseRepo):
                 # Doesn't return team data, just a 20X
                 self.api.get(
                     f"{GITHUB_API_BASE_URL}/orgs/{self.owner_name}/teams/{team_slug}/repos/{self.full_name}",
-                    prepend_base_url=False,
                     user_error_status_codes={404: None},
                     parse_json=False,
                 )
@@ -105,7 +104,6 @@ class Repo(BaseRepo):
         # Craft the URL ourselves because that works with both nested and un-nested teams
         users = self.api.get(
             f"{GITHUB_API_BASE_URL}/orgs/{self.owner_name}/teams/{team_slug}/members",
-            prepend_base_url=False,
         )
         usernames = [x["login"] for x in users]
         self._cached_team_users[team_slug] = usernames

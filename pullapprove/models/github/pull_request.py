@@ -247,7 +247,6 @@ class PullRequest(BasePullRequest):
         if existing_comment:
             self.repo.api.patch(
                 existing_comment["url"],
-                prepend_base_url=False,
                 json={"body": body_with_header},
             )
         else:

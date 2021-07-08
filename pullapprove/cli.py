@@ -44,7 +44,7 @@ def sync(json_path, github_token, github_repo, github_api_url):
     with open(json_path, "r") as f:
         original_json_data = json.load(f)
 
-    issues = github_api.get(f"{github_api_url}/repos/{github_repo}/issues")
+    issues = github_api.get(f"/repos/{github_repo}/issues")
 
     users_unavailable = set()
 

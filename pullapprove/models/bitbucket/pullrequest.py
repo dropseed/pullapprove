@@ -115,7 +115,6 @@ class PullRequest(BasePullRequest):
         statuses = self.repo.api.get(
             self.data["links"]["statuses"]["href"],
             page_items_key="values",
-            prepend_base_url=False,
         )
 
         for status in statuses:
