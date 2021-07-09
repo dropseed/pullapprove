@@ -21,7 +21,6 @@ def availability():
 
 
 @availability.command()
-# @click.option("--commit-author", envvar="COMMIT_AUTHOR", required=IS_CI)  # TODO allow whitespace...
 @click.option("--github-token", envvar="GITHUB_TOKEN", required=True)
 @click.option("--github-repo", envvar="GITHUB_REPOSITORY", required=True)
 @click.option(
@@ -30,8 +29,11 @@ def availability():
     default="https://api.github.com",
 )
 @click.argument("json_path", type=click.Path())
-def sync(json_path, github_token, github_repo, github_api_url):
-
+def sync_issues(json_path, github_token, github_repo, github_api_url):
+    """
+    Generate availability JSON by parsing GitHub Issues
+    (also processes issue opened/edited events and responds with comments)
+    """
     github_api = GitHubAPI(
         base_url=github_api_url,
         headers={
