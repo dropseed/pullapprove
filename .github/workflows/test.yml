@@ -24,7 +24,7 @@ jobs:
     - name: Install commitstat
       run: curl https://raw.githubusercontent.com/dropseed/commitstat/master/install.sh | bash -s -- -b $HOME/bin
     - name: Run commitstat
-      if: ${{ !startsWith(github.ref, "refs/tags/") }}
+      if: ${{ !startsWith(github.ref, 'refs/tags/') }}
       run: |
         $HOME/bin/commitstat .reports/mypy/index.txt --regex "\| Total\s*\|\s*([\d\.]+%)" --goal decrease --name mypy
         $HOME/bin/commitstat .reports/pytest/index.html --regex "<span class=\"pc_cov\">(\d+%)<\/span>" --goal increase --name pytest
