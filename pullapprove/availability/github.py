@@ -68,7 +68,7 @@ def parse_issue_title(title):
 class GitHubIssue:
     def __init__(self, data):
         self.data = data
-        self.username, self.start_date, self.end_date = self.parse_issue_title(
+        self.username, self.start_date, self.end_date = parse_issue_title(
             self.data["title"]
         )
 
