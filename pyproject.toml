@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pullapprove"
-version = "3.13.2"
+version = "3.13.3"
 description = "PullApprove is a framework for code review assignment, processes, and policies that integrates natively with your git host."
 authors = ["Dropseed <python@dropseed.io>"]
 license = "Business Source License"
