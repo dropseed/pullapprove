@@ -17,6 +17,11 @@ class BaseRepo:
     def get_extra_as_dict(self) -> Dict[str, Any]:
         return {}
 
+    def compile_url_shorthand(
+        self, repo: str = "", filename: str = "", ref: str = ""
+    ) -> str:
+        raise NotImplementedError
+
     def load_config(self, content: Optional[str]) -> Optional[Config]:
         raise NotImplementedError
 

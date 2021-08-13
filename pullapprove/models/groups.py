@@ -1,7 +1,7 @@
 from random import Random, shuffle
 from typing import TYPE_CHECKING, Any, Dict, List, Set
 
-from pullapprove import context
+from pullapprove.context.groups import Group as GroupContext, Groups as GroupsContext
 
 from . import expressions
 from .states import ReviewState
@@ -197,20 +197,20 @@ class Group:
 
     def load_conditions(self, pr: "BasePullRequest", groups: List[Dict[str, Any]]):
         ctx = pr.as_context()
-        ctx["groups"] = context.groups.Groups(groups)
+        ctx["groups"] = GroupsContext(groups)
 
         for condition in self.conditions:
             condition.load(ctx)
 
     def load_requirements(self, pr: "BasePullRequest", groups: List[Dict[str, Any]]):
         ctx = pr.as_context()
-        ctx["groups"] = context.groups.Groups(groups)
+        ctx["groups"] = GroupsContext(groups)
 
         group_data = self.as_dict()
         group_data.pop("requirements")  # not loaded yet
         group_data.pop("is_passing")  # depends on requirements
         group_data.pop("is_active")  # not useful - requirements only run when is_active
-        ctx["group"] = context.groups.Group(group_data)
+        ctx["group"] = GroupContext(group_data)
 
         for requirement in self.requirements:
             requirement.load(ctx)

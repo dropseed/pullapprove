@@ -35,7 +35,7 @@ class Repo(BaseRepo):
     def get_extra_as_dict(self) -> Dict[str, Any]:
         return {"owner_name": self.owner_name}
 
-    def _compile_shorthand(
+    def compile_url_shorthand(
         self, repo: str = "", filename: str = "", ref: str = ""
     ) -> str:
         url = f"{GITHUB_API_BASE_URL}/repos/{repo or self.full_name}/contents/{filename or CONFIG_FILENAME}"
@@ -55,7 +55,7 @@ class Repo(BaseRepo):
             return requests.get(url)
 
         extends_loader = ExtendsLoader(
-            compile_shorthand=self._compile_shorthand,
+            compile_shorthand=self.compile_url_shorthand,
             get_url_response=get_url_response,
         )
 

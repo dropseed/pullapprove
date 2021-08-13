@@ -5,7 +5,7 @@ from pullapprove.models.github import Repo
 def test_extends_url():
     repo = Repo(full_name="dropseed/testing", api_token="")
     loader = ExtendsLoader(
-        compile_shorthand=repo._compile_shorthand,
+        compile_shorthand=repo.compile_url_shorthand,
         get_url_response=lambda x: None,
     )
     url, field = loader.parse_string("https://www.dropseed.io/availability.json")
@@ -22,7 +22,7 @@ def test_extends_url():
 def test_extends_local():
     repo = Repo(full_name="dropseed/testing", api_token="")
     loader = ExtendsLoader(
-        compile_shorthand=repo._compile_shorthand,
+        compile_shorthand=repo.compile_url_shorthand,
         get_url_response=lambda x: None,
     )
     url, field = loader.parse_string("./availability.json")
@@ -43,7 +43,7 @@ def test_extends_local():
 def test_extends_shorthand():
     repo = Repo(full_name="dropseed/testing", api_token="")
     loader = ExtendsLoader(
-        compile_shorthand=repo._compile_shorthand,
+        compile_shorthand=repo.compile_url_shorthand,
         get_url_response=lambda x: None,
     )
     url, field = loader.parse_string("dropseed/another")

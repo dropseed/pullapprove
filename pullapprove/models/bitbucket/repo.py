@@ -4,7 +4,9 @@ from typing import Any, Dict, List, Optional
 
 from cached_property import cached_property
 from requests.exceptions import RequestException
+import requests
 
+from pullapprove.config.schema import Config, ExtendsLoader
 from pullapprove.exceptions import UserError
 from pullapprove.logger import logger
 from pullapprove.models.base import BaseRepo
@@ -50,6 +52,22 @@ class Repo(BaseRepo):
             return None
 
         return data
+
+    def compile_url_shorthand(
+        self, repo: str = "", filename: str = "", ref: str = ""
+    ) -> str:
+        return f"{BITBUCKET_API_BASE_URL}/repositories/{repo or self.full_name}/src/{ref or 'master'}/{filename or CONFIG_FILENAME}"
+
+    def load_config(self, content: Optional[str]) -> Optional[Config]:
+        if content is None:
+            return None
+
+        extends_loader = ExtendsLoader(
+            compile_shorthand=self.compile_url_shorthand,
+            get_url_response=requests.get,
+        )
+
+        return Config(content, extends_loader.load)
 
     @cached_property
     def workspace_members(self) -> List[Dict]:

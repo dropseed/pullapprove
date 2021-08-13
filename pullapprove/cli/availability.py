@@ -11,11 +11,6 @@ IS_CI = "CI" in os.environ
 
 
 @click.group()
-def cli():
-    pass
-
-
-@cli.group()
 def availability():
     pass
 
@@ -102,7 +97,3 @@ def sync_issues(json_path, github_token, github_repo, github_api_url):
 
     else:
         click.secho(f"No changes to write to {json_path}", fg="yellow")
-
-
-if __name__ == "__main__":
-    cli()
