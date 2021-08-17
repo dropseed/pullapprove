@@ -40,7 +40,7 @@ class Repo(BaseRepo):
 
         super().__init__(full_name=full_name, api=api)
 
-    def as_dict(self) -> Dict[str, Any]:
+    def get_extra_as_dict(self) -> Dict[str, Any]:
         return {"owner_name": self.owner_name}
 
     def get_config_content(self, ref: Optional[str] = None) -> Optional[str]:
