@@ -1,0 +1,20 @@
+{
+    "pagelen": 500,
+    "values": [
+        {
+            "status": "added",
+            "old": null,
+            "lines_removed": 0,
+            "lines_added": 1,
+            "new": {
+                "path": "new",
+                "escaped_path": "new",
+                "type": "commit_file",
+                "links": {}
+            },
+            "type": "diffstat"
+        }
+    ],
+    "page": 1,
+    "size": 1
+}

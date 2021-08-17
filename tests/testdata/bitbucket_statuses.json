@@ -1,0 +1,55 @@
+{
+    "pagelen": 30,
+    "values": [
+        {
+            "key": "pullapprove",
+            "description": "Internal error",
+            "repository": {
+                "links": {
+                    "self": {
+                        "href": "https://api.bitbucket.org/2.0/repositories/pullapprove/test"
+                    },
+                    "html": {
+                        "href": "https://bitbucket.org/pullapprove/test"
+                    },
+                    "avatar": {
+                        "href": "https://bytebucket.org/ravatar/%7Bd74432cf-94b2-4e2b-99ca-83cd5dc4e12b%7D?ts=default"
+                    }
+                },
+                "type": "repository",
+                "name": "test",
+                "full_name": "pullapprove/test",
+                "uuid": "{d74432cf-94b2-4e2b-99ca-83cd5dc4e12b}"
+            },
+            "url": "https://staging.pullapprove.com/report/?url=https%3A//pullapprove-storage-staging.s3.amazonaws.com/reports/57c20a58-a482-4c5b-82c8-2002d0c44211.json&fingerprint=d9f69dd757b56d5ca17bcd1b361290d4",
+            "links": {
+                "commit": {
+                    "href": "https://api.bitbucket.org/2.0/repositories/pullapprove/test/commit/5d12e587e16b64176627622d1204157fd0ba4a0c"
+                },
+                "self": {
+                    "href": "https://api.bitbucket.org/2.0/repositories/pullapprove/test/commit/5d12e587e16b64176627622d1204157fd0ba4a0c/statuses/build/pullapprove"
+                }
+            },
+            "refname": null,
+            "state": "STOPPED",
+            "created_on": "2021-06-03T16:42:16.119239+00:00",
+            "commit": {
+                "hash": "5d12e587e16b64176627622d1204157fd0ba4a0c",
+                "type": "commit",
+                "links": {
+                    "self": {
+                        "href": "https://api.bitbucket.org/2.0/repositories/pullapprove/test/commit/5d12e587e16b64176627622d1204157fd0ba4a0c"
+                    },
+                    "html": {
+                        "href": "https://bitbucket.org/pullapprove/test/commits/5d12e587e16b64176627622d1204157fd0ba4a0c"
+                    }
+                }
+            },
+            "updated_on": "2021-08-13T21:33:14.332676+00:00",
+            "type": "build",
+            "name": ""
+        }
+    ],
+    "page": 1,
+    "size": 1
+}

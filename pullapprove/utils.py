@@ -6,9 +6,14 @@ from typing import Any, Dict
 
 def _datetime_parser(dict_: Dict) -> Dict:
     for k, v in dict_.items():
-        if isinstance(v, str):
+        if isinstance(v, str) and v.endswith("Z"):
             try:
                 dict_[k] = datetime.datetime.strptime(v, "%Y-%m-%dT%H:%M:%SZ")
+            except Exception:
+                pass
+        elif isinstance(v, str) and v.endswith("+00:00"):
+            try:
+                dict_[k] = datetime.datetime.fromisoformat(v)
             except Exception:
                 pass
     return dict_

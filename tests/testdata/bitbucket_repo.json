@@ -1,0 +1,121 @@
+{
+    "scm": "git",
+    "website": null,
+    "has_wiki": false,
+    "uuid": "{d74432cf-94b2-4e2b-99ca-83cd5dc4e12b}",
+    "links": {
+        "watchers": {
+            "href": "https://api.bitbucket.org/2.0/repositories/pullapprove/test/watchers"
+        },
+        "branches": {
+            "href": "https://api.bitbucket.org/2.0/repositories/pullapprove/test/refs/branches"
+        },
+        "tags": {
+            "href": "https://api.bitbucket.org/2.0/repositories/pullapprove/test/refs/tags"
+        },
+        "commits": {
+            "href": "https://api.bitbucket.org/2.0/repositories/pullapprove/test/commits"
+        },
+        "clone": [
+            {
+                "href": "https://davegaeddert@bitbucket.org/pullapprove/test.git",
+                "name": "https"
+            },
+            {
+                "href": "git@bitbucket.org:pullapprove/test.git",
+                "name": "ssh"
+            }
+        ],
+        "self": {
+            "href": "https://api.bitbucket.org/2.0/repositories/pullapprove/test"
+        },
+        "source": {
+            "href": "https://api.bitbucket.org/2.0/repositories/pullapprove/test/src"
+        },
+        "html": {
+            "href": "https://bitbucket.org/pullapprove/test"
+        },
+        "avatar": {
+            "href": "https://bytebucket.org/ravatar/%7Bd74432cf-94b2-4e2b-99ca-83cd5dc4e12b%7D?ts=default"
+        },
+        "hooks": {
+            "href": "https://api.bitbucket.org/2.0/repositories/pullapprove/test/hooks"
+        },
+        "forks": {
+            "href": "https://api.bitbucket.org/2.0/repositories/pullapprove/test/forks"
+        },
+        "downloads": {
+            "href": "https://api.bitbucket.org/2.0/repositories/pullapprove/test/downloads"
+        },
+        "pullrequests": {
+            "href": "https://api.bitbucket.org/2.0/repositories/pullapprove/test/pullrequests"
+        }
+    },
+    "fork_policy": "no_public_forks",
+    "full_name": "pullapprove/test",
+    "name": "test",
+    "project": {
+        "links": {
+            "self": {
+                "href": "https://api.bitbucket.org/2.0/workspaces/pullapprove/projects/DEMO"
+            },
+            "html": {
+                "href": "https://bitbucket.org/pullapprove/workspace/projects/DEMO"
+            },
+            "avatar": {
+                "href": "https://bitbucket.org/account/user/pullapprove/projects/DEMO/avatar/32?ts=1618599948"
+            }
+        },
+        "type": "project",
+        "name": "Demo",
+        "key": "DEMO",
+        "uuid": "{a57349f7-5af8-49c6-96f0-bf6e71b933a9}"
+    },
+    "language": "",
+    "created_on": "2021-04-22T20:40:59.043497+00:00",
+    "mainbranch": {
+        "type": "branch",
+        "name": "master"
+    },
+    "workspace": {
+        "slug": "pullapprove",
+        "type": "workspace",
+        "name": "PullApprove",
+        "links": {
+            "self": {
+                "href": "https://api.bitbucket.org/2.0/workspaces/pullapprove"
+            },
+            "html": {
+                "href": "https://bitbucket.org/pullapprove/"
+            },
+            "avatar": {
+                "href": "https://bitbucket.org/workspaces/pullapprove/avatar/?ts=1618597891"
+            }
+        },
+        "uuid": "{53c71b79-3f1a-47d8-a807-090fa6379a39}"
+    },
+    "has_issues": false,
+    "owner": {
+        "username": "pullapprove",
+        "display_name": "PullApprove",
+        "type": "team",
+        "uuid": "{53c71b79-3f1a-47d8-a807-090fa6379a39}",
+        "links": {
+            "self": {
+                "href": "https://api.bitbucket.org/2.0/teams/%7B53c71b79-3f1a-47d8-a807-090fa6379a39%7D"
+            },
+            "html": {
+                "href": "https://bitbucket.org/%7B53c71b79-3f1a-47d8-a807-090fa6379a39%7D/"
+            },
+            "avatar": {
+                "href": "https://bitbucket.org/account/pullapprove/avatar/"
+            }
+        }
+    },
+    "updated_on": "2021-08-13T20:07:27.977331+00:00",
+    "size": 102205,
+    "type": "repository",
+    "slug": "test",
+    "is_private": true,
+    "description": ""
+}

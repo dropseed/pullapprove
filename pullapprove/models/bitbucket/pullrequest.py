@@ -193,3 +193,31 @@ class PullRequest(BasePullRequest):
         # )
 
         return report_url
+
+    @cached_property
+    def comments(self) -> List[Dict[str, Any]]:
+        return self.repo.api.get(
+            self.data["links"]["comments"]["href"], page_items_key="values"
+        )
+
+    @cached_property
+    def commits(self) -> List[Dict[str, Any]]:
+        return self.repo.api.get(
+            self.data["links"]["commits"]["href"], page_items_key="values"
+        )
+
+    @cached_property
+    def diffstat(self) -> List[Dict[str, Any]]:
+        return self.repo.api.get(
+            self.data["links"]["diffstat"]["href"], page_items_key="values"
+        )
+
+    @cached_property
+    def statuses(self) -> List[Dict[str, Any]]:
+        return self.repo.api.get(
+            self.data["links"]["statuses"]["href"], page_items_key="values"
+        )
+
+    @cached_property
+    def diff(self) -> List[Dict[str, Any]]:
+        return self.repo.api.get(self.data["links"]["diff"]["href"], parse_json=False)
