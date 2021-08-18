@@ -28,6 +28,7 @@ class Repo(BaseRepo):
         api = GitHubAPI(
             f"{GITHUB_API_BASE_URL}/repos/{full_name}",
             headers={"Authorization": f"token {api_token}"},
+            params={"per_page": 100},
         )
 
         super().__init__(full_name=full_name, api=api)

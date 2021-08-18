@@ -35,7 +35,6 @@ class BaseAPI:
         self.session.mount("http://", adapter)
         self.session.mount("https://", adapter)
 
-        self.session.params.update({"per_page": "100"})  # type: ignore
         self.session.headers.update({"User-Agent": "pullapprove"})
 
         self.session.params.update(params)  # type: ignore

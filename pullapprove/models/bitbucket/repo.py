@@ -36,6 +36,7 @@ class Repo(BaseRepo):
                     "utf-8"
                 )
             },
+            params={"pagelen": 100},
         )
 
         super().__init__(full_name=full_name, api=api)
