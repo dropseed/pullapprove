@@ -259,16 +259,3 @@ class MergeRequest(BasePullRequest):
             return False
 
         return True
-
-    def get_current_status(self) -> Dict[str, Any]:
-        statuses = self.repo.api.get(
-            f"/repository/commits/{self.data['sha']}/statuses",
-            headers={"Cache-Control": "max-age=1, min-fresh=1"},
-            params={"ref": self.data["source_branch"], "name": GITLAB_STATUS_NAME},
-        )
-
-        for status in statuses:
-            if status["name"] == GITLAB_STATUS_NAME:  # duplicative right now...
-                return status
-
-        return {}

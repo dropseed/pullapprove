@@ -111,20 +111,6 @@ class PullRequest(BasePullRequest):
             },
         )
 
-    def get_current_status(self) -> Dict[str, Any]:
-        statuses = self.repo.api.get(
-            self.data["links"]["statuses"]["href"],
-            page_items_key="values",
-        )
-
-        for status in statuses:
-            if status["key"] == BITBUCKET_STATUS_KEY:
-                # TODO need to map back though to states we recognize?
-                # this latest_status in base pull_request
-                return status
-
-        return {}
-
     @property
     def users_requested(self) -> List[str]:
         return [x["nickname"] for x in self.data["reviewers"]]
