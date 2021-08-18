@@ -169,7 +169,6 @@ class PullRequest(BasePullRequest):
             "state": PULLAPPROVE_STATUS_STATE_TO_BITBUCKET_STATUS_STATE[status.state],
             "description": status.description[:140],
             "url": report_url,
-            "refname": self.base_ref,
         }
 
         self.repo.api.post(
