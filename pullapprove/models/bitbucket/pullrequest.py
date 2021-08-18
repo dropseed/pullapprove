@@ -160,37 +160,27 @@ class PullRequest(BasePullRequest):
         )
 
     def send_status(self, status: Status, output_data: Dict[str, Any]) -> Optional[str]:
-        # TODO should_send_status
-
-        report_url = self.store_report(output_data)
-
         data = {
             "key": BITBUCKET_STATUS_KEY,
             "state": PULLAPPROVE_STATUS_STATE_TO_BITBUCKET_STATUS_STATE[status.state],
             "description": status.description[:140],
-            "url": report_url,
         }
+
+        if (
+            self.repo.api.mode.is_live()  # Check live because if we're testing, we always need to save the report
+            and self.latest_status
+            and self.latest_status.is_the_same_as(
+                data["state"], data["description"], output_data["meta"]["fingerprint"]
+            )
+        ):
+            return None
+
+        report_url = self.store_report(output_data)
+        data["url"] = report_url
 
         self.repo.api.post(
             f"/commit/{self.data['source']['commit']['hash']}/statuses/build", json=data
         )
-        # data = {
-        #     "title": "PullApprove",
-        #     "details": status.description,
-        #     "report_type": "SECURITY",
-        #     "result": bitbucket_states[status.state],
-        #     "link": report_url or "https://www.pullapprove.com",
-        #     "data": [
-        #         {"title": group.name, "type": "TEXT", "value": group.state}
-        #         for group in status.groups
-        #         if group.is_active
-        #     ],
-        # }
-
-        # self.repo.api.put(
-        #     f"/commit/{self.data['source']['commit']['hash']}/reports/pullapprove",
-        #     json=data,
-        # )
 
         return report_url
 
