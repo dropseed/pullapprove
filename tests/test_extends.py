@@ -8,14 +8,14 @@ def test_extends_url():
         compile_shorthand=repo.compile_url_shorthand,
         get_url_response=lambda x: None,
     )
-    url, field = loader.parse_string("https://www.dropseed.io/availability.json")
-    assert url == "https://www.dropseed.io/availability.json"
+    url, field = loader.parse_string("https://www.dropseed.dev/availability.json")
+    assert url == "https://www.dropseed.dev/availability.json"
     assert field == ""
 
     url, field = loader.parse_string(
-        "https://www.dropseed.io/availability.json#key.deep[0]"
+        "https://www.dropseed.dev/availability.json#key.deep[0]"
     )
-    assert url == "https://www.dropseed.io/availability.json"
+    assert url == "https://www.dropseed.dev/availability.json"
     assert field == "key.deep[0]"
 
 

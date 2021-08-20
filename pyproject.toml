@@ -2,7 +2,7 @@
 name = "pullapprove"
 version = "3.14.0"
 description = "PullApprove is a framework for code review assignment, processes, and policies that integrates natively with your git host."
-authors = ["Dropseed <python@dropseed.io>"]
+authors = ["Dropseed <python@dropseed.dev>"]
 license = "Business Source License"
 readme = "README.md"
 homepage = "https://www.pullapprove.com/"
