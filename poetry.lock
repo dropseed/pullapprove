@@ -205,7 +205,7 @@ calendars = ["convertdate", "hijri-converter", "convertdate"]
 
 [[package]]
 name = "decorator"
-version = "5.0.9"
+version = "5.1.0"
 description = "Decorators for Humans"
 category = "dev"
 optional = false
@@ -370,7 +370,7 @@ tests = ["pytest", "pytz", "simplejson"]
 
 [[package]]
 name = "matplotlib-inline"
-version = "0.1.2"
+version = "0.1.3"
 description = "Inline Matplotlib backend for Jupyter"
 category = "dev"
 optional = false
@@ -1018,8 +1018,8 @@ dateparser = [
     {file = "dateparser-1.0.0.tar.gz", hash = "sha256:159cc4e01a593706a15cd4e269a0b3345edf3aef8bf9278a57dac8adf5bf1e4a"},
 ]
 decorator = [
-    {file = "decorator-5.0.9-py3-none-any.whl", hash = "sha256:6e5c199c16f7a9f0e3a61a4a54b3d27e7dad0dbdde92b944426cb20914376323"},
-    {file = "decorator-5.0.9.tar.gz", hash = "sha256:72ecfba4320a893c53f9706bebb2d55c270c1e51a28789361aa93e4a21319ed5"},
+    {file = "decorator-5.1.0-py3-none-any.whl", hash = "sha256:7b12e7c3c6ab203a29e157335e9122cb03de9ab7264b137594103fd4a683b374"},
+    {file = "decorator-5.1.0.tar.gz", hash = "sha256:e59913af105b9860aa2c8d3272d9de5a56a4e608db9a2f167a8480b323d529a7"},
 ]
 fastdiff = [
     {file = "fastdiff-0.3.0-py2.py3-none-any.whl", hash = "sha256:ca5f61f6ddf5a1564ddfd98132ad28e7abe4a88a638a8b014a2214f71e5918ec"},
@@ -1167,8 +1167,8 @@ marshmallow = [
     {file = "marshmallow-3.13.0.tar.gz", hash = "sha256:c67929438fd73a2be92128caa0325b1b5ed8b626d91a094d2f7f2771bf1f1c0e"},
 ]
 matplotlib-inline = [
-    {file = "matplotlib-inline-0.1.2.tar.gz", hash = "sha256:f41d5ff73c9f5385775d5c0bc13b424535c8402fe70ea8210f93e11f3683993e"},
-    {file = "matplotlib_inline-0.1.2-py3-none-any.whl", hash = "sha256:5cf1176f554abb4fa98cb362aa2b55c500147e4bdbb07e3fda359143e1da0811"},
+    {file = "matplotlib-inline-0.1.3.tar.gz", hash = "sha256:a04bfba22e0d1395479f866853ec1ee28eea1485c1d69a6faf00dc3e24ff34ee"},
+    {file = "matplotlib_inline-0.1.3-py3-none-any.whl", hash = "sha256:aed605ba3b72462d64d475a21a9296f400a19c4f74a31b59103d2a99ffd5aa5c"},
 ]
 msgpack = [
     {file = "msgpack-1.0.2-cp35-cp35m-manylinux1_i686.whl", hash = "sha256:b6d9e2dae081aa35c44af9c4298de4ee72991305503442a5c74656d82b581fe9"},
