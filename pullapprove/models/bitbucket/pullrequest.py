@@ -79,7 +79,7 @@ class PullRequest(BasePullRequest):
     ) -> None:
         reviewers = set([x["nickname"] for x in self.data["reviewers"]])
         updated_reviewers = reviewers | set(users_to_add)
-        updated_reviewers = reviewers - set(users_to_remove)  # remove last
+        updated_reviewers = updated_reviewers - set(users_to_remove)  # remove last
 
         if set(updated_reviewers) == reviewers:
             return
