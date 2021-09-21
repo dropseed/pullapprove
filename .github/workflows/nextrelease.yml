@@ -19,9 +19,9 @@ jobs:
         POETRY_PYPI_TOKEN_PYPI: ${{ secrets.DROPSEED_PYPI_TOKEN }}
       with:
         prepare_cmd: |
-          sed -i -e "s/version = \"[^\"]*\"/version = \"$VERSION\"/g" pyproject.toml
+          sed -i -e "s/version = \"[^\"]*\"$/version = \"$VERSION\"/g" pyproject.toml
           sed -i -e "s/pullapprove==.*/pullapprove==$VERSION/g" Dockerfile
-          CHANGEDATE=$(date -v +3y "+%Y-%m-%d") sed -i -e "s/Change Date:          .*/Change Date:          $CHANGEDATE/g" LICENSE
+          sed -i -e "s/Change Date:          .*/Change Date:          $(date -v +3y '+%Y-%m-%d')/g" LICENSE
         publish_cmd: |
           pip3 install -U pip poetry && poetry publish --build --no-interaction
           git tag -a v$VERSION_MAJOR -m v$VERSION_MAJOR -f && git push origin v$VERSION_MAJOR -f
