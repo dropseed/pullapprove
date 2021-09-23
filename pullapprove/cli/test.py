@@ -1,12 +1,19 @@
 import json
 from typing import TYPE_CHECKING, Optional
-from urllib.parse import urlparse
+from urllib.parse import urlparse, quote_plus
 
 import click
 from click.types import File
 
 from pullapprove.context.groups import Groups
-from pullapprove.models.bitbucket import Repo, PullRequest
+from pullapprove.models.bitbucket import (
+    Repo as BitbucketRepo,
+    PullRequest as BitbucketPullRequest,
+)
+from pullapprove.models.gitlab import (
+    Repo as GitLabRepo,
+    MergeRequest as GitLabMergeRequest,
+)
 from pullapprove.models.groups import Group
 from pullapprove.models.status import Status
 from pullapprove.models.states import State, ReviewState
@@ -181,13 +188,62 @@ def bitbucket(
     full_name = path_parts[1] + "/" + path_parts[2]
     number = path_parts[4]
 
-    repo = Repo(
+    repo = BitbucketRepo(
         workspace_id=workspace_id,
         full_name=full_name,
         api_username_password=f"{api_username}:{api_password}",
     )
 
-    pull_request = PullRequest(
+    pull_request = BitbucketPullRequest(
+        repo=repo,
+        number=number,
+    )
+
+    status = process_pull_request(pull_request, config_file)
+
+    print_status(status, output_format)
+
+
+@test.command("gitlab")
+@click.option(
+    "--api-token",
+    envvar="GITLAB_API_TOKEN",
+    required=True,
+    help='Personal access token with "read_api" permission',
+)
+@click.option("--config", "config_file", type=click.File("r"), required=False)
+@click.option(
+    "--format",
+    "output_format",
+    default="text",
+    type=click.Choice(["json", "text"]),
+    required=False,
+)
+@click.option("--debug", is_flag=True)
+@click.argument("merge_request_url", type=str)
+def gitlab(api_token, config_file, output_format, debug, merge_request_url):
+    if output_format == "json" or not debug:
+        logger.disabled = True
+
+    parsed_url = urlparse(merge_request_url)
+    path_parts = parsed_url.path.split("/")
+
+    if len(path_parts) < 7:
+        full_name = "/".join(path_parts[1:3])
+    else:
+        # Has a subgroup
+        full_name = "/".join(path_parts[1:4])
+
+    project_id = quote_plus(full_name)
+    number = path_parts[-1]
+
+    repo = GitLabRepo(
+        project_id=project_id,
+        full_name=full_name,
+        api_token=api_token,
+    )
+
+    pull_request = GitLabMergeRequest(
         repo=repo,
         number=number,
     )
