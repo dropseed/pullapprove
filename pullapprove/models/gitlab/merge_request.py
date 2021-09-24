@@ -97,7 +97,7 @@ class MergeRequest(BasePullRequest):
     def set_reviewers(
         self, users_to_add: List[str], users_to_remove: List[str], total_required: int
     ) -> None:
-        existing_reviewer_ids = self.data["reviewer_ids"]
+        existing_reviewer_ids = [x["id"] for x in self.data["reviewers"]]
 
         project_users = self.repo.api.get("/users")
         add_user_ids = [x["id"] for x in project_users if x["username"] in users_to_add]
@@ -108,6 +108,10 @@ class MergeRequest(BasePullRequest):
         updated_reviewer_ids = list(
             set(existing_reviewer_ids) | set(add_user_ids) - set(remove_user_ids)
         )
+
+        if not existing_reviewer_ids and not updated_reviewer_ids:
+            # Nothing to change, don't waste a call to the API
+            return
 
         if existing_reviewer_ids != updated_reviewer_ids:
             self.repo.api.put(
