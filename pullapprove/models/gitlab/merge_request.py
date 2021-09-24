@@ -97,55 +97,81 @@ class MergeRequest(BasePullRequest):
     def set_reviewers(
         self, users_to_add: List[str], users_to_remove: List[str], total_required: int
     ) -> None:
+        existing_reviewer_ids = self.data["reviewer_ids"]
 
-        # seems like you can only have 1 custom rule?
-        # TODO is this different in premium self-hosted?
-        # and rule must exist already, I think
-
-        existing_rule = [
-            x
-            for x in self._approval_state["rules"]
-            if x["name"].lower() == GITLAB_APPROVAL_RULE_NAME.lower()
-        ]
-
-        if existing_rule:
-            updated_users = list(
-                set(x["username"] for x in existing_rule[0]["users"])  # type: ignore
-                | set(users_to_add) - set(users_to_remove)
-            )
-        else:
-            updated_users = list(set(users_to_add) - set(users_to_remove))
-
-        # could potentially save on this if the needed users are already in the rule.users
         project_users = self.repo.api.get("/users")
-        updated_users_ids = [
-            x["id"] for x in project_users if x["username"] in updated_users
+        add_user_ids = [x["id"] for x in project_users if x["username"] in users_to_add]
+        remove_user_ids = [
+            x["id"] for x in project_users if x["username"] in users_to_remove
         ]
 
-        if len(updated_users_ids) != len(updated_users):
-            raise Exception("Unable to find ID for some users")
+        updated_reviewer_ids = list(
+            set(existing_reviewer_ids) | set(add_user_ids) - set(remove_user_ids)
+        )
 
-        rule_data = {
-            "approvals_required": total_required,
-            "user_ids": updated_users_ids,
-        }
-
-        if existing_rule:
-            rule_id = existing_rule[0]["id"]  # type: ignore
+        if existing_reviewer_ids != updated_reviewer_ids:
             self.repo.api.put(
-                f"/merge_requests/{self.number}/approval_rules/{rule_id}",
-                json=rule_data,
-                user_error_status_codes={
-                    403: "MR approval override may not be enabled."
-                },
+                f"/merge_requests/{self.number}",
+                json={"reviewer_ids": updated_reviewer_ids},
             )
-        else:
-            rule_data["name"] = GITLAB_APPROVAL_RULE_NAME
-            self.repo.api.post(
-                f"/merge_requests/{self.number}/approval_rules",
-                json=rule_data,
-                # user_error_status_codes={403: "MR approval override may not be enabled."},
-            )
+
+    # def set_reviewers(
+    #     self, users_to_add: List[str], users_to_remove: List[str], total_required: int
+    # ) -> None:
+
+    #     # seems like you can only have 1 custom rule?
+    #     # TODO is this different in premium self-hosted?
+    #     # and rule must exist already, I think
+
+    #     existing_rule = [
+    #         x
+    #         for x in self._approval_state["rules"]
+    #         if x["name"].lower() == GITLAB_APPROVAL_RULE_NAME.lower()
+    #     ]
+
+    #     if existing_rule:
+    #         updated_users = list(
+    #             set(x["username"] for x in existing_rule[0]["users"])  # type: ignore
+    #             | set(users_to_add) - set(users_to_remove)
+    #         )
+    #     else:
+    #         updated_users = list(set(users_to_add) - set(users_to_remove))
+
+    #     if not updated_users:
+    #         # Can't make an approval rule with no users
+    #         # clashes with built-in any-approver rule
+    #         return
+
+    #     # could potentially save on this if the needed users are already in the rule.users
+    #     project_users = self.repo.api.get("/users")
+    #     updated_users_ids = [
+    #         x["id"] for x in project_users if x["username"] in updated_users
+    #     ]
+
+    #     if len(updated_users_ids) != len(updated_users):
+    #         raise Exception("Unable to find ID for some users")
+
+    #     rule_data = {
+    #         "approvals_required": total_required,
+    #         "user_ids": updated_users_ids,
+    #     }
+
+    #     if existing_rule:
+    #         rule_id = existing_rule[0]["id"]  # type: ignore
+    #         self.repo.api.put(
+    #             f"/merge_requests/{self.number}/approval_rules/{rule_id}",
+    #             json=rule_data,
+    #             user_error_status_codes={
+    #                 403: "MR approval override may not be enabled."
+    #             },
+    #         )
+    #     else:
+    #         rule_data["name"] = GITLAB_APPROVAL_RULE_NAME
+    #         self.repo.api.post(
+    #             f"/merge_requests/{self.number}/approval_rules",
+    #             json=rule_data,
+    #             # user_error_status_codes={403: "MR approval override may not be enabled."},
+    #         )
 
     # def create_comment(self, body, ignore_mode=False) -> None:
     #     self.repo.api.post(
