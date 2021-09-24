@@ -239,7 +239,7 @@ class MergeRequest(BasePullRequest):
         if statuses:
             return Status(
                 state=GITLAB_STATUS_STATE_TO_PULLAPPROVE_STATUS_STATE[
-                    statuses[0]["state"]
+                    statuses[0]["status"]
                 ],
                 description=statuses[0]["description"],
                 groups=[],
