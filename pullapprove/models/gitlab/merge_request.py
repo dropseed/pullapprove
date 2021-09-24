@@ -15,16 +15,14 @@ from pullapprove.models.states import State
 from pullapprove.models.status import Status
 from pullapprove.settings import settings
 
+from .states import (
+    GITLAB_STATUS_STATE_TO_PULLAPPROVE_STATUS_STATE,
+    PULLAPPROVE_STATUS_STATE_TO_GITLAB_STATUS_STATE,
+)
 from . import utils
 
-GITLAB_STATUS_NAME = os.environ.get("GITLAB_STATUS_NAME", "pullapprove")
-GITLAB_COMMIT_STATES = {
-    State.ERROR: "failed",
-    State.PENDING: "failed",
-    State.SUCCESS: "success",
-    State.FAILURE: "failed",
-}
-GITLAB_APPROVAL_RULE_NAME = os.environ.get("GITLAB_APPROVAL_RULE_NAME", "PullApprove")
+GITLAB_STATUS_NAME = settings.get("GITLAB_STATUS_NAME", "pullapprove")
+GITLAB_APPROVAL_RULE_NAME = settings.get("GITLAB_APPROVAL_RULE_NAME", "PullApprove")
 
 
 class MergeRequest(BasePullRequest):
@@ -50,6 +48,10 @@ class MergeRequest(BasePullRequest):
     @property
     def author(self) -> str:
         return self.data["author"]["username"]
+
+    @property
+    def latest_sha(self) -> str:
+        return self.data["sha"]
 
     @cached_property
     def _approval_state(self) -> Dict[str, Any]:
@@ -145,12 +147,12 @@ class MergeRequest(BasePullRequest):
                 # user_error_status_codes={403: "MR approval override may not be enabled."},
             )
 
-    def create_comment(self, body, ignore_mode=False) -> None:
-        self.repo.api.post(
-            f"/merge_requests/{self.number}/notes",
-            json={"body": body},
-            ignore_mode=ignore_mode,
-        )
+    # def create_comment(self, body, ignore_mode=False) -> None:
+    #     self.repo.api.post(
+    #         f"/merge_requests/{self.number}/notes",
+    #         json={"body": body},
+    #         ignore_mode=ignore_mode,
+    #     )
 
     # def _send_status_comment(self, status: Status, report_url: str) -> None:
     #     with open(
@@ -191,27 +193,29 @@ class MergeRequest(BasePullRequest):
         data = {
             # source_project_id?
             # diff_refs.head_sha
-            "state": GITLAB_COMMIT_STATES[status.state],
+            "state": PULLAPPROVE_STATUS_STATE_TO_GITLAB_STATUS_STATE[status.state],
             "ref": self.data["source_branch"],
             "description": status.description[:140],
             "target_url": None,
             "name": GITLAB_STATUS_NAME,
         }
 
-        if not self.should_send_status(
-            data["state"], data["description"], output_data["meta"]["fingerprint"]
+        if (
+            self.repo.api.mode.is_live()  # Check live because if we're testing, we always need to save the report
+            and self.latest_status
+            and self.latest_status.is_the_same_as(
+                data["state"], data["description"], output_data["meta"]["fingerprint"]
+            )
         ):
             return None
 
         report_url = self.store_report(output_data)
 
-        if report_url and len(report_url) >= 255:
-            report_url = utils.shorten_report_url(report_url)
+        # if report_url and len(report_url) >= 255:
+        #     report_url = utils.shorten_report_url(report_url)
 
         if report_url:
             data["target_url"] = report_url
-
-        sha = self.data["sha"]
 
         # Maybe gitlab does not use status at all because of the dumb pipelines...
         # so a comment is the next best? which is how I got to comment template?
@@ -220,42 +224,26 @@ class MergeRequest(BasePullRequest):
         # and reviewers vs approval rule is another - approval rule may be the only way to get requirement though
         # - whether approval rule has to already exist is the dumb question on that one
 
-        # self.repo.api.post(f"/statuses/{sha}", json=data)
+        self.repo.api.post(f"/statuses/{self.latest_sha}", json=data)
 
         # self._send_status_comment(status, report_url)
 
         return report_url
 
-    def should_send_status(
-        self,
-        state: Optional[str],
-        description: Optional[str],
-        fingerprint: Optional[str],
-    ) -> bool:
-        if not self.repo.api.mode.is_live():
-            return False
-
-        current_status = self.latest_status
-
-        if current_status and current_status["target_url"]:
-            previous_fingerprint = ""
-            matches = re.findall(
-                r"f(?:ingerprint)?=(\w+)", current_status["target_url"]
+    @cached_property
+    def latest_status(self) -> Optional[Status]:
+        statuses = self.repo.api.get(
+            f"/repository/commits/{self.latest_sha}/statuses",
+            params={"name": GITLAB_STATUS_NAME},
+        )
+        if statuses:
+            return Status(
+                state=GITLAB_STATUS_STATE_TO_PULLAPPROVE_STATUS_STATE[
+                    statuses[0]["state"]
+                ],
+                description=statuses[0]["description"],
+                groups=[],
+                report_url=statuses[0]["target_url"],
             )
-            if matches:
-                previous_fingerprint = matches[0]
 
-            if previous_fingerprint == fingerprint:
-                canonical.set(unchanged_fingerprint=True)
-                logger.debug(current_status)
-                return False
-        elif (
-            current_status
-            and current_status["status"] == state
-            and current_status["description"] == description
-        ):
-            canonical.set(unchanged_state=True)
-            logger.debug(current_status)
-            return False
-
-        return True
+        return None
