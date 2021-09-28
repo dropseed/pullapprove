@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 
 
 class User(ContextObject):
-    _eq_attr = "id"
+    _eq_attr = "username"
     _contains_attr = "username"
 
 
@@ -26,7 +26,7 @@ class Users(ContextObjectList):
 
 
 class Milestone(ContextObject):
-    _eq_attr = "id"
+    _eq_attr = "title"
     _contains_attr = "title"
 
 
@@ -42,7 +42,7 @@ class Diff(ContextObject):
 
     @cached_property
     def diff(self) -> str:
-        return "\n".join(self._merge_request.diffs)  # type: ignore
+        return "\n".join([x["diff"] for x in self._merge_request.diffs])  # type: ignore
 
     @property
     def lines_added(self) -> List[str]:
@@ -76,6 +76,7 @@ class MergeRequest(ContextObject):
         # statuses?
         # commits?
         # comments?
+        # head_pipeline
         self.diff = Diff.from_pull_request(pull_request_obj)
         super().__init__(data)
 
