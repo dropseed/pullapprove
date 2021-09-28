@@ -5,7 +5,7 @@ from typing import Any, Dict, List, Optional
 from cached_property import cached_property
 
 import pullapprove.context.functions
-import pullapprove.context.gitlab
+from pullapprove.context.gitlab import MergeRequest as MergeRequestContext
 import pullapprove.user_input.template
 from pullapprove.exceptions import UserError
 from pullapprove.logger import canonical, logger
@@ -22,12 +22,11 @@ from .states import (
 from . import utils
 
 GITLAB_STATUS_NAME = settings.get("GITLAB_STATUS_NAME", "pullapprove")
-GITLAB_APPROVAL_RULE_NAME = settings.get("GITLAB_APPROVAL_RULE_NAME", "PullApprove")
 
 
 class MergeRequest(BasePullRequest):
     def as_context(self) -> Dict[str, Any]:
-        merge_request = pullapprove.context.gitlab.MergeRequest.from_model(self)
+        merge_request = MergeRequestContext(self)
         return {
             **pullapprove.context.functions.get_context_dictionary(self.number),
             # make these available at the top level, not under "pullrequest.key" or something
@@ -60,6 +59,12 @@ class MergeRequest(BasePullRequest):
             headers={"Cache-Control": "max-age=1, min-fresh=1"},
         )
 
+    @cached_property
+    def diffs(self) -> List[Dict[str, Any]]:
+        return self.repo.api.get(
+            f"/repository/commits/{self.data['diff_refs']['head_sha']}/diff"
+        )
+
     @property
     def reviewers(self) -> Reviewers:
         reviewers = Reviewers()
@@ -80,14 +85,7 @@ class MergeRequest(BasePullRequest):
 
     @property
     def users_requested(self) -> List[str]:
-        usernames = []
-
-        for rule in self._approval_state["rules"]:
-            if rule["name"].lower() == GITLAB_APPROVAL_RULE_NAME.lower():
-                for user in rule["users"]:
-                    usernames.append(user["username"])
-
-        return usernames
+        return [x["username"] for x in self.data["reviewers"]]
 
     def set_labels(
         self, labels_to_add: List[str], labels_to_remove: List[str]
