@@ -11,6 +11,8 @@ if TYPE_CHECKING:
 
 
 class User(ContextObject):
+    """A GitLab user."""
+
     _eq_attr = "username"
     _contains_attr = "username"
 
@@ -30,7 +32,14 @@ class Milestone(ContextObject):
     _contains_attr = "title"
 
 
+class Pipeline(ContextObject):
+    _eq_attr = "id"
+    _contains_attr = "id"
+
+
 class Diff(ContextObject):
+    """A git diff for the MR"""
+
     _eq_attr = "diff"
     _contains_attr = "diff"
 
@@ -42,18 +51,22 @@ class Diff(ContextObject):
 
     @cached_property
     def diff(self) -> str:
+        """The git diff as a string"""
         return "\n".join([x["diff"] for x in self._merge_request.diffs])  # type: ignore
 
     @property
     def lines_added(self) -> List[str]:
+        """Lines from git diff that start with "+"""
         return [x[1:] for x in self.diff.splitlines() if x.startswith("+")]
 
     @property
     def lines_removed(self) -> List[str]:
+        """Lines from git diff that start with "-"""
         return [x[1:] for x in self.diff.splitlines() if x.startswith("-")]
 
     @property
     def lines_modified(self) -> List[str]:
+        """Combination of `lines_added` and `lines_modified`"""
         return self.lines_added + self.lines_removed
 
 
@@ -67,16 +80,12 @@ class MergeRequest(ContextObject):
         "reviewers": Users,
         "milestone": Milestone,
         "merged_by": User,
+        "pipeline": Pipeline,
     }
 
     def __init__(self, pull_request_obj: "MergeRequestModel") -> None:
         self._pull_request_obj = pull_request_obj
         data = pull_request_obj.data
-        # jobs?
-        # statuses?
-        # commits?
-        # comments?
-        # head_pipeline
         self.diff = Diff.from_pull_request(pull_request_obj)
         super().__init__(data)
 
