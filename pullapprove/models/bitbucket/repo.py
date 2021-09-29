@@ -26,8 +26,6 @@ class Repo(BaseRepo):
 
         self.workspace_id = workspace_id
 
-        self._cached_team_users: Dict[str, List[str]] = {}
-
         api = BitbucketAPI(
             f"{BITBUCKET_API_BASE_URL}/repositories/{full_name}",
             headers={

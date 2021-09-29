@@ -220,9 +220,15 @@ class Diff(ContextObject):
     _eq_attr = "diff"
     _contains_attr = "diff"
 
+    @classmethod
+    def from_pull_request(cls, pull_request: "PullRequestModel") -> "Diff":
+        obj = cls({})
+        obj._pull_request = pull_request  # type: ignore
+        return obj
+
     @property
     def diff(self) -> str:
-        return self._data["diff"]
+        return self._pull_request.diff  # type: ignore
 
     @property
     def lines_added(self) -> List[str]:
@@ -256,12 +262,8 @@ class PullRequest(ContextObject):
         self.commits = Commits.from_pull_request(pull_request_obj)
         self.diffstat = Diffstats.from_pull_request(pull_request_obj)
         self.statuses = Statuses.from_pull_request(pull_request_obj)
-        self._fetch_diff = lambda: pull_request_obj.diff
+        self.diff = Diff.from_pull_request(pull_request_obj)
         super().__init__(data)
-
-    @cached_property
-    def diff(self) -> "Diff":
-        return Diff({"diff": self._fetch_diff()})
 
     def _available_keys(self) -> List[str]:
         keys = dir(self)

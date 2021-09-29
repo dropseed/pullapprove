@@ -8,7 +8,7 @@ from cachecontrol.caches.file_cache import FileCache
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 
-from pullapprove.exceptions import UserError
+from pullapprove.exceptions import UserError, ConfigurationError
 from pullapprove.logger import canonical, logger
 from pullapprove.mode import Mode
 from pullapprove.settings import settings
@@ -19,6 +19,9 @@ class BaseAPI:
     def __init__(
         self, base_url: str, headers: Dict[str, str] = {}, params: Dict[str, str] = {}
     ) -> None:
+        if not base_url:
+            raise ConfigurationError("No API base url specified")
+
         self.base_url = base_url
         self.version = ""
 
