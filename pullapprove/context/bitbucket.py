@@ -1,7 +1,5 @@
 import re
-from typing import TYPE_CHECKING, List
-
-from cached_property import cached_property
+from typing import TYPE_CHECKING, List, Optional
 
 from .base import ContextObject, ContextObjectList
 
@@ -63,7 +61,9 @@ class Commit(ContextObject):
     _contains_attr = "hash"
 
     @property
-    def user(self) -> Account:
+    def user(self) -> Optional[Account]:
+        if "author" not in self._data:
+            return None
         return Account(self._data["author"]["user"])
 
 
