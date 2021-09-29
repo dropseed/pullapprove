@@ -12,6 +12,7 @@ IS_CI = "CI" in os.environ
 
 @click.group()
 def availability():
+    """Utilities for generating availability.json"""
     pass
 
 
