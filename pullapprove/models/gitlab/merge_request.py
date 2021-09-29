@@ -90,7 +90,20 @@ class MergeRequest(BasePullRequest):
     def set_labels(
         self, labels_to_add: List[str], labels_to_remove: List[str]
     ) -> List[str]:
-        raise NotImplementedError
+        current_labels = set(self.data["labels"])
+
+        # labels are removed, THEN added so that if there are duplicates across groups,
+        # they end up being added if they are supposed to be present
+        updated_labels = current_labels - set(labels_to_remove)
+        updated_labels = updated_labels | set(labels_to_add)
+
+        if updated_labels != current_labels:
+            self.repo.api.put(
+                f"/merge_requests/{self.number}",
+                json={"labels": list(updated_labels)},
+            )
+
+        return list(updated_labels)
 
     def set_reviewers(
         self, users_to_add: List[str], users_to_remove: List[str], total_required: int
