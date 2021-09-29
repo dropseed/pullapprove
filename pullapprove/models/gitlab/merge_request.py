@@ -100,7 +100,7 @@ class MergeRequest(BasePullRequest):
         if updated_labels != current_labels:
             self.repo.api.put(
                 f"/merge_requests/{self.number}",
-                json={"labels": list(updated_labels)},
+                json={"labels": ",".join(updated_labels)},
             )
 
         return list(updated_labels)
