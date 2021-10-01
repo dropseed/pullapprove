@@ -27,7 +27,10 @@ class Settings:
 
             client = boto3.client("ssm")
             param_details = client.get_parameters_by_path(
-                Path=self._aws_ssm_parameter_path, Recursive=True, WithDecryption=True
+                Path=self._aws_ssm_parameter_path,
+                Recursive=True,
+                WithDecryption=True,
+                MaxResults=50,
             )
 
             logger.debug(f"SSM params: {param_details}")
