@@ -1,2 +1,2 @@
 #!/bin/sh -ex
-.venv/bin/mypy pullapprove --ignore-missing-imports --no-incremental --html-report ./.reports/mypy --txt-report ./.reports/mypy
+.venv/bin/mypy pullapprove --no-incremental --html-report ./.reports/mypy --txt-report ./.reports/mypy

@@ -131,7 +131,11 @@ class BaseAPI:
 
             next_page_url = response.links.get("next", {}).get("url", None)
 
-            if not next_page_url and "next" in response_data:
+            if (
+                not next_page_url
+                and isinstance(response_data, dict)
+                and "next" in response_data
+            ):
                 # Bitbucket pagination... could extract this but should work fine for now
                 next_page_url = response_data["next"]
 

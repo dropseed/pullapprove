@@ -1,7 +1,7 @@
 import datetime
 import hashlib
 import json
-from typing import Any, Dict
+from typing import Any, Dict, List, Union
 
 
 def _datetime_parser(dict_: Dict) -> Dict:
@@ -19,7 +19,7 @@ def _datetime_parser(dict_: Dict) -> Dict:
     return dict_
 
 
-def json_load(text: str) -> Dict:
+def json_load(text: str) -> Union[Dict, List]:
     return json.loads(text, object_hook=_datetime_parser)
 
 

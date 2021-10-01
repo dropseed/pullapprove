@@ -50,3 +50,7 @@ types-setuptools = "^57.4.0"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.mypy]
+warn_unreachable = true
+ignore_missing_imports = true

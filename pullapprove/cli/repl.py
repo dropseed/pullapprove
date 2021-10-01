@@ -1,3 +1,10 @@
+from typing import TYPE_CHECKING, Dict, Any, Optional, Generator, Iterable
+
+from prompt_toolkit.document import Document
+from prompt_toolkit.completion import CompleteEvent
+
+from pullapprove.models.base.pull_request import BasePullRequest
+
 import click
 from pprint import pformat
 from prompt_toolkit import PromptSession, HTML
@@ -18,19 +25,19 @@ from pullapprove.context.base import ContextObject
 
 
 class ContextCompleterValidator(Completer, Validator):
-    def __init__(self, expression_context, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def __init__(self, expression_context: Dict[str, Any]):
+        super().__init__()
         self.expression_context = expression_context
 
         # Store the most recent one, so the completer and validator can share the result without recomputing
         self.last_expression_str = ""
-        self.last_expression = None
-        self.last_expression_exception = None
+        self.last_expression: Optional[Expression] = None
+        self.last_expression_exception: Optional[Exception] = None
 
         # So we can complete attrs of the last valid obj
-        self.last_valid_expression = None
+        self.last_valid_expression: Optional[Expression] = None
 
-    def eval_expression(self, expression_str):
+    def eval_expression(self, expression_str: str) -> Optional[Expression]:
         # Return the last result if the expression is the same
         if expression_str == self.last_expression_str:
             if self.last_expression_exception:
@@ -52,7 +59,9 @@ class ContextCompleterValidator(Completer, Validator):
 
         return self.last_expression
 
-    def complete_context_vars(self, d, prefix=""):
+    def complete_context_vars(
+        self, d: Dict[str, Any], prefix: str = ""
+    ) -> Iterable["Completion"]:
         if prefix:
             start_position = -len(prefix)
         else:
@@ -64,7 +73,9 @@ class ContextCompleterValidator(Completer, Validator):
                     k, display_meta=type(v).__name__, start_position=start_position
                 )
 
-    def get_completions(self, document, complete_event):
+    def get_completions(
+        self, document: "Document", complete_event: "CompleteEvent"
+    ) -> Iterable["Completion"]:
         if not document.text:
             for c in self.complete_context_vars(self.expression_context):
                 yield c
@@ -88,6 +99,9 @@ class ContextCompleterValidator(Completer, Validator):
             try:
                 expression = self.eval_expression(expression_text_last_chunk[:-1])
             except UserError:
+                return
+
+            if not expression:
                 return
 
             expression_result = expression.expression_result
@@ -126,7 +140,7 @@ class ContextCompleterValidator(Completer, Validator):
             for c in self.complete_context_vars(context_vars, prefix=completion_prefix):
                 yield c
 
-    def validate(self, document):
+    def validate(self, document: "Document") -> None:
         text = document.text
 
         if not text:
@@ -142,12 +156,12 @@ class ContextCompleterValidator(Completer, Validator):
 
 
 class REPL:
-    def __init__(self, expression_context):
+    def __init__(self, expression_context: Dict[str, Any]):
         self.expression_context = expression_context
         completer_validator = ContextCompleterValidator(
             expression_context=self.expression_context
         )
-        self.session = PromptSession(
+        self.session: PromptSession = PromptSession(
             completer=completer_validator,
             validator=completer_validator,
             lexer=PygmentsLexer(Python3Lexer),
@@ -157,13 +171,13 @@ class REPL:
             complete_in_thread=True,
         )
 
-    def run(self):
+    def run(self) -> None:
         click.echo(
             'Type "help" to see the available variables.\n\nHit Ctrl+C or type "exit" to quit.\n'
         )
 
         while True:
-            expression_str = self.session.prompt(
+            expression_str: str = self.session.prompt(
                 HTML("<b>>>></b> "),
             )
             if expression_str in ("exit", "exit()"):
@@ -184,7 +198,7 @@ class REPL:
                     click.secho("Output: ", nl=False, bold=True)
                     click.secho(pformat(expression.expression_result))
                     if hasattr(expression.expression_result, "_data"):
-                        click.secho(pformat(expression.expression_result._data))
+                        click.secho(pformat(expression.expression_result._data))  # type: ignore
                 except UserError as e:
                     click.secho(str(e), fg="red", err=True)
                 click.echo()
@@ -193,7 +207,7 @@ class REPL:
 @click.command()
 @pull_request_url_command
 @cls_client.track_command()
-def repl(pull_request):
+def repl(pull_request: "BasePullRequest") -> None:
     """Interactive expression testing"""
     logger.disabled = True
 
