@@ -1,6 +1,6 @@
 import os
 import tempfile
-from typing import Any, Callable, Dict, List
+from typing import Any, Callable, Dict
 
 import requests
 from cachecontrol import CacheControl
@@ -17,7 +17,7 @@ from pullapprove.utils import json_load
 
 class BaseAPI:
     def __init__(
-        self, base_url: str, headers: Dict[str, str] = {}, params: Dict[str, str] = {}
+        self, base_url: str, headers: Dict[str, Any] = {}, params: Dict[str, Any] = {}
     ) -> None:
         if not base_url:
             raise ConfigurationError("No API base url specified")

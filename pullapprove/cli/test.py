@@ -16,7 +16,7 @@ from .utils import pull_request_url_command
 
 
 if TYPE_CHECKING:
-    from pullapprove.models.base.pull_request import PullRequest as BasePullRequest
+    from pullapprove.models.base.pull_request import BasePullRequest
 
 
 def bool_icon(value: Optional[bool]) -> str:
@@ -108,6 +108,10 @@ def process_pull_request(pull_request: "BasePullRequest", config_file: File) -> 
         config_content = pull_request.repo.get_config_content(pull_request.base_ref)
 
     config = pull_request.repo.load_config(config_content)
+
+    if not config:
+        click.secho(f"No config found", fg="red", err=True)
+        exit(1)
 
     if not config.is_valid():
         click.secho(f"Invalid config:\n{config.validation_error}", fg="red", err=True)
