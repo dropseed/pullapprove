@@ -6,8 +6,8 @@ from urllib.parse import quote_plus
 import requests
 from requests import RequestException
 
-from pullapprove.models.base import BaseRepo
 from pullapprove.config.schema import Config, ExtendsLoader
+from pullapprove.models.base import BaseRepo
 
 from .api import GitLabAPI
 from .settings import GITLAB_API_BASE_URL

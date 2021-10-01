@@ -1,27 +1,25 @@
-from typing import TYPE_CHECKING, Dict, Any, Optional, Generator, Iterable
-
-from prompt_toolkit.document import Document
-from prompt_toolkit.completion import CompleteEvent
-
-from pullapprove.models.base.pull_request import BasePullRequest
+from pprint import pformat
+from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable, Optional
 
 import click
-from pprint import pformat
-from prompt_toolkit import PromptSession, HTML
-from prompt_toolkit.completion.base import Completer
-from prompt_toolkit.validation import Validator, ValidationError
-from prompt_toolkit.lexers import PygmentsLexer
-from pygments.lexers.python import Python3Lexer
-from prompt_toolkit.styles.pygments import style_from_pygments_cls
-from pygments.styles import get_style_by_name
-from prompt_toolkit.completion import Completion
 import cls_client
+from prompt_toolkit import HTML, PromptSession
+from prompt_toolkit.completion import CompleteEvent, Completion
+from prompt_toolkit.completion.base import Completer
+from prompt_toolkit.document import Document
+from prompt_toolkit.lexers import PygmentsLexer
+from prompt_toolkit.styles.pygments import style_from_pygments_cls
+from prompt_toolkit.validation import ValidationError, Validator
+from pygments.lexers.python import Python3Lexer
+from pygments.styles import get_style_by_name
+
+from pullapprove.context.base import ContextObject
+from pullapprove.exceptions import UserError
+from pullapprove.logger import logger
+from pullapprove.models.base.pull_request import BasePullRequest
+from pullapprove.models.expressions import Expression
 
 from .utils import pull_request_url_command
-from pullapprove.exceptions import UserError
-from pullapprove.models.expressions import Expression
-from pullapprove.logger import logger
-from pullapprove.context.base import ContextObject
 
 
 class ContextCompleterValidator(Completer, Validator):

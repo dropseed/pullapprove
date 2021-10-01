@@ -1,10 +1,10 @@
-import os
 import json
-from typing import List, Generator, Optional
+import os
+from typing import Generator, List, Optional
 
 import click
-import keyring
 import cls_client
+import keyring
 from appdirs import user_config_dir
 
 

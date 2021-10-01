@@ -2,18 +2,17 @@ import json
 from typing import TYPE_CHECKING, Optional
 
 import click
-from click.types import File
 import cls_client
+from click.types import File
 
 from pullapprove.context.groups import Groups
-from pullapprove.models.groups import Group
-from pullapprove.models.status import Status
-from pullapprove.models.states import State, ReviewState
 from pullapprove.logger import logger
 from pullapprove.models.expressions import Expression
+from pullapprove.models.groups import Group
+from pullapprove.models.states import ReviewState, State
+from pullapprove.models.status import Status
 
 from .utils import pull_request_url_command
-
 
 if TYPE_CHECKING:
     from pullapprove.models.base.pull_request import BasePullRequest

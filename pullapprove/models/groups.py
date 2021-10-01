@@ -1,7 +1,8 @@
 from random import Random, shuffle
 from typing import TYPE_CHECKING, Any, Dict, List, Set
 
-from pullapprove.context.groups import Group as GroupContext, Groups as GroupsContext
+from pullapprove.context.groups import Group as GroupContext
+from pullapprove.context.groups import Groups as GroupsContext
 
 from . import expressions
 from .states import ReviewState

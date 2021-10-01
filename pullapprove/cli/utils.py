@@ -1,20 +1,15 @@
-from urllib.parse import urlparse, quote_plus
 import functools
+from urllib.parse import quote_plus, urlparse
 
 import click
 
-from pullapprove.models.github import (
-    Repo as GitHubRepo,
-    PullRequest as GitHubPullRequest,
-)
-from pullapprove.models.gitlab import (
-    Repo as GitLabRepo,
-    MergeRequest as GitLabMergeRequest,
-)
-from pullapprove.models.bitbucket import (
-    Repo as BitbucketRepo,
-    PullRequest as BitbucketPullRequest,
-)
+from pullapprove.models.bitbucket import PullRequest as BitbucketPullRequest
+from pullapprove.models.bitbucket import Repo as BitbucketRepo
+from pullapprove.models.github import PullRequest as GitHubPullRequest
+from pullapprove.models.github import Repo as GitHubRepo
+from pullapprove.models.gitlab import MergeRequest as GitLabMergeRequest
+from pullapprove.models.gitlab import Repo as GitLabRepo
+
 from .secrets import Secrets
 
 

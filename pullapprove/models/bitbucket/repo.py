@@ -2,9 +2,9 @@ import base64
 import os
 from typing import Any, Dict, List, Optional
 
+import requests
 from cached_property import cached_property
 from requests.exceptions import RequestException
-import requests
 
 from pullapprove.config.schema import Config, ExtendsLoader
 from pullapprove.exceptions import UserError

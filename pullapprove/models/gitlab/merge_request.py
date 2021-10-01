@@ -5,8 +5,8 @@ from typing import Any, Dict, List, Optional
 from cached_property import cached_property
 
 import pullapprove.context.functions
-from pullapprove.context.gitlab import MergeRequest as MergeRequestContext
 import pullapprove.user_input.template
+from pullapprove.context.gitlab import MergeRequest as MergeRequestContext
 from pullapprove.exceptions import UserError
 from pullapprove.logger import canonical, logger
 from pullapprove.models.base import BasePullRequest
@@ -15,11 +15,11 @@ from pullapprove.models.states import State
 from pullapprove.models.status import Status
 from pullapprove.settings import settings
 
+from . import utils
 from .states import (
     GITLAB_STATUS_STATE_TO_PULLAPPROVE_STATUS_STATE,
     PULLAPPROVE_STATUS_STATE_TO_GITLAB_STATUS_STATE,
 )
-from . import utils
 
 GITLAB_STATUS_NAME = settings.get("GITLAB_STATUS_NAME", "pullapprove")
 

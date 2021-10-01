@@ -5,14 +5,14 @@ from typing import Any, Dict, List, Optional
 from urllib.parse import parse_qs, quote, urlparse
 
 from cached_property import cached_property
-from pullapprove.context.bitbucket import PullRequest as PullRequestContext
-from pullapprove.storage import Storage
 
 import pullapprove.context.functions
+from pullapprove.context.bitbucket import PullRequest as PullRequestContext
 from pullapprove.exceptions import UserError
 from pullapprove.logger import canonical, logger
 from pullapprove.models.base import BasePullRequest
 from pullapprove.settings import settings
+from pullapprove.storage import Storage
 
 from ..reviews import Review, Reviewers
 from ..states import ReviewState, State

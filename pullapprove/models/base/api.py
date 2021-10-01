@@ -8,7 +8,7 @@ from cachecontrol.caches.file_cache import FileCache
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 
-from pullapprove.exceptions import UserError, ConfigurationError
+from pullapprove.exceptions import ConfigurationError, UserError
 from pullapprove.logger import canonical, logger
 from pullapprove.mode import Mode
 from pullapprove.settings import settings

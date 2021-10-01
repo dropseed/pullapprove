@@ -1,12 +1,12 @@
-import subprocess
-import os
 import json
+import os
+import subprocess
+
 import click
 import cls_client
 
+from pullapprove.availability.github import GitHubIssue, handle_github_event
 from pullapprove.models.github.api import GitHubAPI
-from pullapprove.availability.github import handle_github_event, GitHubIssue
-
 
 IS_CI = "CI" in os.environ
 
