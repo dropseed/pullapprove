@@ -25,22 +25,33 @@ class Settings:
 
             import boto3  # NOQA
 
+            params = []
+
             client = boto3.client("ssm")
             param_details = client.get_parameters_by_path(
                 Path=self._aws_ssm_parameter_path,
                 Recursive=True,
                 WithDecryption=True,
-                MaxResults=50,
             )
-
             logger.debug(f"SSM params: {param_details}")
+            params = param_details["Parameters"]
 
-            if not param_details["Parameters"]:
+            while "NextToken" in param_details:
+                param_details = client.get_parameters_by_path(
+                    Path=self._aws_ssm_parameter_path,
+                    Recursive=True,
+                    WithDecryption=True,
+                    NextToken=param_details["NextToken"],
+                )
+                logger.debug(f"SSM params: {param_details}")
+                params.extend(param_details["Parameters"])
+
+            if not params:
                 raise Exception(
                     f"No parameters found in AWS SSM {self._aws_ssm_parameter_path}: {param_details}"
                 )
 
-            for param in param_details["Parameters"]:
+            for param in params:
                 # the name will be the last path component, uppercased later
                 name = param["Name"].split("/")[-1]
                 settings[name] = param["Value"]
