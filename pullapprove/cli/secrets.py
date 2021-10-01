@@ -3,6 +3,7 @@ import json
 
 import click
 import keyring
+import cls_client
 from appdirs import user_config_dir
 
 
@@ -78,6 +79,7 @@ def secrets():
 
 @secrets.command()
 @click.argument("name")
+@cls_client.track_command("secrets_set")
 def set(name):
     """Set a secret"""
     Secrets().prompt_set(name)
@@ -85,6 +87,7 @@ def set(name):
 
 
 @secrets.command()
+@cls_client.track_command("secrets_list")
 def list():
     """List names and values of stored secrets"""
     Secrets().list()

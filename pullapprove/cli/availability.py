@@ -2,6 +2,7 @@ import subprocess
 import os
 import json
 import click
+import cls_client
 
 from pullapprove.models.github.api import GitHubAPI
 from pullapprove.availability.github import handle_github_event, GitHubIssue
@@ -25,6 +26,7 @@ def availability():
     default="https://api.github.com",
 )
 @click.argument("json_path", type=click.Path())
+@cls_client.track_command(name="availability_sync_issues")
 def sync_issues(json_path, github_token, github_repo, github_api_url):
     """
     Generate availability JSON by parsing GitHub Issues

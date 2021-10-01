@@ -8,6 +8,7 @@ from pygments.lexers.python import Python3Lexer
 from prompt_toolkit.styles.pygments import style_from_pygments_cls
 from pygments.styles import get_style_by_name
 from prompt_toolkit.completion import Completion
+import cls_client
 
 from .utils import pull_request_url_command
 from pullapprove.exceptions import UserError
@@ -191,6 +192,7 @@ class REPL:
 
 @click.command()
 @pull_request_url_command
+@cls_client.track_command()
 def repl(pull_request):
     """Interactive expression testing"""
     logger.disabled = True
