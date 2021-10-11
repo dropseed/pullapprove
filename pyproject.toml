@@ -35,7 +35,7 @@ cls-client = "^1.4.0"
 [tool.poetry.dev-dependencies]
 mypy = "^0.910"
 pytest = "^6.2.4"
-pytest-cov = "^2.12.1"
+pytest-cov = "^3.0.0"
 ipython = "^7.25.0"
 ipdb = "^0.13.9"
 snapshottest = "^0.6.0"
