@@ -76,7 +76,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "cachecontrol"
-version = "0.12.8"
+version = "0.12.10"
 description = "httplib2 caching for requests"
 category = "main"
 optional = false
@@ -833,8 +833,8 @@ bracex = [
     {file = "bracex-2.1.1.tar.gz", hash = "sha256:01f715cd0ed7a622ec8b32322e715813f7574de531f09b70f6f3b2c10f682425"},
 ]
 cachecontrol = [
-    {file = "CacheControl-0.12.8-py2.py3-none-any.whl", hash = "sha256:a02648eef39d764f0ac566c7a50f8549e7011649b9d17024b94233cafa235bd1"},
-    {file = "CacheControl-0.12.8.tar.gz", hash = "sha256:254043c1bab748c89c09a890f9128a0fb2c654e946bcf473c12d29fdf9cb6c5b"},
+    {file = "CacheControl-0.12.10-py2.py3-none-any.whl", hash = "sha256:b0d43d8f71948ef5ebdee5fe236b86c6ffc7799370453dccb0e894c20dfa487c"},
+    {file = "CacheControl-0.12.10.tar.gz", hash = "sha256:d8aca75b82eec92d84b5d6eb8c8f66ea16f09d2adb09dbca27fe2d5fc8d3732d"},
 ]
 cached-property = [
     {file = "cached-property-1.5.2.tar.gz", hash = "sha256:9fa5755838eecbb2d234c3aa390bd80fbd3ac6b6869109bfc1b499f7bd89a130"},
