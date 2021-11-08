@@ -15,7 +15,7 @@ pullapprove = "pullapprove.cli:cli"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-wcmatch = "8.2"
+wcmatch = "8.3"
 cached-property = "^1.5.2"
 requests = "^2.25.1"
 Jinja2 = "^3.0.1"
