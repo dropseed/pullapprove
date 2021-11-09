@@ -53,9 +53,9 @@ class MergeRequest(BasePullRequest):
         return self.data["sha"]
 
     @cached_property
-    def _approval_state(self) -> Dict[str, Any]:
+    def _approvals(self) -> Dict[str, Any]:
         return self.repo.api.get(
-            f"/merge_requests/{self.number}/approval_state",
+            f"/merge_requests/{self.number}/approvals",
             headers={"Cache-Control": "max-age=1, min-fresh=1"},
         )
 
@@ -69,17 +69,15 @@ class MergeRequest(BasePullRequest):
     def reviewers(self) -> Reviewers:
         reviewers = Reviewers()
 
-        # for rule in self._approval_state["rules"]:
-        #     for user in rule["users"]:
-        #         review = Review(state=ReviewState.PENDING, body="")
-        #         reviewers.append_review(username=user["username"], review=review)
+        for user in self.data["reviewers"]:
+            review = Review(state=ReviewState.PENDING, body="")
+            reviewers.append_review(username=user["username"], review=review)
 
         # make sure approved overwrites anybody pending in another group...
         # not sure if this will actually happen
-        for rule in self._approval_state["rules"]:
-            for user in rule["approved_by"]:
-                review = Review(state=ReviewState.APPROVED, body="")
-                reviewers.append_review(username=user["username"], review=review)
+        for user in self._approvals["approved_by"]:
+            review = Review(state=ReviewState.APPROVED, body="")
+            reviewers.append_review(username=user["username"], review=review)
 
         return reviewers
 
