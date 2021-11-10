@@ -31,6 +31,7 @@ prompt-toolkit = "^3.0.20"
 keyring = "^23.2.1"
 appdirs = "^1.4.4"
 cls-client = "^1.4.0"
+Pygments = "^2.10.0"
 
 [tool.poetry.dev-dependencies]
 mypy = "^0.910"
