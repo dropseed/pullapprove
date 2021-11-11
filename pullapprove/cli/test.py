@@ -168,7 +168,4 @@ def test(pull_request, config_file, output_format, debug):
 
     status = process_pull_request(pull_request, config_file)
 
-    # if github, print warning that check_runs aren't supported with PAT
-    # (can check if check_runs in config)
-
     print_status(status, output_format)
