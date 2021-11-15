@@ -92,11 +92,11 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "cachecontrol"
-version = "0.12.6"
+version = "0.12.10"
 description = "httplib2 caching for requests"
 category = "main"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+python-versions = ">=3.6"
 
 [package.dependencies]
 lockfile = {version = ">=0.9", optional = true, markers = "extra == \"filecache\""}
@@ -826,7 +826,7 @@ python-versions = "*"
 
 [[package]]
 name = "types-pyyaml"
-version = "6.0.0"
+version = "6.0.1"
 description = "Typing stubs for PyYAML"
 category = "dev"
 optional = false
@@ -942,7 +942,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "1216d9fc85bcad0336f937ed50f7e9961a93626aed86d416800f27fdd4542272"
+content-hash = "76089299d19e80462a12d7281cb5618b7a316e31cc328d86bc35537041f3d0cf"
 
 [metadata.files]
 appdirs = [
@@ -992,8 +992,8 @@ bracex = [
     {file = "bracex-2.2.tar.gz", hash = "sha256:8230f3a03f1f76c192a7844377124300fbaec83870a728b629dfabd9be9e83d0"},
 ]
 cachecontrol = [
-    {file = "CacheControl-0.12.6-py2.py3-none-any.whl", hash = "sha256:10d056fa27f8563a271b345207402a6dcce8efab7e5b377e270329c62471b10d"},
-    {file = "CacheControl-0.12.6.tar.gz", hash = "sha256:be9aa45477a134aee56c8fac518627e1154df063e85f67d4f83ce0ccc23688e8"},
+    {file = "CacheControl-0.12.10-py2.py3-none-any.whl", hash = "sha256:b0d43d8f71948ef5ebdee5fe236b86c6ffc7799370453dccb0e894c20dfa487c"},
+    {file = "CacheControl-0.12.10.tar.gz", hash = "sha256:d8aca75b82eec92d84b5d6eb8c8f66ea16f09d2adb09dbca27fe2d5fc8d3732d"},
 ]
 cached-property = [
     {file = "cached-property-1.5.2.tar.gz", hash = "sha256:9fa5755838eecbb2d234c3aa390bd80fbd3ac6b6869109bfc1b499f7bd89a130"},
@@ -1570,8 +1570,8 @@ types-dateparser = [
     {file = "types_dateparser-0.1.5-py3-none-any.whl", hash = "sha256:9911b9744e37d4a2c6f6a2f259b5ff76bc5553cd738403fcda83403151b04152"},
 ]
 types-pyyaml = [
-    {file = "types-PyYAML-6.0.0.tar.gz", hash = "sha256:3d3591ddfc488fc30be3c506a0c0fe54da968fe98d8b76ab12e59d455330ffca"},
-    {file = "types_PyYAML-6.0.0-py3-none-any.whl", hash = "sha256:746f23d351245d176d7bc89eef79e2ee94b4e7306f7d23bfefb3dc946c0fb58d"},
+    {file = "types-PyYAML-6.0.1.tar.gz", hash = "sha256:2e27b0118ca4248a646101c5c318dc02e4ca2866d6bc42e84045dbb851555a76"},
+    {file = "types_PyYAML-6.0.1-py3-none-any.whl", hash = "sha256:d5b318269652e809b5c30a5fe666c50159ab80bfd41cd6bafe655bf20b29fcba"},
 ]
 types-requests = [
     {file = "types-requests-2.25.11.tar.gz", hash = "sha256:b279284e51f668e38ee12d9665e4d789089f532dc2a0be4a1508ca0efd98ba9e"},
