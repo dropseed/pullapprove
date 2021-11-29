@@ -30,6 +30,15 @@ def test_github_redis_cache():
     assert response.from_cache
     assert response.json()["login"] == "davegaeddert"
 
+    # checking changing (removing) auth
+    response = api.get(
+        "/user",
+        return_response=True,
+        headers={"Authorization": ""},
+        params={"page": 1, "per_page": 1},
+    )
+    assert response.status_code == 401
+
 
 @pytest.mark.liveapi
 def test_gitlab_redis_cache():
