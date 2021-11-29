@@ -19,3 +19,20 @@ def testdata():
     return lambda name: json.load(
         open(os.path.join(os.path.dirname(__file__), "testdata", name + ".json"))
     )
+
+
+def pytest_addoption(parser):
+    parser.addoption(
+        "--liveapi",
+        action="store_true",
+        dest="liveapi",
+        default=False,
+        help="enable liveapi decorated tests",
+    )
+
+
+def pytest_configure(config):
+    if config.option.liveapi:
+        setattr(config.option, "markexpr", "liveapi")
+    else:
+        setattr(config.option, "markexpr", "not liveapi")

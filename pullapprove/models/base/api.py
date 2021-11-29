@@ -2,9 +2,11 @@ import os
 import tempfile
 from typing import Any, Callable, Dict
 
+import redis
 import requests
-from cachecontrol import CacheControl
+from cachecontrol import CacheControl, CacheControlAdapter
 from cachecontrol.caches.file_cache import FileCache
+from cachecontrol.caches.redis_cache import RedisCache
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 
@@ -17,7 +19,11 @@ from pullapprove.utils import json_load
 
 class BaseAPI:
     def __init__(
-        self, base_url: str, headers: Dict[str, Any] = {}, params: Dict[str, Any] = {}
+        self,
+        base_url: str,
+        headers: Dict[str, Any] = {},
+        params: Dict[str, Any] = {},
+        cache_type: str = "",
     ) -> None:
         if not base_url:
             raise ConfigurationError("No API base url specified")
@@ -43,10 +49,21 @@ class BaseAPI:
         self.session.params.update(params)  # type: ignore
         self.session.headers.update(headers)
 
-        if settings.get("CACHE", "file") == "file":
+        if not cache_type:
+            # Load from env if not provided
+            cache_type = settings.get("CACHE", "file")
+
+        if cache_type == "file":
             CacheControl(
                 self.session,
                 cache=FileCache(os.path.join(tempfile.gettempdir(), "pullapprove")),
+            )
+        elif cache_type == "redis":
+            redis_url = settings.get("CACHE_REDIS_URL", "redis://localhost:6379/0")
+            redis_client = redis.from_url(redis_url)
+            CacheControl(
+                self.session,
+                cache=RedisCache(redis_client),
             )
 
         logger.debug(
@@ -57,6 +74,12 @@ class BaseAPI:
         )
 
         self.mode = Mode()
+
+    def clear_cache(self) -> None:
+        for adapter in self.session.adapters.values():
+            isinstance
+            if isinstance(adapter, CacheControlAdapter):
+                adapter.cache.clear()
 
     def get(self, *args, **kwargs) -> Any:
         return self._request(self.session.get, *args, **kwargs)
@@ -98,6 +121,12 @@ class BaseAPI:
         page_items_key = kwargs.pop("page_items_key", None)
         user_error_status_codes = kwargs.pop("user_error_status_codes", {})
         parse_json = kwargs.pop("parse_json", True)
+        return_response = kwargs.pop("return_response", False)
+
+        if "params" in kwargs:
+            # Sort params for most consistent caching
+            # https://cachecontrol.readthedocs.io/en/latest/tips.html#query-string-params
+            kwargs["params"] = sorted(kwargs["params"].items())
 
         while next_page_url:
             response = to_call(next_page_url, *args, **kwargs)
@@ -112,6 +141,9 @@ class BaseAPI:
                 canonical.set(
                     rate_limit_remaining=response.headers["X-RateLimit-Remaining"]
                 )
+
+            if return_response:
+                return response
 
             self._raise_exception_for_response(response, user_error_status_codes)
 

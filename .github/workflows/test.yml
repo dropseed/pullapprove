@@ -20,7 +20,12 @@ jobs:
         ./scripts/mypy
     - name: Test
       run: |
-        ./scripts/test -v
+        ./scripts/test -v --liveapi
+      env:
+        TEST_GITLAB_API_TOKEN: ${{ secrets.TEST_GITLAB_API_TOKEN }}
+        TEST_BITBUCKET_API_USERNAME: ${{ secrets.TEST_BITBUCKET_API_USERNAME }}
+        TEST_BITBUCKET_API_PASSWORD: ${{ secrets.TEST_BITBUCKET_API_PASSWORD }}
+        TEST_GITHUB_API_TOKEN: ${{ secrets.TEST_GITHUB_API_TOKEN }}
     - name: Install commitstat
       run: curl https://raw.githubusercontent.com/dropseed/commitstat/master/install.sh | bash -s -- -b $HOME/bin
     - name: Run commitstat
