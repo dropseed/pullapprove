@@ -97,7 +97,6 @@ description = ""
 category = "main"
 optional = false
 python-versions = ">=3.6"
-develop = false
 
 [package.dependencies]
 lockfile = {version = ">=0.9", optional = true, markers = "extra == \"filecache\""}
@@ -110,11 +109,8 @@ filecache = ["lockfile (>=0.9)"]
 redis = ["redis (>=2.10.5)"]
 
 [package.source]
-type = "git"
-url = "https://github.com/dropseed/cachecontrol.git"
-reference = "redis-expires-int"
-resolved_reference = "e28436d6338ae47c76d0fe08b1daa44b60688234"
-
+type = "url"
+url = "https://github.com/dropseed/cachecontrol/archive/e28436d.zip"
 [[package]]
 name = "cached-property"
 version = "1.5.2"
@@ -1014,7 +1010,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "e5480b9d0ba479f4eae9bb3507f4971d6a5a50b6090ef5fd452c00e1c8f704a9"
+content-hash = "cff910c96f8c7d2fe8426e967ec9e56fd35f36cd53ee57caa9b4d17411c656a5"
 
 [metadata.files]
 appdirs = [
