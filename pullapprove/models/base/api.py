@@ -77,7 +77,6 @@ class BaseAPI:
 
     def clear_cache(self) -> None:
         for adapter in self.session.adapters.values():
-            isinstance
             if isinstance(adapter, CacheControlAdapter):
                 adapter.cache.clear()
 
