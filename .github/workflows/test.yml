@@ -5,6 +5,14 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    services:
+      redis:
+        image: redis
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python 3.8
@@ -26,6 +34,7 @@ jobs:
         TEST_BITBUCKET_API_USERNAME: ${{ secrets.TEST_BITBUCKET_API_USERNAME }}
         TEST_BITBUCKET_API_PASSWORD: ${{ secrets.TEST_BITBUCKET_API_PASSWORD }}
         TEST_GITHUB_API_TOKEN: ${{ secrets.TEST_GITHUB_API_TOKEN }}
+        CACHE_REDIS_URL: "redis://redis:6379/0"
     - name: Install commitstat
       run: curl https://raw.githubusercontent.com/dropseed/commitstat/master/install.sh | bash -s -- -b $HOME/bin
     - name: Run commitstat
