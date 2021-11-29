@@ -53,6 +53,8 @@ class BaseAPI:
             # Load from env if not provided
             cache_type = settings.get("CACHE", "file")
 
+        logger.debug("%s cache_type=%s", self.__class__.__name__, cache_type)
+
         if cache_type == "file":
             CacheControl(
                 self.session,
