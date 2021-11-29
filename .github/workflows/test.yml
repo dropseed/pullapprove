@@ -30,6 +30,8 @@ jobs:
     - name: Test
       run: |
         ./scripts/test -v
+    - name: Live tests
+      run: |
         ./scripts/test -v --liveapi
       env:
         TEST_GITLAB_API_TOKEN: ${{ secrets.TEST_GITLAB_API_TOKEN }}
