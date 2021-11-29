@@ -32,7 +32,7 @@ def pytest_addoption(parser):
 
 
 def pytest_configure(config):
-    if config.option.liveapi:
-        setattr(config.option, "markexpr", "liveapi")
-    else:
+    # By default, liveapi tests are disabled
+    # add --liveapi to run ALL tests
+    if not config.option.liveapi:
         setattr(config.option, "markexpr", "not liveapi")
