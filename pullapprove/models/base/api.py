@@ -1,3 +1,4 @@
+import json
 import os
 import tempfile
 from typing import Any, Callable, Dict
@@ -53,8 +54,6 @@ class BaseAPI:
             # Load from env if not provided
             cache_type = settings.get("CACHE", "file")
 
-        logger.debug("%s cache_type=%s", self.__class__.__name__, cache_type)
-
         if cache_type == "file":
             CacheControl(
                 self.session,
@@ -62,7 +61,8 @@ class BaseAPI:
             )
         elif cache_type == "redis":
             redis_url = settings.get("CACHE_REDIS_URL", "redis://localhost:6379/0")
-            redis_client = redis.from_url(redis_url)
+            redis_options = json.loads(settings.get("CACHE_REDIS_OPTIONS", "{}"))
+            redis_client = redis.from_url(redis_url, **redis_options)
             CacheControl(
                 self.session,
                 cache=RedisCache(redis_client),
