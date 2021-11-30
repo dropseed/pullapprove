@@ -7,7 +7,6 @@ import time
 from typing import Dict, List, Optional
 
 import jwt
-from cachecontrol.caches.file_cache import FileCache
 from cached_property import cached_property
 
 from pullapprove.logger import canonical, logger
@@ -25,10 +24,7 @@ class Installation:
             GITHUB_API_BASE_URL,
             headers={"Accept": "application/vnd.github.machine-man-preview+json"},
         )
-        if settings.get("CACHE", "file") == "file":
-            self.cache = FileCache(os.path.join(tempfile.gettempdir(), "pullapprove"))
-        else:
-            self.cache = None
+        self.cache = self.api.cache  # reuse the API cache
 
     @cached_property
     def api_token(self) -> str:

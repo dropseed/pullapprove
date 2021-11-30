@@ -50,23 +50,7 @@ class BaseAPI:
         self.session.params.update(params)  # type: ignore
         self.session.headers.update(headers)
 
-        if not cache_type:
-            # Load from env if not provided
-            cache_type = settings.get("CACHE", "file")
-
-        if cache_type == "file":
-            CacheControl(
-                self.session,
-                cache=FileCache(os.path.join(tempfile.gettempdir(), "pullapprove")),
-            )
-        elif cache_type == "redis":
-            redis_url = settings.get("CACHE_REDIS_URL", "redis://localhost:6379/0")
-            redis_options = json.loads(settings.get("CACHE_REDIS_OPTIONS", "{}"))
-            redis_client = redis.from_url(redis_url, **redis_options)
-            CacheControl(
-                self.session,
-                cache=RedisCache(redis_client),
-            )
+        self.init_cache(cache_type or settings.get("CACHE", "file"))
 
         logger.debug(
             "%s.defaults headers=%s params=%s",
@@ -76,6 +60,23 @@ class BaseAPI:
         )
 
         self.mode = Mode()
+
+    def init_cache(self, cache_type: str) -> None:
+        if cache_type == "file":
+            self.cache = FileCache(os.path.join(tempfile.gettempdir(), "pullapprove"))
+        elif cache_type == "redis":
+            redis_url = settings.get("CACHE_REDIS_URL", "redis://localhost:6379/0")
+            redis_options = json.loads(settings.get("CACHE_REDIS_OPTIONS", "{}"))
+            redis_client = redis.from_url(redis_url, **redis_options)
+            self.cache = RedisCache(redis_client)
+        else:
+            self.cache = None
+
+        if self.cache:
+            CacheControl(
+                self.session,
+                cache=self.cache,
+            )
 
     def clear_cache(self) -> None:
         for adapter in self.session.adapters.values():
