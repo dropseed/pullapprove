@@ -25,7 +25,8 @@ cryptography = "^3.4.7"
 python-box = "^5.3.0"
 marshmallow = "^3.12.1"
 PyYAML = "^5.4.1"
-CacheControl = {url = "https://github.com/dropseed/cachecontrol/archive/e28436d.zip", extras = ["filecache", "redis"]}
+# Must be zip for current pullapprove3 deployment process
+CacheControl = {url = "https://github.com/ionrock/cachecontrol/archive/7815847.zip", extras = ["filecache", "redis"]}
 click = "^8.0.1"
 prompt-toolkit = "^3.0.20"
 keyring = "^23.2.1"
