@@ -35,6 +35,7 @@ jobs:
         TEST_BITBUCKET_API_USERNAME: ${{ secrets.TEST_BITBUCKET_API_USERNAME }}
         TEST_BITBUCKET_API_PASSWORD: ${{ secrets.TEST_BITBUCKET_API_PASSWORD }}
         TEST_GITHUB_API_TOKEN: ${{ secrets.TEST_GITHUB_API_TOKEN }}
+    
     - name: Install commitstat
       run: curl https://raw.githubusercontent.com/dropseed/commitstat/master/install.sh | bash -s -- -b $HOME/bin
     - name: Run commitstat
@@ -44,3 +45,11 @@ jobs:
         $HOME/bin/commitstat .reports/pytest/index.html --regex "<span class=\"pc_cov\">(\d+%)<\/span>" --goal increase --name pytest
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Install licensed
+      run: |
+        cd $RUNNER_TEMP
+        curl -Lfs -o licensed.tar.gz https://github.com/github/licensed/releases/download/2.12.2/licensed-2.12.2-linux-x64.tar.gz
+        sudo tar -xzf licensed.tar.gz
+        sudo mv licensed /usr/local/bin/licensed
+    - run: licensed status
