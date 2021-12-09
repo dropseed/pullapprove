@@ -10,9 +10,11 @@ inputs:
   github_token:
     required: true
 runs:
-  using: docker
-  image: Dockerfile
-  args:
-  - ${{ inputs.cmd }}
-  env:
-    GITHUB_TOKEN: ${{ inputs.github_token }}
+  using: composite
+  steps:
+  - run: pip3 install $GITHUB_ACTION_PATH
+    shell: bash
+  - run: pullapprove ${{ inputs.cmd }}
+    shell: bash
+    env:
+      GITHUB_TOKEN: ${{ inputs.github_token }}
