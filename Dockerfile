@@ -1,6 +1,6 @@
 FROM python:3
 
-RUN pip install -U pip && pip install pullapprove==3.16.1
+RUN pip install -U pip && pip install pullapprove==3.17.0
 
 RUN echo '#!/bin/sh -ex\npullapprove $@' > /entrypoint.sh && chmod +x /entrypoint.sh
 
