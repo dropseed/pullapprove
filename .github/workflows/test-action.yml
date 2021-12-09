@@ -1,0 +1,13 @@
+name: test-action
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ./
+      with:
+        cmd: "--help"
+        github_token: ${{ secrets.GITHUB_TOKEN }}

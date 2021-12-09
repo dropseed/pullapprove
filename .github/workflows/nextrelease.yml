@@ -20,7 +20,6 @@ jobs:
       with:
         prepare_cmd: |
           sed -i -e "s/version = \"[^\"]*\"$/version = \"$VERSION\"/g" pyproject.toml
-          sed -i -e "s/pullapprove==.*/pullapprove==$VERSION/g" Dockerfile
           export CHANGEDATE=$(date -d "+3 years" "+%Y-%m-%d")
           sed -i -e "s/Change Date:          .*/Change Date:          $CHANGEDATE/g" LICENSE
         publish_cmd: |
