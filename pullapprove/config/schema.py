@@ -119,7 +119,7 @@ class ExtendableSchema(Schema):
             return data
 
         extends = data.get("extends", "")
-        if not extends:
+        if not extends or not isinstance(extends, str):
             return data
 
         load_extends_func = self.context["load_extends_func"]
