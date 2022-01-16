@@ -25,35 +25,42 @@ class Groups(ContextObjectList):
 
     @property
     def active(self) -> "Groups":
+        """A group is active when its `conditions` are met"""
         return Groups([x for x in self._data if x["is_active"]])
 
     @property
     def inactive(self) -> "Groups":
+        """A group is inactive when its `conditions` are not met"""
         return Groups([x for x in self._data if not x["is_active"]])
 
     @property
     def passing(self) -> "Groups":
+        """A group is passing if it is \"active\" and \"approved\", or is \"inactive\" """
         return Groups([x for x in self._data if x["is_passing"]])
 
     @property
     def approved(self) -> "Groups":
-        """Groups that have the necessary reviews and meet any additional requirements"""
+        """A group is approved when it has the number of approvals `required`"""
         return Groups([x for x in self._data if x["state"] == "approved"])
 
     @property
     def pending(self) -> "Groups":
+        """A group is "pending" if it does not have the number of approvals `required`"""
         return Groups([x for x in self._data if x["state"] == "pending"])
 
     @property
     def rejected(self) -> "Groups":
+        """A group is "rejected" if any reviewer in the group has rejected the pull request"""
         return Groups([x for x in self._data if x["state"] == "rejected"])
 
     @property
     def optional(self) -> "Groups":
+        """A group is optional if the `type` is \"optional\" """
         return Groups([x for x in self._data if x["type"] == "optional"])
 
     @property
     def required(self) -> "Groups":
+        """A group is optional if the `type` is \"required\" """
         return Groups([x for x in self._data if x["type"] == "required"])
 
     @property
