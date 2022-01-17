@@ -885,7 +885,7 @@ python-versions = "*"
 
 [[package]]
 name = "types-redis"
-version = "4.1.6"
+version = "4.1.8"
 description = "Typing stubs for redis"
 category = "dev"
 optional = false
@@ -893,7 +893,7 @@ python-versions = "*"
 
 [[package]]
 name = "types-requests"
-version = "2.27.3"
+version = "2.27.7"
 description = "Typing stubs for requests"
 category = "dev"
 optional = false
@@ -912,7 +912,7 @@ python-versions = "*"
 
 [[package]]
 name = "types-urllib3"
-version = "1.26.2"
+version = "1.26.7"
 description = "Typing stubs for urllib3"
 category = "dev"
 optional = false
@@ -1719,20 +1719,20 @@ types-pyyaml = [
     {file = "types_PyYAML-5.4.12-py3-none-any.whl", hash = "sha256:e06083f85375a5678e4c19452ed6467ce2167b71db222313e1792cb8fc76859a"},
 ]
 types-redis = [
-    {file = "types-redis-4.1.6.tar.gz", hash = "sha256:48b4cfc5ef4032b8fc69a31e499fd1e462ea66aab0d250e36b62e820977bd48a"},
-    {file = "types_redis-4.1.6-py3-none-any.whl", hash = "sha256:a227089c9b840f8e50cb06381de23747e2b06ad2d40676fba09a204e25ab20a9"},
+    {file = "types-redis-4.1.8.tar.gz", hash = "sha256:0dcd0f47f96eee006b7533435c3692841bd1d4ecf6866ab758a789956c9e9f59"},
+    {file = "types_redis-4.1.8-py3-none-any.whl", hash = "sha256:1a6f918dbc5307e38fab931bd43d5d6181eea745e7cfee476f493c3c3c32cf42"},
 ]
 types-requests = [
-    {file = "types-requests-2.27.3.tar.gz", hash = "sha256:9fe61821910eb5b33bc774165d0c8fbdf933902ef57b0d5040f96b59bc428efa"},
-    {file = "types_requests-2.27.3-py3-none-any.whl", hash = "sha256:20cba29db305c005305dab4d29d5f0de01af7820a375c0853b68159269e8e2da"},
+    {file = "types-requests-2.27.7.tar.gz", hash = "sha256:f38bd488528cdcbce5b01dc953972f3cead0d060cfd9ee35b363066c25bab13c"},
+    {file = "types_requests-2.27.7-py3-none-any.whl", hash = "sha256:2e0e100dd489f83870d4f61949d3a7eae4821e7bfbf46c57e463c38f92d473d4"},
 ]
 types-setuptools = [
     {file = "types-setuptools-57.4.7.tar.gz", hash = "sha256:9677d969b00ec1c14552f5be2b2b47a6fbea4d0ed4de0fdcee18abdaa0cc9267"},
     {file = "types_setuptools-57.4.7-py3-none-any.whl", hash = "sha256:ffda504687ea02d4b7751c0d1df517fbbcdc276836d90849e4f1a5f1ccd79f01"},
 ]
 types-urllib3 = [
-    {file = "types-urllib3-1.26.2.tar.gz", hash = "sha256:fab03aa961be4d43290b13362a9f9801e2025ada33cbfbfaa9146efea6ab9496"},
-    {file = "types_urllib3-1.26.2-py3-none-any.whl", hash = "sha256:c21997c160dcdfb3018a7b28e31df88d326d30485833fadd79ad3d00c61e5108"},
+    {file = "types-urllib3-1.26.7.tar.gz", hash = "sha256:cfd1fbbe4ba9a605ed148294008aac8a7b8b7472651d1cc357d507ae5962e3d2"},
+    {file = "types_urllib3-1.26.7-py3-none-any.whl", hash = "sha256:3adcf2cb5981809091dbff456e6999fe55f201652d8c360f99997de5ac2f556e"},
 ]
 typing-extensions = [
     {file = "typing_extensions-4.0.1-py3-none-any.whl", hash = "sha256:7f001e5ac290a0c0401508864c7ec868be4e701886d5b573a9528ed3973d9d3b"},
@@ -1761,6 +1761,7 @@ wasmer = [
     {file = "wasmer-1.1.0-cp38-cp38-manylinux_2_24_x86_64.whl", hash = "sha256:b9e5605552bd7d2bc6337519b176defe83bc69b98abf3caaaefa4f7ec231d18a"},
     {file = "wasmer-1.1.0-cp38-none-win_amd64.whl", hash = "sha256:20b5190112e2e94a8947967f2bc683c9685855d0f34130d8434c87a55216a3bd"},
     {file = "wasmer-1.1.0-cp39-cp39-macosx_10_7_x86_64.whl", hash = "sha256:ee442f0970f40ec5e32011c92fd753fb2061da0faa13de13fafc730c31be34e3"},
+    {file = "wasmer-1.1.0-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:aa112198b743cff2e391230436813fb4b244a24443e37866522b7197e3a034da"},
     {file = "wasmer-1.1.0-cp39-cp39-manylinux_2_24_x86_64.whl", hash = "sha256:c0b37117f6d3ff51ee96431c7d224d99799b08d174e30fcd0fcd7e2e3cb8140c"},
     {file = "wasmer-1.1.0-cp39-none-win_amd64.whl", hash = "sha256:a0a4730ec4907a4cb0d9d4a77ea2608c2c814f22a22b73fc80be0f110e014836"},
     {file = "wasmer-1.1.0-py3-none-any.whl", hash = "sha256:2caf8c67feae9cd4246421551036917811c446da4f27ad4c989521ef42751931"},
@@ -1776,6 +1777,7 @@ wasmer-compiler-cranelift = [
     {file = "wasmer_compiler_cranelift-1.1.0-cp38-cp38-manylinux_2_24_x86_64.whl", hash = "sha256:bd03db5a916ead51b442c66acad38847dfe127cf90b2019b1680f1920c4f8d06"},
     {file = "wasmer_compiler_cranelift-1.1.0-cp38-none-win_amd64.whl", hash = "sha256:157d87cbd1d04adbad55b50cb4bedc28e444caf74797fd96df17390667e58699"},
     {file = "wasmer_compiler_cranelift-1.1.0-cp39-cp39-macosx_10_7_x86_64.whl", hash = "sha256:ff25fc99ebafa04a6c271d08a90d17b927930e3019a2b333c7cfb48ba32c6f71"},
+    {file = "wasmer_compiler_cranelift-1.1.0-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:9697ae082317a56776df8ff7df8c922eac38488ef38d3478fe5f0ca144c185ab"},
     {file = "wasmer_compiler_cranelift-1.1.0-cp39-cp39-manylinux_2_24_x86_64.whl", hash = "sha256:2a4349b1ddd727bd46bc5ede741839dcfc5153c52f064a83998c4150d5d4a85c"},
     {file = "wasmer_compiler_cranelift-1.1.0-cp39-none-win_amd64.whl", hash = "sha256:32fe38614fccc933da77ee4372904a5fa9c12b859209a2e4048a8284c4c371f2"},
     {file = "wasmer_compiler_cranelift-1.1.0-py3-none-any.whl", hash = "sha256:200fea80609cfb088457327acf66d5aa61f4c4f66b5a71133ada960b534c7355"},
