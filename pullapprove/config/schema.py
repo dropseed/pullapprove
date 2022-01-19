@@ -1,4 +1,4 @@
-import collections
+import collections.abc
 import json
 import os
 from typing import Any, Callable, Dict, Optional, Tuple
@@ -143,8 +143,8 @@ class ExtendableSchema(Schema):
             # if both dicts had this key
             if k in keep and k in add:
                 # if both of those values were dicts, decide how we want to merge them
-                if isinstance(keep[k], collections.Mapping) and isinstance(
-                    add[k], collections.Mapping
+                if isinstance(keep[k], collections.abc.Mapping) and isinstance(
+                    add[k], collections.abc.Mapping
                 ):
                     copied = keep[k].copy()
                     ret[k] = self._dict_deep_merge(copied, add[k].copy())
