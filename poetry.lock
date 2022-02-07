@@ -826,7 +826,7 @@ python-versions = "*"
 
 [[package]]
 name = "types-pyyaml"
-version = "6.0.3"
+version = "6.0.4"
 description = "Typing stubs for PyYAML"
 category = "dev"
 optional = false
@@ -942,7 +942,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "14e980f1ac6c1ce9afa2b3d454411a7eab3d464e37778e841e24a5aedbf9d165"
+content-hash = "7440386cc9a91d77c253d3334a649b498212feeeef7eeba0ac0446dbce74eb84"
 
 [metadata.files]
 appdirs = [
@@ -1570,8 +1570,8 @@ types-dateparser = [
     {file = "types_dateparser-0.1.5-py3-none-any.whl", hash = "sha256:9911b9744e37d4a2c6f6a2f259b5ff76bc5553cd738403fcda83403151b04152"},
 ]
 types-pyyaml = [
-    {file = "types-PyYAML-6.0.3.tar.gz", hash = "sha256:6ea4eefa8579e0ce022f785a62de2bcd647fad4a81df5cf946fd67e4b059920b"},
-    {file = "types_PyYAML-6.0.3-py3-none-any.whl", hash = "sha256:8b50294b55a9db89498cdc5a65b1b4545112b6cd1cf4465bd693d828b0282a17"},
+    {file = "types-PyYAML-6.0.4.tar.gz", hash = "sha256:6252f62d785e730e454dfa0c9f0fb99d8dae254c5c3c686903cf878ea27c04b7"},
+    {file = "types_PyYAML-6.0.4-py3-none-any.whl", hash = "sha256:693b01c713464a6851f36ff41077f8adbc6e355eda929addfb4a97208aea9b4b"},
 ]
 types-requests = [
     {file = "types-requests-2.25.11.tar.gz", hash = "sha256:b279284e51f668e38ee12d9665e4d789089f532dc2a0be4a1508ca0efd98ba9e"},
