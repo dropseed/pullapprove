@@ -36,7 +36,7 @@ Pygments = "^2.10.0"
 
 [tool.poetry.dev-dependencies]
 mypy = "^0.930"
-pytest = "^7.0.0"
+pytest = "^7.0.1"
 pytest-cov = "^2.12.1"
 ipython = "^7.25.0"
 ipdb = "^0.13.9"
