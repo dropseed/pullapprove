@@ -32,7 +32,7 @@ appdirs = "^1.4.4"
 cls-client = "^1.4.0"
 Pygments = "^2.10.0"
 
-cachecontrol = { git = "https://github.com/ionrock/cachecontrol", rev = "7815847", extras = ["filecache", "redis"] }
+cachecontrol = { path = "vendor/cachecontrol", extras = ["filecache", "redis"] }
 
 [tool.poetry.dev-dependencies]
 mypy = "^0.930"
