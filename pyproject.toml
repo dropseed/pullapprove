@@ -32,7 +32,10 @@ appdirs = "^1.4.4"
 cls-client = "^1.4.0"
 Pygments = "^2.10.0"
 
-cachecontrol = { path = "vendor/cachecontrol", extras = ["filecache", "redis"] }
+# For vendored cachecontrol
+lockfile = ">=0.9"
+redis = ">=2.10.5"
+msgpack = ">=0.5.2"
 
 [tool.poetry.dev-dependencies]
 mypy = "^0.930"

@@ -5,13 +5,13 @@
 try:
     from urllib.parse import urljoin
 except ImportError:
-    from urlparse import urljoin
+    from urlparse import urljoin  # type: ignore
 
 
 try:
     import cPickle as pickle
 except ImportError:
-    import pickle
+    import pickle  # type: ignore
 
 # Handle the case where the requests module has been patched to not have
 # urllib3 bundled as part of its source.
@@ -27,6 +27,6 @@ except ImportError:
 
 # Replicate some six behaviour
 try:
-    text_type = unicode
+    text_type = unicode  # type: ignore
 except NameError:
     text_type = str

@@ -5,12 +5,12 @@ from typing import Any, Callable, Dict
 
 import redis
 import requests
-from cachecontrol import CacheControl, CacheControlAdapter
-from cachecontrol.caches.file_cache import FileCache
-from cachecontrol.caches.redis_cache import RedisCache
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 
+from pullapprove._vendor.cachecontrol import CacheControl, CacheControlAdapter
+from pullapprove._vendor.cachecontrol.caches.file_cache import FileCache
+from pullapprove._vendor.cachecontrol.caches.redis_cache import RedisCache
 from pullapprove.exceptions import ConfigurationError, UserError
 from pullapprove.logger import canonical, logger
 from pullapprove.mode import Mode
