@@ -709,7 +709,7 @@ test = ["pytest"]
 
 [[package]]
 name = "types-dateparser"
-version = "1.0.14"
+version = "1.1.0"
 description = "Typing stubs for dateparser"
 category = "dev"
 optional = false
@@ -801,7 +801,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "93b4d0ce3bd550561828c93415c8ce86161ed9a81e56fcd11c935765b8155f5b"
+content-hash = "40ea33fa5df6fc995c246c177ed530c764b4c5f0207976e6db627ddfed1a0a72"
 
 [metadata.files]
 appdirs = [
@@ -1398,8 +1398,8 @@ traitlets = [
     {file = "traitlets-5.0.5.tar.gz", hash = "sha256:178f4ce988f69189f7e523337a3e11d91c786ded9360174a3d9ca83e79bc5396"},
 ]
 types-dateparser = [
-    {file = "types-dateparser-1.0.14.tar.gz", hash = "sha256:f648ab13de4ec883ecc22c5d5416783d06559c506401af00d5e0e104998671d9"},
-    {file = "types_dateparser-1.0.14-py3-none-any.whl", hash = "sha256:1c9d7c89494e75b9a48c310a90fb09ad70299ab5186a835e9d187a4ca6620ed6"},
+    {file = "types-dateparser-1.1.0.tar.gz", hash = "sha256:a8c3086b9eb9fa8187b4eeadb76979bb45b63968839b3c65fb424b5d732f5043"},
+    {file = "types_dateparser-1.1.0-py3-none-any.whl", hash = "sha256:a99a4792ca1a429d2c94ede0e1fff7314a827978af7739150adb57f952e43cd6"},
 ]
 types-pyyaml = [
     {file = "types-PyYAML-5.4.3.tar.gz", hash = "sha256:2e7b81b2b7af751634425107b986086c6ba7cb61270a43a5c290c58be8cdbc3a"},
