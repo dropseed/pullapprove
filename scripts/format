@@ -1,5 +1,5 @@
 #!/bin/sh -ex
-.venv/bin/isort --profile=black pullapprove "$@"
+.venv/bin/isort --profile=black pullapprove "$@" --skip _vendor
 .venv/bin/isort --profile=black tests "$@"
-.venv/bin/black pullapprove "$@"
+.venv/bin/black pullapprove "$@" --extend-exclude _vendor
 .venv/bin/black tests "$@"
