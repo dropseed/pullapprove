@@ -1,5 +1,6 @@
 import datetime
 import os
+from typing import Any, Dict, Optional
 
 from pullapprove.logger import logger
 
@@ -9,13 +10,13 @@ class MissingSettingError(Exception):
 
 
 class Settings:
-    def __init__(self, aws_ssm_parameter_path):
+    def __init__(self, aws_ssm_parameter_path: str):
         self._aws_ssm_parameter_path = aws_ssm_parameter_path
-        self._settings = {}
+        self._settings: Dict[str, str] = {}
         self._ttl = 60 * 10  # 10 minutes
-        self._expiration = None
+        self._expiration: Optional[datetime.datetime] = None
 
-    def refresh(self):
+    def refresh(self) -> None:
         logger.debug("Refreshing settings")
 
         settings = {}
@@ -71,13 +72,13 @@ class Settings:
             seconds=self._ttl
         )
 
-    def should_refresh(self):
+    def should_refresh(self) -> bool:
         if self._expiration is None:
             return True
 
         return datetime.datetime.now() > self._expiration
 
-    def get(self, key, default=None):
+    def get(self, key: str, default: Optional[str] = None) -> str:
         if self.should_refresh():
             self.refresh()
 
@@ -90,6 +91,4 @@ class Settings:
         return value
 
 
-settings = Settings(
-    aws_ssm_parameter_path=os.environ.get("AWS_SSM_PARAMETER_PATH", None)
-)
+settings = Settings(aws_ssm_parameter_path=os.environ.get("AWS_SSM_PARAMETER_PATH", ""))

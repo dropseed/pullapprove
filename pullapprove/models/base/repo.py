@@ -2,9 +2,11 @@ from typing import Any, Dict, List, Optional
 
 from pullapprove.config.schema import Config
 
+from .api import BaseAPI
+
 
 class BaseRepo:
-    def __init__(self, full_name, api) -> None:
+    def __init__(self, full_name: str, api: BaseAPI) -> None:
         self.full_name = full_name
         self.api = api
 

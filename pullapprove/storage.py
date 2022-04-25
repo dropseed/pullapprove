@@ -1,15 +1,15 @@
 import json
-from typing import Any, Optional
+from typing import Any, Dict, Optional
 
 from pullapprove.logger import logger
 from pullapprove.settings import settings
 
 
 class Storage:
-    def store_data(self, key: str, data: Any) -> Optional[str]:
+    def store_data(self, key: str, data: Dict[str, Any]) -> Optional[str]:
         expiration_days = int(settings.get("REPORT_EXPIRATION_DAYS", "7"))
 
-        if settings.get("AWS_S3_BUCKET", False):
+        if settings.get("AWS_S3_BUCKET", None):
             import boto3
 
             # use an iam user for longer expiration on signed url

@@ -61,6 +61,10 @@ class BaseAPI:
 
         self.mode = Mode()
 
+    def set_version(self, version: str) -> None:
+        # Only used for GitHub...
+        pass
+
     def init_cache(self, cache_type: str) -> None:
         if cache_type == "file":
             self.cache = FileCache(os.path.join(tempfile.gettempdir(), "pullapprove"))
