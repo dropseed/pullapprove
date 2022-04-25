@@ -135,7 +135,7 @@ def process_pull_request(pull_request: "BasePullRequest", config_file: File) -> 
     ctx = pull_request.as_context()
     ctx["groups"] = Groups([x.as_dict() for x in groups])
 
-    for override in config.data["overrides"]:  # type: ignore
+    for override in config.data["overrides"]:
         expr = Expression(override["if"])
         expr.load(ctx)
         if expr.is_met:

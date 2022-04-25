@@ -21,7 +21,7 @@ class Accounts(ContextObjectList):
 
     @property
     def nicknames(self) -> List[str]:
-        return [x.nickname for x in self._items]  # type: ignore
+        return [x.nickname for x in self._items]
 
 
 class Participant(ContextObject):

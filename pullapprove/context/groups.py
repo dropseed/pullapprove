@@ -21,7 +21,7 @@ class Groups(ContextObjectList):
 
     @property
     def names(self) -> List[str]:
-        return [x.name for x in self._items]  # type: ignore
+        return [x.name for x in self._items]
 
     @property
     def active(self) -> "Groups":

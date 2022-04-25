@@ -24,7 +24,7 @@ class Users(ContextObjectList):
 
     @property
     def usernames(self) -> List[str]:
-        return [x.username for x in self._items]  # type: ignore
+        return [x.username for x in self._items]
 
 
 class Milestone(ContextObject):

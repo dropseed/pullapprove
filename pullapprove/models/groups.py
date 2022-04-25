@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 class Group:
     @classmethod
     def from_config(cls, name: str, config_schema: Dict[str, Any]) -> "Group":
-        obj = cls(name)  # type: ignore
+        obj = cls(name)
 
         obj.users = config_schema["reviewers"]["users"]
         obj.teams = config_schema["reviewers"]["teams"]

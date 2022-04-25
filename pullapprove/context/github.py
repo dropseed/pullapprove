@@ -28,12 +28,12 @@ class Users(ContextObjectList):
 
     @property
     def usernames(self) -> List[str]:
-        return [x.username for x in self._items]  # type: ignore
+        return [x.username for x in self._items]
 
     @property
     def mentions(self) -> List[str]:
         """List of @usernames"""
-        return [x.mention for x in self._items]  # type: ignore
+        return [x.mention for x in self._items]
 
 
 class File(ContextObject):
@@ -292,7 +292,7 @@ class Labels(ContextObjectList):
 
     @property
     def names(self) -> List[str]:
-        return [x.name for x in self._items]  # type: ignore
+        return [x.name for x in self._items]
 
 
 class Milestone(ContextObject):
@@ -337,11 +337,11 @@ class Teams(ContextObjectList):
 
     @property
     def ids(self) -> List[int]:
-        return [x.id for x in self._items]  # type: ignore
+        return [x.id for x in self._items]
 
     @property
     def names(self) -> List[str]:
-        return [x.name for x in self._items]  # type: ignore
+        return [x.name for x in self._items]
 
 
 class PullRequest(ContextObject):
