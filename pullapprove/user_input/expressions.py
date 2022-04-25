@@ -7,7 +7,7 @@ from jinja2.sandbox import ImmutableSandboxedEnvironment
 
 class Expression(object):
     def __init__(
-        self, string: str, context: Dict[str, Any] = {}, *args, **kwargs
+        self, string: str, context: Dict[str, Any] = {}, *args: Any, **kwargs: Any
     ) -> None:
         assert isinstance(string, str), "Expression must be a string"
         self.string = string

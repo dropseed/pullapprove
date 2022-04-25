@@ -1,13 +1,16 @@
 import datetime
 import json
 import os
+from typing import Any, Dict, Optional, Tuple
 
 import dateparser
+
+from pullapprove.models.base import BaseAPI
 
 from .exceptions import ParseError
 
 
-def handle_github_event(api):
+def handle_github_event(api: BaseAPI) -> None:
     if "GITHUB_EVENT_PATH" in os.environ:
         with open(os.environ["GITHUB_EVENT_PATH"], "r") as f:
             github_event_data = json.load(f)
@@ -32,7 +35,7 @@ def handle_github_event(api):
                     )
 
 
-def parse_issue_title(title):
+def parse_issue_title(title: str) -> Tuple[str, datetime.date, datetime.date]:
     parts = title.split(" unavailable from ")
     if len(parts) != 2:
         raise ParseError(
@@ -47,17 +50,17 @@ def parse_issue_title(title):
     if len(date_parts) != 2:
         raise ParseError('Issue title needs dates in the format of "Date to Date"')
 
-    start_date = dateparser.parse(date_parts[0])
-    end_date = dateparser.parse(date_parts[1])
+    start_datetime = dateparser.parse(date_parts[0])
+    end_datetime = dateparser.parse(date_parts[1])
 
-    if not start_date:
+    if not start_datetime:
         raise ParseError("Unable to parse start date")
 
-    if not end_date:
+    if not end_datetime:
         raise ParseError("Unable to parse end date")
 
-    start_date = start_date.date()
-    end_date = end_date.date()
+    start_date = start_datetime.date()
+    end_date = end_datetime.date()
 
     if end_date < start_date:
         raise ParseError("The end date needs to be after the start date")
@@ -66,17 +69,17 @@ def parse_issue_title(title):
 
 
 class GitHubIssue:
-    def __init__(self, data):
+    def __init__(self, data: Dict[str, Any]) -> None:
         self.data = data
         self.username, self.start_date, self.end_date = parse_issue_title(
             self.data["title"]
         )
 
-    def is_unavailable(self):
+    def is_unavailable(self) -> bool:
         # TODO timezone?
         today = datetime.datetime.now().date()
         return today >= self.start_date and today <= self.end_date
 
-    def is_past(self):
+    def is_past(self) -> bool:
         today = datetime.datetime.now().date()
         return today > self.end_date

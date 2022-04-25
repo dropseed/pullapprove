@@ -48,7 +48,7 @@ class Repo(BaseRepo):
         if content is None:
             return None
 
-        def get_url_response(url):
+        def get_url_response(url: str) -> requests.Response:
             if urlparse(url).netloc == urlparse(GITHUB_API_BASE_URL).netloc:
                 return self.api.session.get(
                     url, headers={"Accept": "application/vnd.github.raw"}

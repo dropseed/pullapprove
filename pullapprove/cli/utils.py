@@ -1,8 +1,10 @@
 import functools
+from typing import Callable
 from urllib.parse import quote_plus, urlparse
 
 import click
 
+from pullapprove.models.base import BasePullRequest
 from pullapprove.models.bitbucket import PullRequest as BitbucketPullRequest
 from pullapprove.models.bitbucket import Repo as BitbucketRepo
 from pullapprove.models.github import PullRequest as GitHubPullRequest
@@ -13,9 +15,12 @@ from pullapprove.models.gitlab import Repo as GitLabRepo
 from .secrets import Secrets
 
 
-def get_secret_value_for_url(url, host_type, secret_name):
+def get_secret_value_for_url(url: str, host_type: str, secret_name: str) -> str:
     if not secret_name:
-        secret_name = urlparse(url).hostname
+        parsed = urlparse(url)
+        if not parsed.hostname:
+            raise click.ClickException(f"Could not parse hostname from URL: {url}")
+        secret_name = parsed.hostname
 
     secrets = Secrets()
     secret_value = secrets.get(secret_name)
@@ -32,14 +37,16 @@ def get_secret_value_for_url(url, host_type, secret_name):
     return secret_value
 
 
-def get_pull_request_from_url(pull_request_url, host_type, secret_value):
+def get_pull_request_from_url(
+    pull_request_url: str, host_type: str, secret_value: str
+) -> BasePullRequest:
     parsed_url = urlparse(pull_request_url)
     path_parts = parsed_url.path.split("/")
 
     if host_type == "github":
         org_name = path_parts[1]
         repo_name = path_parts[2]
-        pull_request_number = path_parts[4]
+        pull_request_number = int(path_parts[4])
         return GitHubPullRequest(
             repo=GitHubRepo(f"{org_name}/{repo_name}", api_token=secret_value),
             number=pull_request_number,
@@ -52,7 +59,7 @@ def get_pull_request_from_url(pull_request_url, host_type, secret_value):
             full_name = "/".join(path_parts[1:4])
 
         project_id = quote_plus(full_name)
-        number = path_parts[-1]
+        number = int(path_parts[-1])
 
         return GitLabMergeRequest(
             repo=GitLabRepo(
@@ -65,7 +72,7 @@ def get_pull_request_from_url(pull_request_url, host_type, secret_value):
     elif host_type == "bitbucket":
         workspace_id = path_parts[1]
         full_name = path_parts[1] + "/" + path_parts[2]
-        number = path_parts[4]
+        number = int(path_parts[4])
 
         return BitbucketPullRequest(
             repo=BitbucketRepo(
@@ -79,7 +86,7 @@ def get_pull_request_from_url(pull_request_url, host_type, secret_value):
         raise click.ClickException("Unknown host type: {}".format(host_type))
 
 
-def pull_request_url_command(func):
+def pull_request_url_command(func: Callable) -> Callable:
     """A decorator that can be used for commands that parse URLs and prompt for secrets"""
 
     @click.option("--secret-name")
@@ -90,7 +97,7 @@ def pull_request_url_command(func):
     )
     @click.argument("pull_request_url")
     @functools.wraps(func)
-    def wrapper(*args, **kwargs):
+    def wrapper(*args, **kwargs):  # type: ignore
         host_type = kwargs.pop("host_type")
         secret_name = kwargs.pop("secret_name")
         pull_request_url = kwargs.pop("pull_request_url")

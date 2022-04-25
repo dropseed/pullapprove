@@ -196,14 +196,18 @@ class Group:
         if not self.meets_requirements:
             self.state = ReviewState.PENDING
 
-    def load_conditions(self, pr: "BasePullRequest", groups: List[Dict[str, Any]]):
+    def load_conditions(
+        self, pr: "BasePullRequest", groups: List[Dict[str, Any]]
+    ) -> None:
         ctx = pr.as_context()
         ctx["groups"] = GroupsContext(groups)
 
         for condition in self.conditions:
             condition.load(ctx)
 
-    def load_requirements(self, pr: "BasePullRequest", groups: List[Dict[str, Any]]):
+    def load_requirements(
+        self, pr: "BasePullRequest", groups: List[Dict[str, Any]]
+    ) -> None:
         ctx = pr.as_context()
         ctx["groups"] = GroupsContext(groups)
 
@@ -315,6 +319,6 @@ def is_unrequestable(name: str) -> bool:
     return name.startswith("~")
 
 
-def rotate_list_left(l, num):
+def rotate_list_left(l: list, num: int) -> list:
     rotate_by = num % len(l)
     return l[rotate_by:] + l[:rotate_by]

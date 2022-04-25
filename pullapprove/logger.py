@@ -16,11 +16,11 @@ class SensitiveFormatter(logging.Formatter):
     """Formatter that remove tokens"""
 
     @staticmethod
-    def _filter(s):
+    def _filter(s: str) -> str:
         bs = re.sub(r"Bearer [^\'\"\s]+", r"Bearer ******", s)
         return re.sub(r"token=\S+", r"token=******", bs)
 
-    def format(self, record):
+    def format(self, record):  # type: ignore
         original = logging.Formatter.format(self, record)
         return self._filter(original)
 
@@ -33,7 +33,7 @@ class CanonicalLogLine:
     def __init__(self) -> None:
         self.data: Dict[str, Any] = {}
 
-    def set(self, **kwargs) -> None:
+    def set(self, **kwargs: Any) -> None:
         self.data.update(**kwargs)
 
     def clear(self) -> None:

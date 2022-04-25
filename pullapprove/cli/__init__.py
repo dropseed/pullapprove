@@ -14,7 +14,7 @@ cls_client.set_ci_tracking_enabled(True)
 
 
 @click.group()
-def cli():
+def cli() -> None:
     pass
 
 

@@ -2,7 +2,7 @@ import datetime
 import fnmatch
 import re
 from random import Random
-from typing import Any, Sequence
+from typing import Any, Dict, Sequence, Union
 from typing.re import Pattern
 
 import dateparser
@@ -15,7 +15,7 @@ GLOB_FLAGS = wcglob.GLOBSTAR | wcglob.BRACE
 
 # Custom class to instantiate a glob for use in _contains
 class Glob:
-    def __init__(self, s):
+    def __init__(self, s: str):
         self.pattern = s
 
 
@@ -155,7 +155,7 @@ def text_list(list_: Sequence, last_word: str = "or") -> str:
 
 
 class ContextRandom(Random):
-    def percent_chance(self, percent_threshold):
+    def percent_chance(self, percent_threshold: Union[float, int]) -> bool:
         """
         Returns True if this PR is within the percent_chance
 
@@ -172,7 +172,7 @@ class ContextRandom(Random):
         return self.random() < percent_threshold
 
 
-def get_context_dictionary(random_seed):
+def get_context_dictionary(random_seed: int) -> Dict[str, Any]:
     return {
         "all": all,
         "any": any,

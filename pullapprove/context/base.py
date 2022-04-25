@@ -1,4 +1,4 @@
-from typing import Any, Callable, Dict, List, Optional
+from typing import Any, Callable, Dict, Iterator, List, Optional
 
 from cached_property import cached_property
 
@@ -39,14 +39,14 @@ class ContextObject:
     def __len__(self) -> int:
         return len(self._data)
 
-    def __eq__(self, other) -> bool:
+    def __eq__(self, other: Any) -> bool:
         if isinstance(other, str):
             # if comparing with a string, check specific attr instead
             return other.lower().strip() == getattr(self, self._eq_attr).lower().strip()
 
         return super().__eq__(other)
 
-    def __contains__(self, key) -> bool:
+    def __contains__(self, key: Any) -> bool:
         return _contains(getattr(self, self._contains_attr), key)
 
 
@@ -66,7 +66,7 @@ class ContextObjectList(ContextObject):
 
     @cached_property
     # TODO fix how functions.py uses this attribute as a type check
-    def _items(self):
+    def _items(self) -> List[ContextObject]:
         if self._fetch_remote_data:
             self._data = self._fetch_remote_data()  # NOQA
         return [self._item_type(x) for x in self._data]
@@ -75,13 +75,13 @@ class ContextObjectList(ContextObject):
         strs = [str(item) for item in self._items]
         return ", ".join(strs)
 
-    def __getitem__(self, key):
+    def __getitem__(self, key: Any) -> ContextObject:
         return self._items[key]
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator[ContextObject]:
         return iter(self._items)
 
-    def get(self, key):
+    def get(self, key: Any) -> Any:
         """
         Gets a specific item in the list using the primary attribute (i.e. name, number, username).
         """
@@ -92,7 +92,7 @@ class ContextObjectList(ContextObject):
             )
         return matches[0]
 
-    def include(self, f):
+    def include(self, f: str) -> "ContextObjectList":
         """
         Filter down the list of objects using `contains` behavior. Chainable with `exclude`.
 
@@ -102,7 +102,7 @@ class ContextObjectList(ContextObject):
         """
         return self.__class__([x._data for x in self._items if _contains(x, f)])
 
-    def exclude(self, f):
+    def exclude(self, f: str) -> "ContextObjectList":
         """
         Filter down the list of objects using _not_ `contains` behavior. Chainable with `include`.
 

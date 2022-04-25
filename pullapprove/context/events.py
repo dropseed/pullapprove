@@ -1,3 +1,5 @@
+from typing import Any
+
 from . import github, groups
 from .base import ContextObject
 
@@ -20,6 +22,6 @@ class Event(ContextObject):
         "unrequested_reviewers": github.Users,
     }
 
-    def __init__(self, name: str, *args, **kwargs) -> None:
+    def __init__(self, name: str, *args: Any, **kwargs: Any) -> None:
         self.name = name
         super().__init__(*args, **kwargs)

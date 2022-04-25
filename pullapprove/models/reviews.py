@@ -57,7 +57,7 @@ class Reviewers:
     def __init__(self) -> None:
         self._reviewers: List[Reviewer] = []
 
-    def append_review(self, username, review):
+    def append_review(self, username: str, review: Review) -> None:
         try:
             reviewer = [x for x in self._reviewers if x.username == username][0]
         except IndexError:
@@ -78,7 +78,7 @@ class Reviewers:
     def __len__(self) -> int:
         return len(self._reviewers)
 
-    def __getitem__(self, key):
+    def __getitem__(self, key):  # type: ignore
         return self._reviewers[key]
 
     def __iter__(self) -> Iterator[Reviewer]:

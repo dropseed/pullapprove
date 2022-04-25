@@ -2,7 +2,7 @@ class Mode:
     def __init__(self) -> None:
         self._mode = "live"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self._mode
 
     def set_test(self) -> None:

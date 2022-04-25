@@ -1,6 +1,6 @@
 import os
 from base64 import b64decode
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Union
 from urllib.parse import quote_plus
 
 import requests
@@ -16,7 +16,9 @@ CONFIG_FILENAME = os.environ.get("CONFIG_FILENAME", ".pullapprove.yml")
 
 
 class Repo(BaseRepo):
-    def __init__(self, project_id: int, full_name: str, api_token: str) -> None:
+    def __init__(
+        self, project_id: Union[int, str], full_name: str, api_token: str
+    ) -> None:
         self.project_id = project_id
 
         api = GitLabAPI(

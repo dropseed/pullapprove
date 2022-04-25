@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, Iterator, List, Tuple
 
 from pullapprove.logger import logger
 
@@ -9,7 +9,7 @@ class Events:
         for item in items:
             self.add(item["name"], item["data"])
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator["Event"]:
         return iter(self._events)
 
     def add(self, name: str, data: Dict[str, Any]) -> None:

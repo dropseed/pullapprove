@@ -87,22 +87,22 @@ class BaseAPI:
             if isinstance(adapter, CacheControlAdapter):
                 adapter.cache.clear()
 
-    def get(self, *args, **kwargs) -> Any:
+    def get(self, *args: Any, **kwargs: Any) -> Any:
         return self._request(self.session.get, *args, **kwargs)
 
-    def post(self, *args, **kwargs) -> Any:
+    def post(self, *args: Any, **kwargs: Any) -> Any:
         return self._request(self.session.post, *args, **kwargs)
 
-    def put(self, *args, **kwargs) -> Any:
+    def put(self, *args: Any, **kwargs: Any) -> Any:
         return self._request(self.session.put, *args, **kwargs)
 
-    def patch(self, *args, **kwargs) -> Any:
+    def patch(self, *args: Any, **kwargs: Any) -> Any:
         return self._request(self.session.patch, *args, **kwargs)
 
-    def delete(self, *args, **kwargs) -> Any:
+    def delete(self, *args: Any, **kwargs: Any) -> Any:
         return self._request(self.session.delete, *args, **kwargs)
 
-    def _request(self, to_call: Callable, url: str, *args, **kwargs) -> Any:
+    def _request(self, to_call: Callable, url: str, *args: Any, **kwargs: Any) -> Any:
         # these kinds of requests either create, update, or delete data
         # and never run in test mode
         live_mode_only = (self.session.post, self.session.put, self.session.delete)

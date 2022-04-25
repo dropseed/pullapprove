@@ -1,7 +1,7 @@
 import collections.abc
 import json
 import os
-from typing import Any, Callable, Dict, Optional, Tuple
+from typing import Any, Callable, Dict, Mapping, Optional, Tuple
 from urllib.parse import urlparse
 
 import yaml
@@ -23,7 +23,13 @@ class Nested(fields.Nested):
     https://github.com/marshmallow-code/marshmallow/issues/1042#issuecomment-509126100
     """
 
-    def deserialize(self, value, attr=None, data=None, **kwargs):
+    def deserialize(
+        self,
+        value: Any,
+        attr: Optional[str] = None,
+        data: Optional[Mapping[str, Any]] = None,
+        **kwargs: Any,
+    ) -> Any:
         self._validate_missing(value)
         if value is missing_:
             _miss = self.missing
@@ -114,7 +120,7 @@ class ExtendableSchema(Schema):
     extends = fields.String(missing="")
 
     @pre_load
-    def extend(self, data, **kwargs):
+    def extend(self, data: Dict[str, Any], **kwargs: Any) -> Dict[str, Any]:
         if not data:
             return data
 
@@ -171,7 +177,9 @@ class ReviewsSchema(Schema):
     )
 
     @pre_load
-    def request_default_required(self, data, **kwargs):
+    def request_default_required(
+        self, data: Dict[str, Any], **kwargs: Any
+    ) -> Dict[str, Any]:
         if "required" in data and "request" not in data:
             data["request"] = data["required"]
 
@@ -225,7 +233,7 @@ class PullApproveConditionSchema(Schema):
     explanation = fields.String(missing="")
 
     @pre_load
-    def convert_str_type(self, data, **kwargs):
+    def convert_str_type(self, data: Any, **kwargs: Any) -> Any:
         if isinstance(data, str):
             return {"condition": data}
 

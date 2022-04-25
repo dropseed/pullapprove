@@ -169,7 +169,7 @@ class BasePullRequest:
         # let the platform decide whether to do this or not (total might need to be updatd on gitlab even if users don't)
         total_required = sum([x.required - x.bonus for x in groups if x.is_active])
 
-        def before_status_send():
+        def before_status_send() -> None:
             self.set_reviewers(
                 users_to_add=list(users_to_request),
                 users_to_remove=list(users_to_unrequest),

@@ -12,7 +12,7 @@ IS_CI = "CI" in os.environ
 
 
 @click.group()
-def availability():
+def availability() -> None:
     """Utilities for generating availability.json"""
     pass
 
@@ -27,7 +27,7 @@ def availability():
 )
 @click.argument("json_path", type=click.Path())
 @cls_client.track_command(name="availability_sync_issues")
-def sync_issues(json_path, github_token, github_repo, github_api_url):
+def sync_issues(json_path, github_token, github_repo, github_api_url):  # type: ignore
     """
     Generate availability JSON by parsing GitHub Issues
     (also processes issue opened/edited events and responds with comments)
