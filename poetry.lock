@@ -1024,7 +1024,7 @@ python-versions = "*"
 
 [[package]]
 name = "wcmatch"
-version = "8.2"
+version = "8.3"
 description = "Wildcard/glob file name matcher."
 category = "main"
 optional = false
@@ -1064,7 +1064,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "5edc6cb8b5a0f34431f5a1d6dd9143c3f7e703e83bece597b36e076acfefb21c"
+content-hash = "c040dcfac7cbfd4cbd971d302fe1a3a5425468f84b1df522c31acf8b9703d90d"
 
 [metadata.files]
 appdirs = [
@@ -1839,8 +1839,8 @@ wasmer-compiler-cranelift = [
     {file = "wasmer_compiler_cranelift-1.1.0-py3-none-any.whl", hash = "sha256:200fea80609cfb088457327acf66d5aa61f4c4f66b5a71133ada960b534c7355"},
 ]
 wcmatch = [
-    {file = "wcmatch-8.2-py3-none-any.whl", hash = "sha256:9146b1ab9354e0797ef6ef69bc89cb32cb9f46d1b9eeef69c559aeec8f3bffb6"},
-    {file = "wcmatch-8.2.tar.gz", hash = "sha256:4d54ddb506c90b5a5bba3a96a1cfb0bb07127909e19046a71d689ddfb18c3617"},
+    {file = "wcmatch-8.3-py3-none-any.whl", hash = "sha256:7141d2c85314253f16b38cb3d6cc0fb612918d407e1df3ccc2be7c86cc259c22"},
+    {file = "wcmatch-8.3.tar.gz", hash = "sha256:371072912398af61d1e4e78609e18801c6faecd3cb36c54c82556a60abc965db"},
 ]
 wcwidth = [
     {file = "wcwidth-0.2.5-py2.py3-none-any.whl", hash = "sha256:beb4802a9cebb9144e99086eff703a642a13d6a0052920003a230f3294bbe784"},
