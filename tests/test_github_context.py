@@ -1,6 +1,13 @@
 from pullapprove.context import functions
-from pullapprove.context.events import Event
-from pullapprove.context.github import CheckRuns, Commits, Files, Statuses, User, Users
+from pullapprove.context.github import (
+    CheckRuns,
+    Commits,
+    Event,
+    Files,
+    Statuses,
+    User,
+    Users,
+)
 from pullapprove.models.github import PullRequest
 from pullapprove.user_input import template
 

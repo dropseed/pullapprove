@@ -2,6 +2,8 @@ import re
 from typing import TYPE_CHECKING, List, Optional
 
 from .base import ContextObject, ContextObjectList
+from .events import BaseEvent
+from .groups import Group
 
 if TYPE_CHECKING:
     from pullapprove.models.bitbucket.pull_request import (
@@ -271,3 +273,26 @@ class PullRequest(ContextObject):
         keys += list(self._children.keys())
         key_set = set(keys)
         return [x for x in key_set if not x.startswith("_")]
+
+
+class EventSubcontext(ContextObject):
+    _eq_attr = "date"
+    _contains_attr = "date"
+    _subtypes = {
+        "user": Account,
+    }
+
+
+class Event(BaseEvent):
+    # Most of these depend on the event type, but are optional anyway
+    _subtypes = {
+        "repository": Repository,
+        "actor": Account,
+        "pullrequest": PullRequest,
+        "changes_request": EventSubcontext,
+        "approval": EventSubcontext,
+        # For pullapprove group events
+        "requested_reviewers": Accounts,
+        "unrequested_reviewers": Accounts,
+        "group": Group,
+    }

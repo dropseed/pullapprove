@@ -2,6 +2,8 @@ import re
 from typing import TYPE_CHECKING, List
 
 from .base import ContextObject, ContextObjectList
+from .events import BaseEvent
+from .groups import Group
 
 if TYPE_CHECKING:
     from pullapprove.models.github.pull_request import PullRequest as PullRequestModel
@@ -379,3 +381,20 @@ class PullRequest(ContextObject):
         keys += list(self._children.keys())
         key_set = set(keys)
         return [x for x in key_set if not x.startswith("_")]
+
+
+class Event(BaseEvent):
+    # Most of these depend on the event type, but are optional anyway
+    _subtypes = {
+        # pull_request - could make a type that throws an error? want to get these attrs of main obj
+        "repository": Repo,
+        "sender": User,
+        "review": Review,
+        "comment": Comment,
+        "team": Team,
+        "organization": User,
+        # For pullapprove group events
+        "requested_reviewers": Users,
+        "unrequested_reviewers": Users,
+        "group": Group,
+    }

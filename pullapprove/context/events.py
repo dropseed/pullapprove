@@ -1,25 +1,16 @@
-from typing import Any
+from typing import Any, Dict, Type
 
-from . import github, groups
 from .base import ContextObject
 
 
-class Event(ContextObject):
+class BaseEvent(ContextObject):
     _eq_attr = "name"
     _contains_attr = "name"
-    # Most of these depend on the event type, but are optional anyway
-    _subtypes = {
-        # pull_request - could make a type that throws an error? want to get these attrs of main obj
-        "repository": github.Repo,
-        "sender": github.User,
-        "review": github.Review,
-        "comment": github.Comment,
-        "team": github.Team,
-        "organization": github.User,
-        # pullapprove event fields
-        "group": groups.Group,
-        "requested_reviewers": github.Users,
-        "unrequested_reviewers": github.Users,
+    _subtypes: Dict[str, Type[ContextObject]] = {
+        # Should include pullapprove event fields in subclass
+        # "requested_reviewers": Accounts,
+        # "unrequested_reviewers": Accounts,
+        # "group": groups.Group,
     }
 
     def __init__(self, name: str, *args: Any, **kwargs: Any) -> None:
