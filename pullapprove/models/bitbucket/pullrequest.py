@@ -197,3 +197,14 @@ class PullRequest(BasePullRequest):
     @cached_property
     def diff(self) -> List[Dict[str, Any]]:
         return self.repo.api.get(self.data["links"]["diff"]["href"], parse_json=False)
+
+    def create_comment(self, body: str, ignore_mode: bool = False) -> None:
+        self.repo.api.post(
+            self.data["links"]["comments"]["href"],
+            json={"content": {"raw": body}},
+            ignore_mode=ignore_mode,
+        )
+
+    def create_or_update_comment(self, body: str, comment_id: str) -> None:
+        # Not supported yet without <!-- --> comments in markdown
+        self.create_comment(body)
