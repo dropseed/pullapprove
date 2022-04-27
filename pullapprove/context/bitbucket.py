@@ -288,7 +288,8 @@ class Event(BaseEvent):
     _subtypes = {
         "repository": Repository,
         "actor": Account,
-        "pullrequest": PullRequest,
+        # Has custom init... don't really need deep context right now anyway?
+        # "pullrequest": PullRequest,
         "changes_request": EventSubcontext,
         "approval": EventSubcontext,
         # For pullapprove group events
