@@ -81,11 +81,11 @@ class PullRequest(BasePullRequest):
         # to a workspace member by account_id, uuid, or nickname
         # (writing it this way so we can error if we can't find a user)
         reviewers_to_add = [
-            x
+            x["user"]
             for x in self.repo.workspace_members  # type: ignore
-            if x["account_id"] in users_to_add
-            or x["uuid"] in users_to_add
-            or x["nickname"] in users_to_add
+            if x["user"]["account_id"] in users_to_add
+            or x["user"]["uuid"] in users_to_add
+            or x["user"]["nickname"] in users_to_add
         ]
 
         if len(reviewers_to_add) != len(users_to_add):

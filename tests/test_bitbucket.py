@@ -5,9 +5,11 @@ def test_bitbucket_set_reviewers():
     repo = Repo(workspace_id="test", full_name="test", api_username_password="test")
     repo.__dict__["workspace_members"] = [
         {
-            "account_id": f"account_id_{x}",
-            "nickname": f"nickname_{x}",
-            "uuid": f"uuid_{x}",
+            "user": {
+                "account_id": f"account_id_{x}",
+                "nickname": f"nickname_{x}",
+                "uuid": f"uuid_{x}",
+            },
         }
         for x in range(10)
     ]
