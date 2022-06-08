@@ -74,3 +74,16 @@ class Repo(BaseRepo):
             f"{BITBUCKET_API_BASE_URL}/workspaces/{self.workspace_id}/members",
             page_items_key="values",
         )
+
+    def get_usernames_in_team(self, team_slug: str) -> List[str]:
+        API_BASE_URL_10 = BITBUCKET_API_BASE_URL.replace("2.0", "1.0")
+        teams = self.api.get(f"{API_BASE_URL_10}/groups/{self.workspace_id}")
+
+        try:
+            team = [
+                x for x in teams if x["name"] == team_slug or x["slug"] == team_slug
+            ][0]
+        except IndexError:
+            raise UserError(f"Team not found: {team_slug}")
+
+        return [x["account_id"] for x in team["members"]]
