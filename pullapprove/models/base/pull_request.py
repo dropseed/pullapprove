@@ -136,7 +136,7 @@ class BasePullRequest:
                         "group": group.as_dict(),
                         "requested_reviewers": [
                             # Use multiple keys to support diff host patterns...
-                            {"login": x, "username": x, "nickname": x}
+                            {"login": x, "username": x, "account_id": x}
                             for x in group.users_to_request
                         ],
                     },
@@ -150,7 +150,7 @@ class BasePullRequest:
                         "group": group.as_dict(),
                         "unrequested_reviewers": [
                             # Use multiple keys to support diff host patterns...
-                            {"login": x, "username": x, "nickname": x}
+                            {"login": x, "username": x, "account_id": x}
                             for x in group.users_to_unrequest
                         ],
                     },

@@ -53,7 +53,7 @@ class PullRequest(BasePullRequest):
         # These are people requested on the PR
         for reviewer in self.data["reviewers"]:
             review = Review(state=ReviewState.PENDING, body="")
-            reviewers.append_review(username=reviewer["nickname"], review=review)
+            reviewers.append_review(username=reviewer["account_id"], review=review)
 
         # These are the people who've actually done something
         for participant in self.data["participants"]:
@@ -69,7 +69,7 @@ class PullRequest(BasePullRequest):
 
             review = Review(state=state, body="")
             reviewers.append_review(
-                username=participant["user"]["nickname"], review=review
+                username=participant["user"]["account_id"], review=review
             )
 
         return reviewers
@@ -77,43 +77,54 @@ class PullRequest(BasePullRequest):
     def set_reviewers(
         self, users_to_add: List[str], users_to_remove: List[str], total_required: int
     ) -> None:
-        reviewers = set([x["nickname"] for x in self.data["reviewers"]])
-        updated_reviewers = reviewers | set(users_to_add)
-        updated_reviewers = updated_reviewers - set(users_to_remove)  # remove last
+        # First, use the strings in users_to_add to see if we can match
+        # to a workspace member by account_id, uuid, or nickname
+        # (writing it this way so we can error if we can't find a user)
+        reviewers_to_add = [
+            x
+            for x in self.repo.workspace_members  # type: ignore
+            if x["account_id"] in users_to_add
+            or x["uuid"] in users_to_add
+            or x["nickname"] in users_to_add
+        ]
 
-        if set(updated_reviewers) == reviewers:
-            return
+        if len(reviewers_to_add) != len(users_to_add):
+            raise UserError(f"Users not found in workspace: {users_to_add}")
 
-        # going to have to use nicknames in yaml
-        # get list of workspaces/name/members
-        # convert nicknames to uuids, use those here
-        # - so the caveat is that nicknames should be unique in your workspace... and you don't want to change them...
-        members_by_nickname = {
-            x["user"]["nickname"]: x for x in self.repo.workspace_members  # type: ignore
-        }
+        # Add the new reviewers to the current ones on the PR
+        updated_reviewers = self.data["reviewers"] + reviewers_to_add
 
-        reviewers_json = []
+        # Last, remove anyone in users_to_remove
+        updated_reviewers = [
+            x
+            for x in updated_reviewers
+            if x["account_id"] not in users_to_remove
+            and x["uuid"] not in users_to_remove
+            and x["nickname"] not in users_to_remove
+        ]
 
-        for nickname in updated_reviewers:
-            try:
-                reviewers_json.append(
-                    {"uuid": members_by_nickname[nickname]["user"]["uuid"]}
-                )
-            except KeyError:
-                raise UserError(f'UUID not found for user "{nickname}"')
+        if set(x["account_id"] for x in self.data["reviewers"]) == set(
+            x["account_id"] for x in updated_reviewers
+        ):
+            # Nothing has changed
+            return updated_reviewers
 
         self.repo.api.put(
             f"/pullrequests/{self.number}",
             json={
-                "reviewers": reviewers_json,
+                "reviewers": [{"uuid": x["uuid"]} for x in updated_reviewers],
                 # Has to have the title field to be valid...
                 "title": self.data["title"],
             },
         )
 
+        # Return is just for testing right now - mypy doesn't seem to care
+        # and don't want to implement on GitHub/GitLab yet for no reason
+        return updated_reviewers
+
     @property
     def users_requested(self) -> List[str]:
-        return [x["nickname"] for x in self.data["reviewers"]]
+        return [x["account_id"] for x in self.data["reviewers"]]
 
     @property
     def base_ref(self) -> str:
@@ -121,7 +132,7 @@ class PullRequest(BasePullRequest):
 
     @property
     def author(self) -> str:
-        return self.data["author"]["nickname"]
+        return self.data["author"]["account_id"]
 
     @property
     def users_unreviewable(self) -> List[str]:
