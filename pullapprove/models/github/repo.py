@@ -4,13 +4,11 @@ from typing import Any, Dict, List, Optional
 from urllib.parse import urlparse
 
 import requests
-import yaml
 from cached_property import cached_property
 from requests.exceptions import RequestException
 
 from pullapprove.config.schema import Config, ExtendsLoader
 from pullapprove.exceptions import UserError
-from pullapprove.logger import logger
 from pullapprove.models.base import BaseRepo
 
 from .api import GitHubAPI

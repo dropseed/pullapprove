@@ -1,4 +1,3 @@
-import re
 from typing import TYPE_CHECKING, List, Optional
 
 from .base import ContextObject, ContextObjectList

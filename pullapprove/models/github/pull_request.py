@@ -2,13 +2,12 @@ import os
 import random
 import time
 from typing import Any, Dict, List, Optional
-from urllib.parse import parse_qs, urlparse
 
 from cached_property import cached_property
 
 import pullapprove.context.functions
 import pullapprove.context.github
-from pullapprove.logger import canonical, logger
+from pullapprove.logger import logger
 from pullapprove.models.base import BasePullRequest
 
 from ..reviews import Review, Reviewers

@@ -1,4 +1,4 @@
-from random import Random, shuffle
+from random import Random
 from typing import TYPE_CHECKING, Any, Dict, List, Set
 
 from pullapprove.context.groups import Group as GroupContext

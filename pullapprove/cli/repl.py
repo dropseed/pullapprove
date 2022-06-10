@@ -1,5 +1,5 @@
 from pprint import pformat
-from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable, Optional
+from typing import Any, Dict, Iterable, Optional
 
 import click
 import cls_client
@@ -59,7 +59,7 @@ class ContextCompleterValidator(Completer, Validator):
 
     def complete_context_vars(
         self, d: Dict[str, Any], prefix: str = ""
-    ) -> Iterable["Completion"]:
+    ) -> Iterable[Completion]:
         if prefix:
             start_position = -len(prefix)
         else:
@@ -72,8 +72,8 @@ class ContextCompleterValidator(Completer, Validator):
                 )
 
     def get_completions(
-        self, document: "Document", complete_event: "CompleteEvent"
-    ) -> Iterable["Completion"]:
+        self, document: Document, complete_event: CompleteEvent
+    ) -> Iterable[Completion]:
         if not document.text:
             for c in self.complete_context_vars(self.expression_context):
                 yield c
@@ -138,7 +138,7 @@ class ContextCompleterValidator(Completer, Validator):
             for c in self.complete_context_vars(context_vars, prefix=completion_prefix):
                 yield c
 
-    def validate(self, document: "Document") -> None:
+    def validate(self, document: Document) -> None:
         text = document.text
 
         if not text:
@@ -205,7 +205,7 @@ class REPL:
 @click.command()
 @pull_request_url_command
 @cls_client.track_command()
-def repl(pull_request: "BasePullRequest") -> None:
+def repl(pull_request: BasePullRequest) -> None:
     """Interactive expression testing"""
     logger.disabled = True
 

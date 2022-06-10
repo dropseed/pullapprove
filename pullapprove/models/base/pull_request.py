@@ -8,7 +8,6 @@ from pullapprove.logger import logger
 from pullapprove.models.events import Events
 from pullapprove.models.groups import Group
 from pullapprove.models.reviews import Reviewers
-from pullapprove.models.states import State
 from pullapprove.models.status import Status
 from pullapprove.storage import Storage
 

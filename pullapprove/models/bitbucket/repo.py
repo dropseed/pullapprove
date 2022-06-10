@@ -9,7 +9,6 @@ from requests.exceptions import RequestException
 
 from pullapprove.config.schema import Config, ExtendsLoader
 from pullapprove.exceptions import UserError
-from pullapprove.logger import logger
 from pullapprove.models.base import BaseRepo
 
 from .api import BitbucketAPI

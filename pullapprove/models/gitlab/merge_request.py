@@ -1,5 +1,3 @@
-import os
-import re
 from typing import Any, Dict, List, Optional
 
 from cached_property import cached_property
@@ -7,15 +5,11 @@ from cached_property import cached_property
 import pullapprove.context.functions
 import pullapprove.user_input.template
 from pullapprove.context.gitlab import MergeRequest as MergeRequestContext
-from pullapprove.exceptions import UserError
-from pullapprove.logger import canonical, logger
 from pullapprove.models.base import BasePullRequest
 from pullapprove.models.reviews import Review, Reviewers, ReviewState
-from pullapprove.models.states import State
 from pullapprove.models.status import Status
 from pullapprove.settings import settings
 
-from . import utils
 from .states import (
     GITLAB_STATUS_STATE_TO_PULLAPPROVE_STATUS_STATE,
     PULLAPPROVE_STATUS_STATE_TO_GITLAB_STATUS_STATE,
