@@ -1,6 +1,7 @@
 import base64
 import os
 from typing import Any, Dict, List, Optional
+from urllib.parse import urlparse
 
 import requests
 from cached_property import cached_property
@@ -61,9 +62,14 @@ class Repo(BaseRepo):
         if content is None:
             return None
 
+        def get_url_response(url: str) -> requests.Response:
+            if urlparse(url).netloc == urlparse(BITBUCKET_API_BASE_URL).netloc:
+                return self.api.session.get(url)
+            return requests.get(url)
+
         extends_loader = ExtendsLoader(
             compile_shorthand=self.compile_url_shorthand,
-            get_url_response=requests.get,
+            get_url_response=get_url_response,
         )
 
         return Config(content, extends_loader.load)
