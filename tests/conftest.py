@@ -35,4 +35,5 @@ def pytest_configure(config):
     # By default, liveapi tests are disabled
     # add --liveapi to run ALL tests
     if not config.option.liveapi:
+        config.addinivalue_line("markers", "liveapi: mark test to run live API tests")
         setattr(config.option, "markexpr", "not liveapi")
