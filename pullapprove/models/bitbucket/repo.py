@@ -86,4 +86,4 @@ class Repo(BaseRepo):
         except IndexError:
             raise UserError(f"Team not found: {team_slug}")
 
-        return [x["account_id"] for x in team["members"]]
+        return [x["nickname"] for x in team["members"]]

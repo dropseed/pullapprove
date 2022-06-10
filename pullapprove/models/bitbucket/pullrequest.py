@@ -53,7 +53,7 @@ class PullRequest(BasePullRequest):
         # These are people requested on the PR
         for reviewer in self.data["reviewers"]:
             review = Review(state=ReviewState.PENDING, body="")
-            reviewers.append_review(username=reviewer["account_id"], review=review)
+            reviewers.append_review(username=reviewer["nickname"], review=review)
 
         # These are the people who've actually done something
         for participant in self.data["participants"]:
@@ -69,7 +69,7 @@ class PullRequest(BasePullRequest):
 
             review = Review(state=state, body="")
             reviewers.append_review(
-                username=participant["user"]["account_id"], review=review
+                username=participant["user"]["nickname"], review=review
             )
 
         return reviewers
@@ -124,7 +124,7 @@ class PullRequest(BasePullRequest):
 
     @property
     def users_requested(self) -> List[str]:
-        return [x["account_id"] for x in self.data["reviewers"]]
+        return [x["nickname"] for x in self.data["reviewers"]]
 
     @property
     def base_ref(self) -> str:
@@ -132,7 +132,7 @@ class PullRequest(BasePullRequest):
 
     @property
     def author(self) -> str:
-        return self.data["author"]["account_id"]
+        return self.data["author"]["nickname"]
 
     @property
     def users_unreviewable(self) -> List[str]:

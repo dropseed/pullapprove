@@ -12,14 +12,14 @@ if TYPE_CHECKING:
 
 
 class Account(ContextObject):
-    _eq_attr = "account_id"
-    _contains_attr = "account_id"
+    _eq_attr = "nickname"
+    _contains_attr = "nickname"
 
 
 class Accounts(ContextObjectList):
     _item_type = Account
-    _eq_attr = "account_ids"
-    _contains_attr = "account_ids"
+    _eq_attr = "nicknames"
+    _contains_attr = "nicknames"
 
     @property
     def account_ids(self) -> List[str]:
@@ -31,8 +31,8 @@ class Accounts(ContextObjectList):
 
 
 class Participant(ContextObject):
-    _eq_attr = "account_id"
-    _contains_attr = "account_id"
+    _eq_attr = "nickname"
+    _contains_attr = "nickname"
     _subtypes = {
         "user": Account,
     }
@@ -47,8 +47,8 @@ class Participant(ContextObject):
 
 
 class Participants(ContextObjectList):
-    _eq_attr = "account_ids"
-    _contains_attr = "account_ids"
+    _eq_attr = "nicknames"
+    _contains_attr = "nicknames"
     _item_type = Participant
 
     @property
