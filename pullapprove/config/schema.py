@@ -32,8 +32,11 @@ class Nested(fields.Nested):
     ) -> Any:
         self._validate_missing(value)
         if value is missing_:
-            _miss = self.missing
-            value = _miss() if callable(_miss) else _miss
+            value = (
+                self.load_default()
+                if callable(self.load_default)
+                else self.load_default
+            )
         return super().deserialize(value, attr, data, **kwargs)
 
 
@@ -117,7 +120,7 @@ class ExtendsLoader:
 
 
 class ExtendableSchema(Schema):
-    extends = fields.String(missing="")
+    extends = fields.String(load_default="")
 
     @pre_load
     def extend(self, data: Dict[str, Any], **kwargs: Any) -> Dict[str, Any]:
@@ -159,20 +162,20 @@ class ExtendableSchema(Schema):
 
 
 class ReviewersSchema(Schema):
-    teams = fields.List(fields.Str(), missing=[])
-    users = fields.List(fields.Str(), missing=[])
+    teams = fields.List(fields.Str(), load_default=[])
+    users = fields.List(fields.Str(), load_default=[])
 
 
 class ReviewsSchema(Schema):
-    required = fields.Integer(default=1, missing=1)
-    request = fields.Integer(default=1, missing=1)
+    required = fields.Integer(dump_default=1, load_default=1)
+    request = fields.Integer(dump_default=1, load_default=1)
     request_order = fields.String(
-        default="random", missing="random"
+        dump_default="random", load_default="random"
     )  # should be choices
-    author_value = fields.Integer(default=0, missing=0)
+    author_value = fields.Integer(dump_default=0, load_default=0)
     reviewed_for = fields.String(
-        default="optional",
-        missing="optional",
+        dump_default="optional",
+        load_default="optional",
         validate=validate.OneOf(["required", "optional", "ignored"]),
     )
 
@@ -187,50 +190,50 @@ class ReviewsSchema(Schema):
 
 
 class LabelsSchema(Schema):
-    approved = fields.String(missing="")
-    pending = fields.String(missing="")
-    rejected = fields.String(missing="")
+    approved = fields.String(load_default="")
+    pending = fields.String(load_default="")
+    rejected = fields.String(load_default="")
 
 
 class NotificationSchema(Schema):
     when = fields.String(required=True)
     comment = fields.String(required=True)
     comment_behavior = fields.String(
-        default="create",
-        missing="create",
+        dump_default="create",
+        load_default="create",
         validate=validate.OneOf(["create", "create_or_update"]),
     )
 
     class Meta:
         # "if" is a Python keyword
         include = {
-            "if": fields.String(missing=""),
+            "if": fields.String(load_default=""),
         }
 
 
 class GroupSchema(Schema):
-    meta = fields.Raw(default=None, missing=None)
-    description = fields.String(missing="")
+    meta = fields.Raw(dump_default=None, load_default=None)
+    description = fields.String(load_default="")
     type = fields.String(
-        default="required",
-        missing="required",
+        dump_default="required",
+        load_default="required",
         validate=validate.OneOf(["required", "optional"]),
     )
-    conditions = fields.List(fields.Str(), missing=[])
-    requirements = fields.List(fields.Str(), missing=[])
-    reviewers = Nested(ReviewersSchema(), missing={})
-    reviews = Nested(ReviewsSchema(), missing={})
-    labels = Nested(LabelsSchema(), missing={})
+    conditions = fields.List(fields.Str(), load_default=[])
+    requirements = fields.List(fields.Str(), load_default=[])
+    reviewers = Nested(ReviewersSchema(), load_default={})
+    reviews = Nested(ReviewsSchema(), load_default={})
+    labels = Nested(LabelsSchema(), load_default={})
 
 
 class PullApproveConditionSchema(Schema):
     condition = fields.String(required=True)
     unmet_status = fields.String(
-        default="success",
-        missing="success",
+        dump_default="success",
+        load_default="success",
         validate=validate.OneOf(["success", "pending", "failure"]),
     )
-    explanation = fields.String(missing="")
+    explanation = fields.String(load_default="")
 
     @pre_load
     def convert_str_type(self, data: Any, **kwargs: Any) -> Any:
@@ -245,7 +248,7 @@ class OverridesSchema(Schema):
         required=True,
         validate=validate.OneOf(["success", "pending", "failure"]),
     )
-    explanation = fields.String(missing="")
+    explanation = fields.String(load_default="")
 
     class Meta:
         # "if" is a Python keyword
@@ -255,24 +258,24 @@ class OverridesSchema(Schema):
 
 
 class AvailabilitySchema(ExtendableSchema):
-    users_unavailable = fields.List(fields.Str(), missing=[])
+    users_unavailable = fields.List(fields.Str(), load_default=[])
 
 
 class ConfigSchema(ExtendableSchema):
     version = fields.Integer(required=True, validate=validate.OneOf([3]))
-    meta = fields.Raw(default=None, missing=None)
-    github_api_version = fields.String(missing="")
+    meta = fields.Raw(dump_default=None, load_default=None)
+    github_api_version = fields.String(load_default="")
     groups = fields.Mapping(
         keys=fields.String(),
         values=Nested(GroupSchema()),
-        missing={},
+        load_default={},
     )
     pullapprove_conditions = fields.List(
-        Nested(PullApproveConditionSchema()), missing=[]
+        Nested(PullApproveConditionSchema()), load_default=[]
     )
-    overrides = fields.List(Nested(OverridesSchema()), missing=[])
-    notifications = fields.List(Nested(NotificationSchema()), missing=[])
-    availability = Nested(AvailabilitySchema(), missing={})
+    overrides = fields.List(Nested(OverridesSchema()), load_default=[])
+    notifications = fields.List(Nested(NotificationSchema()), load_default=[])
+    availability = Nested(AvailabilitySchema(), load_default={})
 
 
 class Config:
