@@ -37,7 +37,7 @@ class BaseAPI:
             total=3,
             connect=3,
             read=3,
-            method_whitelist=False,
+            allowed_methods=False,
             backoff_factor=2,  # only applies to the 3rd attempt (first retry is immediate, then 2s for the 3rd)
             status_forcelist=(401, 404, 502, 503),
         )
