@@ -53,6 +53,7 @@ types-dateparser = "^1.1.0"
 types-setuptools = "^57.4.0"
 isort = "^5.9.3"
 types-redis = "^4.0.1"
+pytest-benchmark = "^3.4.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
