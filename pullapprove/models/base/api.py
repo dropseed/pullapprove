@@ -47,7 +47,7 @@ class BaseAPI:
 
         self.session.headers.update({"User-Agent": "pullapprove"})
 
-        self.session.params.update(params)  # type: ignore
+        self.default_params = params
         self.session.headers.update(headers)
 
         self.init_cache(cache_type or settings.get("CACHE", "file"))
@@ -56,7 +56,7 @@ class BaseAPI:
             "%s.defaults headers=%s params=%s",
             self.__class__.__name__,
             self.session.headers,
-            self.session.params,
+            self.default_params,
         )
 
         self.mode = Mode()
@@ -129,10 +129,10 @@ class BaseAPI:
         parse_json = kwargs.pop("parse_json", True)
         return_response = kwargs.pop("return_response", False)
 
-        if "params" in kwargs:
-            # Sort params for most consistent caching
-            # https://cachecontrol.readthedocs.io/en/latest/tips.html#query-string-params
-            kwargs["params"] = sorted(kwargs["params"].items())
+        kwargs["params"] = {**self.default_params, **kwargs.get("params", {})}
+        # Sort params for most consistent caching
+        # https://cachecontrol.readthedocs.io/en/latest/tips.html#query-string-params
+        kwargs["params"] = sorted(kwargs["params"].items())
 
         while next_page_url:
             response = to_call(next_page_url, *args, **kwargs)
@@ -176,6 +176,10 @@ class BaseAPI:
             ):
                 # Bitbucket pagination... could extract this but should work fine for now
                 next_page_url = response_data["next"]
+
+            if next_page_url:
+                # Params should be included in the next_page_url itself
+                kwargs.pop("params", None)
 
         return data
 
