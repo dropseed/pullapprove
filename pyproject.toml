@@ -31,6 +31,7 @@ keyring = "^23.2.1"
 appdirs = "^1.4.4"
 cls-client = "^1.4.0"
 Pygments = "^2.10.0"
+urllib3 = "^1.26.0"  # allowed_methods introduced
 
 # For vendored cachecontrol
 lockfile = ">=0.9"
