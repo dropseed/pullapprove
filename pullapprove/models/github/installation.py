@@ -15,7 +15,13 @@ from .settings import GITHUB_API_BASE_URL
 
 
 class Installation:
-    def __init__(self, id: int, existing_api_token: Optional[str] = None) -> None:
+    def __init__(
+        self,
+        id: int,
+        existing_api_token: Optional[str] = None,
+        app_id: Optional[str] = None,
+        app_private_key: Optional[str] = None,
+    ) -> None:
         self.id = id
         self.existing_api_token = existing_api_token
         self.api = GitHubAPI(
@@ -23,6 +29,8 @@ class Installation:
             headers={"Accept": "application/vnd.github.machine-man-preview+json"},
         )
         self.cache = self.api.cache  # reuse the API cache
+        self.app_id = app_id or settings.get("GITHUB_APP_ID")
+        self.app_private_key = app_private_key or settings.get("GITHUB_APP_PRIVATE_KEY")
 
     @cached_property
     def api_token(self) -> str:
@@ -38,12 +46,9 @@ class Installation:
         )
 
     def _create_jwt(self) -> str:
-        app_id = settings.get("GITHUB_APP_ID")
-        key = settings.get("GITHUB_APP_PRIVATE_KEY")
-
         now = int(time.time())
-        payload = {"iat": now, "exp": now + 60, "iss": app_id}
-        decoded_key = base64.b64decode(key).decode(
+        payload = {"iat": now, "exp": now + 60, "iss": self.app_id}
+        decoded_key = base64.b64decode(self.app_private_key).decode(
             "utf-8"
         )  # assume we were given a base64 env variable
         encrypted = jwt.encode(payload, decoded_key, "RS256")

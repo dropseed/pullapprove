@@ -9,10 +9,13 @@ import pullapprove.context.functions
 import pullapprove.context.github
 from pullapprove.logger import logger
 from pullapprove.models.base import BasePullRequest
+from pullapprove.models.github.api import GitHubAPI
+from pullapprove.settings import settings
 
 from ..reviews import Review, Reviewers
 from ..states import ReviewState
 from ..status import Status
+from .installation import Installation
 from .states import (
     GITHUB_REVIEW_STATE_TO_PULLAPPROVE_REVIEW_STATE,
     GITHUB_STATUS_STATE_TO_PULLAPPROVE_STATUS_STATE,
@@ -52,7 +55,20 @@ class PullRequest(BasePullRequest):
         if report_url:
             data["target_url"] = report_url
 
-        self.repo.api.post(f"/statuses/{self.latest_sha}", json=data)
+        reporting_app_id = settings.get("GITHUB_REPORTING_APP_ID", None)
+        if reporting_app_id:
+            reporting_installation = Installation(
+                id=int(settings.get("GITHUB_REPORTING_APP_INSTALLATION_ID")),
+                app_id=reporting_app_id,
+                app_private_key=settings.get("GITHUB_REPORTING_APP_PRIVATE_KEY"),
+            )
+            reporting_api = GitHubAPI(
+                self.repo.api.base_url,
+                headers={"Authorization": f"token {reporting_installation.api_token}"},
+            )
+            reporting_api.post(f"/statuses/{self.latest_sha}", json=data)
+        else:
+            self.repo.api.post(f"/statuses/{self.latest_sha}", json=data)
 
         return report_url
 
