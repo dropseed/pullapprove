@@ -48,8 +48,8 @@ class Installation:
     def _create_jwt(self) -> str:
         now = int(time.time())
         payload = {"iat": now, "exp": now + 60, "iss": self.app_id}
-        decoded_key = base64.b64decode(self.app_private_key).decode(
-            "utf-8"
+        decoded_key = (
+            base64.b64decode(self.app_private_key).decode("utf-8").strip()
         )  # assume we were given a base64 env variable
         encrypted = jwt.encode(payload, decoded_key, "RS256")
         return encrypted
