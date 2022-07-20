@@ -2,7 +2,6 @@ from pprint import pformat
 from typing import Any, Dict, Iterable, Optional
 
 import click
-import cls_client
 from prompt_toolkit import HTML, PromptSession
 from prompt_toolkit.completion import CompleteEvent, Completion
 from prompt_toolkit.completion.base import Completer
@@ -204,7 +203,6 @@ class REPL:
 
 @click.command()
 @pull_request_url_command
-@cls_client.track_command()
 def repl(pull_request: BasePullRequest) -> None:
     """Interactive expression testing"""
     logger.disabled = True

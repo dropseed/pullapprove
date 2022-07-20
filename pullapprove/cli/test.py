@@ -2,7 +2,6 @@ import json
 from typing import TYPE_CHECKING, Optional
 
 import click
-import cls_client
 from click.types import File
 
 from pullapprove.context.groups import Groups
@@ -161,7 +160,6 @@ def process_pull_request(pull_request: "BasePullRequest", config_file: File) -> 
 )
 @click.option("--debug", is_flag=True)
 @pull_request_url_command
-@cls_client.track_command(include_kwargs=["output_format", "debug"])
 def test(pull_request, config_file, output_format, debug):  # type: ignore
     if output_format == "json" or not debug:
         logger.disabled = True

@@ -3,7 +3,6 @@ import os
 from typing import Generator, List, Optional
 
 import click
-import cls_client
 import keyring
 from appdirs import user_config_dir
 
@@ -75,7 +74,6 @@ def secrets() -> None:
 
 @secrets.command()
 @click.argument("name")
-@cls_client.track_command("secrets_set")
 def set(name: str) -> None:
     """Set a secret"""
     Secrets().prompt_set(name)
@@ -83,7 +81,6 @@ def set(name: str) -> None:
 
 
 @secrets.command()
-@cls_client.track_command("secrets_list")
 def list() -> None:
     """List names and values of stored secrets"""
     for secret_name, secret_value in Secrets().list():
