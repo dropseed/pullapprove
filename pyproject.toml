@@ -55,6 +55,9 @@ types-setuptools = "^65.3.0"
 isort = "^5.9.3"
 types-redis = "^4.0.1"
 
+[tool.poetry.group.dev.dependencies]
+types-setuptools = "^65.3.0"
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
