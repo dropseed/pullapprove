@@ -47,12 +47,12 @@ snapshottest = "^0.6.0"
 black = "^22.1.0"
 lxml = "^4.6.3"
 Markdown = "^3.3.4"
-types-PyYAML = "^6.0.4"
-types-requests = "^2.25.0"
-types-dateparser = "^1.1.0"
-types-setuptools = "^57.4.0"
 isort = "^5.9.3"
-types-redis = "^4.0.1"
+types-PyYAML = "*"
+types-requests = "*"
+types-dateparser = "*"
+types-setuptools = "*"
+types-redis = "*"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
