@@ -66,6 +66,8 @@ class BaseAPI:
         pass
 
     def init_cache(self, cache_type: str) -> None:
+        self.cache: None | FileCache | RedisCache = None
+
         if cache_type == "file":
             self.cache = FileCache(os.path.join(tempfile.gettempdir(), "pullapprove"))
         elif cache_type == "redis":
@@ -73,8 +75,6 @@ class BaseAPI:
             redis_options = json.loads(settings.get("CACHE_REDIS_OPTIONS", "{}"))
             redis_client = redis.from_url(redis_url, **redis_options)
             self.cache = RedisCache(redis_client)
-        else:
-            self.cache = None
 
         if self.cache:
             CacheControl(
