@@ -1,7 +1,7 @@
 import json
 import os
 import tempfile
-from typing import Any, Callable, Dict
+from typing import Any, Callable, Dict, Optional, Union
 
 import redis
 import requests
@@ -66,7 +66,7 @@ class BaseAPI:
         pass
 
     def init_cache(self, cache_type: str) -> None:
-        self.cache: None | FileCache | RedisCache = None
+        self.cache: Optional[Union[FileCache, RedisCache]] = None
 
         if cache_type == "file":
             self.cache = FileCache(os.path.join(tempfile.gettempdir(), "pullapprove"))
