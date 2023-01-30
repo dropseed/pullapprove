@@ -1,4 +1,4 @@
-<a href="https://www.pullapprove.com/"><img src="https://www.pullapprove.com/static/img/logos/pull-approve-logo-gray-dk.png" alt="PullApprove" height="40px" /></a>
+<a href="https://www.pullapprove.com/"><img src="https://www.pullapprove.com/assets/img/logos/pull-approve-logo-gray-dk.png" alt="PullApprove" height="40px" /></a>
 ---
 
 PullApprove is a framework for code review assignment and policies.
