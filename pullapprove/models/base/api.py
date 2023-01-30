@@ -148,6 +148,10 @@ class BaseAPI:
                     rate_limit_remaining=response.headers["X-RateLimit-Remaining"]
                 )
 
+            if not response.ok:
+                logger.warning(response.headers)
+                logger.warning(response.text)
+
             if return_response:
                 return response
 
