@@ -55,7 +55,7 @@ class PullRequest(BasePullRequest):
         if report_url:
             data["target_url"] = report_url
 
-        reporting_app_id = settings.get("GITHUB_REPORTING_APP_ID", None)
+        reporting_app_id = settings.get("GITHUB_REPORTING_APP_ID", "")
         if reporting_app_id:
             reporting_installation = Installation(
                 app_id=reporting_app_id,
