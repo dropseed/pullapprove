@@ -8,7 +8,6 @@ import jwt
 from cached_property import cached_property
 
 from pullapprove.logger import canonical, logger
-from pullapprove.settings import settings
 
 from .api import GitHubAPI
 from .settings import GITHUB_API_BASE_URL
@@ -17,27 +16,24 @@ from .settings import GITHUB_API_BASE_URL
 class Installation:
     def __init__(
         self,
-        id: int,
-        existing_api_token: Optional[str] = None,
-        app_id: Optional[str] = None,
-        app_private_key: Optional[str] = None,
+        app_id: str,
+        app_private_key: str,
+        id: Optional[int] = None,
+        repo: Optional[str] = None,
     ) -> None:
         self.id = id
-        self.existing_api_token = existing_api_token
+        self.repo = repo
+
+        if not self.id and not self.repo:
+            raise Exception("Must provide either installation ID or repo name")
+
         self.api = GitHubAPI(
             GITHUB_API_BASE_URL,
             headers={"Accept": "application/vnd.github.machine-man-preview+json"},
         )
         self.cache = self.api.cache  # reuse the API cache
-        self.app_id = app_id or settings.get("GITHUB_APP_ID")
-        self.app_private_key = app_private_key or settings.get("GITHUB_APP_PRIVATE_KEY")
-
-    @cached_property
-    def api_token(self) -> str:
-        if self.existing_api_token:
-            return self.existing_api_token
-
-        return self._get_api_token()
+        self.app_id = app_id
+        self.app_private_key = app_private_key
 
     def get_repos(self) -> List[Dict]:
         headers = {"Authorization": f"token {self.api_token}"}
@@ -54,8 +50,23 @@ class Installation:
         encrypted = jwt.encode(payload, decoded_key, "RS256")
         return encrypted
 
-    def _get_api_token(self) -> str:
-        cache_key = f"github_installation:{self.id}"
+    @cached_property
+    def installation_id(self) -> int:
+        if self.id:
+            return self.id
+
+        data = self.api.get(
+            f"/repos/{self.repo}/installation",
+            headers={"Authorization": f"Bearer {self._create_jwt()}"},
+        )
+
+        logger.debug(f"Retrieved installation ID {data['id']} for repo {self.repo}")
+
+        return data["id"]
+
+    @cached_property
+    def api_token(self) -> str:
+        cache_key = f"github_installation:{self.installation_id}"
 
         if self.cache:
             cached = self.cache.get(cache_key)
@@ -74,7 +85,7 @@ class Installation:
                     self.cache.delete(cache_key)
 
         data = self.api.post(
-            f"/app/installations/{self.id}/access_tokens",
+            f"/app/installations/{self.installation_id}/access_tokens",
             headers={"Authorization": f"Bearer {self._create_jwt()}"},
             ignore_mode=True,
         )

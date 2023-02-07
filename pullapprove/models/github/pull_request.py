@@ -58,9 +58,9 @@ class PullRequest(BasePullRequest):
         reporting_app_id = settings.get("GITHUB_REPORTING_APP_ID", None)
         if reporting_app_id:
             reporting_installation = Installation(
-                id=int(settings.get("GITHUB_REPORTING_APP_INSTALLATION_ID")),
                 app_id=reporting_app_id,
                 app_private_key=settings.get("GITHUB_REPORTING_APP_PRIVATE_KEY"),
+                id=int(settings.get("GITHUB_REPORTING_APP_INSTALLATION_ID")),
             )
             reporting_api = GitHubAPI(
                 self.repo.api.base_url,
