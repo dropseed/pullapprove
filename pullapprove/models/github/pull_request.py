@@ -97,7 +97,7 @@ class PullRequest(BasePullRequest):
 
         # Temporary fix for the (rare) race condition in the GitHub API
         # where duplicate reviews are created, causing notifications, etc.
-        delay = random.uniform(0, 1)
+        delay = random.uniform(0, 3)
         time.sleep(delay)
 
         self.repo.api.post(
