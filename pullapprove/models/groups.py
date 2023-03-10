@@ -133,7 +133,7 @@ class Group:
         users_unavailable: Set[str] = set(users_already_unavailable)
         users_to_unrequest: Set[str] = set()
 
-        if users_in_group:
+        if users_in_group or self.teams:  # Teams could be defined but have no users
             users_in_group_set = set(users_in_group)
             users_approved = users_in_group_set.intersection(users_approved)
             users_rejected = users_in_group_set.intersection(users_rejected)
