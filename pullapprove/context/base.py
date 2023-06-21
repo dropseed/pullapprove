@@ -51,7 +51,6 @@ class ContextObject:
 
 
 class ContextObjectList(ContextObject):
-
     _item_type = ContextObject
 
     def __init__(self, data: List[Any]) -> None:
