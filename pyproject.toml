@@ -30,7 +30,7 @@ prompt-toolkit = "^3.0.20"
 keyring = "^23.2.1"
 appdirs = "^1.4.4"
 Pygments = "^2.10.0"
-urllib3 = "^2.0.6"  # allowed_methods introduced
+urllib3 = "^2.0.7"  # allowed_methods introduced
 
 # For vendored cachecontrol
 lockfile = ">=0.9"
