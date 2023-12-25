@@ -36,7 +36,7 @@ urllib3 = "^1.26.0"  # allowed_methods introduced
 lockfile = ">=0.9"
 redis = ">=2.10.5"
 msgpack = ">=0.5.2"
-mypy = "1.7.1"
+mypy = "1.8.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.0.1"
