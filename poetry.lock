@@ -1718,13 +1718,13 @@ files = [
 
 [[package]]
 name = "traitlets"
-version = "5.14.0"
+version = "5.14.1"
 description = "Traitlets Python configuration system"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "traitlets-5.14.0-py3-none-any.whl", hash = "sha256:f14949d23829023013c47df20b4a76ccd1a85effb786dc060f34de7948361b33"},
-    {file = "traitlets-5.14.0.tar.gz", hash = "sha256:fcdaa8ac49c04dfa0ed3ee3384ef6dfdb5d6f3741502be247279407679296772"},
+    {file = "traitlets-5.14.1-py3-none-any.whl", hash = "sha256:2e5a030e6eff91737c643231bfcf04a65b0132078dad75e4936700b213652e74"},
+    {file = "traitlets-5.14.1.tar.gz", hash = "sha256:8585105b371a04b8316a43d5ce29c098575c2e477850b62b848b964f1444527e"},
 ]
 
 [package.extras]
@@ -1733,24 +1733,24 @@ test = ["argcomplete (>=3.0.3)", "mypy (>=1.7.0)", "pre-commit", "pytest (>=7.0,
 
 [[package]]
 name = "types-dateparser"
-version = "1.1.4.10"
+version = "1.1.4.20240106"
 description = "Typing stubs for dateparser"
 optional = false
-python-versions = "*"
+python-versions = ">=3.8"
 files = [
-    {file = "types-dateparser-1.1.4.10.tar.gz", hash = "sha256:f9f147147a897ecb99491f59772ab1be1b7a0842fbc22e85ca37c6995b563b52"},
-    {file = "types_dateparser-1.1.4.10-py3-none-any.whl", hash = "sha256:b85c664b349412ef0e09afd56c3c554a1d2fc206e45f1222c1001d23cb2fb66d"},
+    {file = "types-dateparser-1.1.4.20240106.tar.gz", hash = "sha256:155a1bd64111d9f2a03146d56f495f30ac58fdced646773144a68dca870a329c"},
+    {file = "types_dateparser-1.1.4.20240106-py3-none-any.whl", hash = "sha256:4abc6a4dc6cf8986f513672dce34057e609e6c857afbaba2fd8e33e1082efe4d"},
 ]
 
 [[package]]
 name = "types-pyopenssl"
-version = "23.3.0.0"
+version = "23.3.0.20240106"
 description = "Typing stubs for pyOpenSSL"
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.8"
 files = [
-    {file = "types-pyOpenSSL-23.3.0.0.tar.gz", hash = "sha256:5ffb077fe70b699c88d5caab999ae80e192fe28bf6cda7989b7e79b1e4e2dcd3"},
-    {file = "types_pyOpenSSL-23.3.0.0-py3-none-any.whl", hash = "sha256:00171433653265843b7469ddb9f3c86d698668064cc33ef10537822156130ebf"},
+    {file = "types-pyOpenSSL-23.3.0.20240106.tar.gz", hash = "sha256:3d6f3462bec0c260caadf93fbb377225c126661b779c7d9ab99b6dad5ca10db9"},
+    {file = "types_pyOpenSSL-23.3.0.20240106-py3-none-any.whl", hash = "sha256:47a7eedbd18b7bcad17efebf1c53416148f5a173918a6d75027e75e32fe039ae"},
 ]
 
 [package.dependencies]
@@ -1769,13 +1769,13 @@ files = [
 
 [[package]]
 name = "types-redis"
-version = "4.6.0.11"
+version = "4.6.0.20240106"
 description = "Typing stubs for redis"
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.8"
 files = [
-    {file = "types-redis-4.6.0.11.tar.gz", hash = "sha256:c8cfc84635183deca2db4a528966c5566445fd3713983f0034fb0f5a09e0890d"},
-    {file = "types_redis-4.6.0.11-py3-none-any.whl", hash = "sha256:94fc61118601fb4f79206b33b9f4344acff7ca1d7bba67834987fb0efcf6a770"},
+    {file = "types-redis-4.6.0.20240106.tar.gz", hash = "sha256:2b2fa3a78f84559616242d23f86de5f4130dfd6c3b83fb2d8ce3329e503f756e"},
+    {file = "types_redis-4.6.0.20240106-py3-none-any.whl", hash = "sha256:912de6507b631934bd225cdac310b04a58def94391003ba83939e5a10e99568d"},
 ]
 
 [package.dependencies]
@@ -1798,13 +1798,13 @@ types-urllib3 = "*"
 
 [[package]]
 name = "types-setuptools"
-version = "69.0.0.0"
+version = "69.0.0.20240106"
 description = "Typing stubs for setuptools"
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.8"
 files = [
-    {file = "types-setuptools-69.0.0.0.tar.gz", hash = "sha256:b0a06219f628c6527b2f8ce770a4f47550e00d3e8c3ad83e2dc31bc6e6eda95d"},
-    {file = "types_setuptools-69.0.0.0-py3-none-any.whl", hash = "sha256:8c86195bae2ad81e6dea900a570fe9d64a59dbce2b11cc63c046b03246ea77bf"},
+    {file = "types-setuptools-69.0.0.20240106.tar.gz", hash = "sha256:e077f9089578df3c9938f6e4aa1633f182ba6740a6fdb1333f162bae5dfcbadc"},
+    {file = "types_setuptools-69.0.0.20240106-py3-none-any.whl", hash = "sha256:b1da8981425723a674fd459c43dfa4402abeaee3f9cf682723ee9cf226125cc3"},
 ]
 
 [[package]]
@@ -1936,13 +1936,13 @@ bracex = ">=2.1.1"
 
 [[package]]
 name = "wcwidth"
-version = "0.2.12"
+version = "0.2.13"
 description = "Measures the displayed width of unicode strings in a terminal"
 optional = false
 python-versions = "*"
 files = [
-    {file = "wcwidth-0.2.12-py2.py3-none-any.whl", hash = "sha256:f26ec43d96c8cbfed76a5075dac87680124fa84e0855195a6184da9c187f133c"},
-    {file = "wcwidth-0.2.12.tar.gz", hash = "sha256:f01c104efdf57971bcb756f054dd58ddec5204dd15fa31d6503ea57947d97c02"},
+    {file = "wcwidth-0.2.13-py2.py3-none-any.whl", hash = "sha256:3da69048e4540d84af32131829ff948f1e022c1c6bdb8d6102117aac784f6859"},
+    {file = "wcwidth-0.2.13.tar.gz", hash = "sha256:72ea0c06399eb286d978fdedb6923a9eb47e1c486ce63e9b4e64fc18303972b5"},
 ]
 
 [[package]]
