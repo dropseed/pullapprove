@@ -22,7 +22,7 @@ PyJWT = "^2.1.0"
 cryptography = "^41.0.1"
 PyYAML = "^6.0"
 click = "^8.0.1"
-urllib3 = "^1.26.0"  # allowed_methods introduced
+urllib3 = "^2.2.0"  # allowed_methods introduced
 
 # For vendored cachecontrol
 lockfile = ">=0.9"
