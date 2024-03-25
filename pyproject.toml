@@ -28,11 +28,11 @@ urllib3 = "^1.26.0"  # allowed_methods introduced
 lockfile = ">=0.9"
 redis = ">=2.10.5"
 msgpack = ">=0.5.2"
+pytest-cov = "^5.0.0"
 
 [tool.poetry.group.dev.dependencies]
 mypy = "<1.0.0"
 pytest = "^7.0.1"
-pytest-cov = "^4.0.0"
 ipython = "^8.1.0"
 ipdb = "^0.13.9"
 black = "^23.3.0"
